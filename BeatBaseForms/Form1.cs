@@ -7,17 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace BeatBaseForms
 {
     public partial class Form1 : Form
     {
 
+        private SqlConnection conn;
+
         public Form1()
         {
             InitializeComponent();
+            checkDBConn();
+
             //InitializeComponents();  
         }
+
+        private SqlConnection getSqlConn()
+        {
+            // Needs to be changed to the online server
+            return new SqlConnection("data source = DIOGU\\SQLEXPRESS;integrated security=true;initial catalog=Beatbase");
+        }
+
+        private bool checkDBConn()
+        {
+            if (conn == null)
+                conn = getSqlConn();
+
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return conn.State == ConnectionState.Open;
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -181,6 +204,103 @@ namespace BeatBaseForms
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void songsTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // This makes a message box with one song from the database
+
+            try
+            {
+                // Create a SQL command to select a song from the database
+                string selectCommand = "SELECT TOP 1 * FROM Song";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Get the song details from the reader
+                            string songName = reader["Name"].ToString();
+                            string artistName = reader["ArtistID"].ToString();
+                            string genre = reader["Genre"].ToString();
+                            string duration = reader["Duration"].ToString();
+                            string lyrics = reader["Lyrics"].ToString();
+                            string releaseDate = reader["ReleaseDate"].ToString();
+                            string albumID = reader["AlbumID"].ToString();
+
+                            // Display the song details in a message box
+                            MessageBox.Show($"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No songs found in the database.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Define a static song
+                int ID = 1; // Assuming the song ID in your database
+                string songName = "My Song";
+                int artistID = 1; // Assuming the artist ID in your database
+                int streams = 0;
+                string genre = "Pop";
+                int duration = 4; // Song duration, e.g., 4 minutes
+                string lyrics = "These are the lyrics of my song.";
+                DateTime releaseDate = DateTime.Now;
+                int albumID = 1; // Assuming the album ID in your database
+
+                // Create SQL command to insert the song into the database
+                string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
+                                       "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    // Set parameters for the SQL command
+                    cmd.Parameters.AddWithValue("@ID", ID); // ID is auto-incremented in the database
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+                    cmd.Parameters.AddWithValue("@Streams", streams);
+                    cmd.Parameters.AddWithValue("@Genre", genre);
+                    cmd.Parameters.AddWithValue("@Duration", duration);
+                    cmd.Parameters.AddWithValue("@Lyrics", lyrics);
+                    cmd.Parameters.AddWithValue("@Name", songName);
+                    cmd.Parameters.AddWithValue("@ReleaseDate", releaseDate);
+                    cmd.Parameters.AddWithValue("@AlbumID", albumID);
+
+                    // Open connection and execute the SQL command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Song added successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add song.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
