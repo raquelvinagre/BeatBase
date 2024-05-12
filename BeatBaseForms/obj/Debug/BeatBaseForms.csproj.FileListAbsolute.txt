@@ -1,0 +1,11 @@
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.AssemblyReference.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.SuggestedBindingRedirects.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.Form1.resources
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.Properties.Resources.resources
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.GenerateResource.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.CoreCompileInputs.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\bin\Debug\BeatBaseForms.exe.config
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\bin\Debug\BeatBaseForms.exe
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\bin\Debug\BeatBaseForms.pdb
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.exe
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBaseForms\BeatBaseForms\obj\Debug\BeatBaseForms.pdb
