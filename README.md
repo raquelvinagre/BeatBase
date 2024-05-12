@@ -1,5 +1,5 @@
 # BD-Projeto
-Projeto de bases de dados - BeatBase
+Projeto de Bases de Dados - BeatBase
 
 Diogo Fernandes 114137
 
