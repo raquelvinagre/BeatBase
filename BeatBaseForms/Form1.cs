@@ -20,7 +20,7 @@ namespace BeatBaseForms
         {
             InitializeComponent();
             checkDBConn();
-
+            //
             //InitializeComponents();  
         }
 
