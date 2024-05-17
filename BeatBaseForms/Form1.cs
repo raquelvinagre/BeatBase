@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace BeatBaseForms
 {
@@ -27,7 +28,7 @@ namespace BeatBaseForms
         private SqlConnection getSqlConn()
         {
             // Needs to be changed to the online server
-            return new SqlConnection("data source = RAQUELPC\\SQLEXPRESS;integrated security=true;initial catalog=Beatbase");
+            return new SqlConnection("data source = tcp:mednat.ieeta.pt\\SQLSERVER, 8101; Initial Catalog = p4g6; uid = p4g6; password = euadorobasededados69$");
         }
 
         private bool checkDBConn()
@@ -365,55 +366,51 @@ namespace BeatBaseForms
             }
         }
 
+        // function to add a song to the database
         private void button3_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                // Define a static song
-                int ID = 1; // Assuming the song ID in your database
-                string songName = "My Song";
-                int artistID = 1; // Assuming the artist ID in your database
-                int streams = 0;
-                string genre = "Pop";
-                int duration = 4; // Song duration, e.g., 4 minutes
-                string lyrics = "These are the lyrics of my song.";
-                DateTime releaseDate = DateTime.Now;
-                int albumID = 1; // Assuming the album ID in your database
+            
+            // Get the song details from the textboxes
+            // Id that is autoincremented
+            int songID = 0;
+            string songArtist = "ArtistID";
+            string songName = textBox2.Text;
+            string songGenre = textBox3.Text;
+            string songDuration = textBox4.Text;
+            string songLyrics = richTextBox1.Text;
+            DateTime songReleaseDate = DateTime.Now;
+            int songAlbumID = 0;
 
-                // Create SQL command to insert the song into the database
-                string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
+            if (radioButton2.Checked)
+            {
+                songAlbumID = NULL;
+            }
+
+            if (radioButton1.Checked)
+            {
+                // n sei bem o que fazer aqui
+            }
+
+            string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
                                        "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
 
-                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
-                {
-                    // Set parameters for the SQL command
-                    cmd.Parameters.AddWithValue("@ID", ID); // ID is auto-incremented in the database
-                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
-                    cmd.Parameters.AddWithValue("@Streams", streams);
-                    cmd.Parameters.AddWithValue("@Genre", genre);
-                    cmd.Parameters.AddWithValue("@Duration", duration);
-                    cmd.Parameters.AddWithValue("@Lyrics", lyrics);
-                    cmd.Parameters.AddWithValue("@Name", songName);
-                    cmd.Parameters.AddWithValue("@ReleaseDate", releaseDate);
-                    cmd.Parameters.AddWithValue("@AlbumID", albumID);
 
-                    // Open connection and execute the SQL command
-                    int rowsAffected = cmd.ExecuteNonQuery();
 
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Song added successfully!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to add song.");
-                    }
-                }
-            }
-            catch (Exception ex)
+            using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
             {
-                MessageBox.Show("Error: " + ex.Message);
+                cmd.Parameters.AddWithValue("@ID", songID);
+                cmd.Parameters.AddWithValue("@ArtistID", songArtist);
+                cmd.Parameters.AddWithValue("@Streams", 0); // Starts at 0
+                cmd.Parameters.AddWithValue("@Genre", songGenre);
+                cmd.Parameters.AddWithValue("@Duration", songDuration);
+                cmd.Parameters.AddWithValue("@Lyrics", songLyrics);
+                cmd.Parameters.AddWithValue("@Name", songName);
+                cmd.Parameters.AddWithValue("@ReleaseDate", songReleaseDate);
+                cmd.Parameters.AddWithValue("@AlbumID", songAlbumID);
+                cmd.ExecuteNonQuery();
             }
+
+
         }
 
         private void label22_Click(object sender, EventArgs e)
@@ -424,6 +421,11 @@ namespace BeatBaseForms
         private void buttonSaveProfile_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
