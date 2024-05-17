@@ -27,7 +27,7 @@ namespace BeatBaseForms
         private SqlConnection getSqlConn()
         {
             // Needs to be changed to the online server
-            return new SqlConnection("data source = DIOGU\\SQLEXPRESS;integrated security=true;initial catalog=Beatbase");
+            return new SqlConnection("data source = RAQUELPC\\SQLEXPRESS;integrated security=true;initial catalog=Beatbase");
         }
 
         private bool checkDBConn()
@@ -58,16 +58,18 @@ namespace BeatBaseForms
             albumsTab = new TabPage("Albums");
             artistsTab = new TabPage("Artists");
             playlistsTab = new TabPage("Playlists");
-            profileTab = new TabPage("Profile");
             leaderboardTab = new TabPage("Leaderboard");
+            profileTab = new TabPage("Profile");
+
 
             // Add tabs to TabControl
             mainTabControl.Controls.Add(songsTab);
             mainTabControl.Controls.Add(albumsTab);
             mainTabControl.Controls.Add(artistsTab);
             mainTabControl.Controls.Add(playlistsTab);
-            mainTabControl.Controls.Add(profileTab);
             mainTabControl.Controls.Add(leaderboardTab);
+            mainTabControl.Controls.Add(profileTab);
+
 
             // Add TabControl to the form
             this.Controls.Add(mainTabControl);
@@ -77,17 +79,44 @@ namespace BeatBaseForms
             InitializeAlbumsTab();
             InitializeArtistsTab();
             InitializePlaylistsTab();
-            InitializeProfileTab();
             InitializeLeaderboardTab();
+            InitializeProfileTab();
+
         }
 
         private void InitializeSongsTab()
         {
+            // Create a TabControl for the Songs tab
+            TabControl songsSubTabControl = new TabControl();
+            songsSubTabControl.Dock = DockStyle.Fill;
+
+            // Create the "Add Song" tab
+            TabPage addSongTab = new TabPage("Add Song");
+            InitializeAddSongTab(addSongTab);
+
+            // Create the "View Songs" tab
+            TabPage viewSongsTab = new TabPage("View Songs");
+
+            // Add the sub-tabs to the TabControl
+            songsSubTabControl.Controls.Add(addSongTab);
+            songsSubTabControl.Controls.Add(viewSongsTab);
+
+            // Add the TabControl to the songsTab
+            songsTab.Controls.Add(songsSubTabControl);
+        }
+
+        private void InitializeAddSongTab(TabPage addSongTab)
+        {
             Button addButton = new Button();
             addButton.Text = "Add Song";
+            addButton.Location = new Point(10, 10);  // Position the button
+            addButton.Size = new Size(100, 30);
             addButton.Click += (sender, e) => { /* Add Song Logic */ };
-            songsTab.Controls.Add(addButton);
+            addSongTab.Controls.Add(addButton);
+
+            // Add additional controls for song details here, such as textboxes for song name, artist, etc.
         }
+
 
         private void InitializeAlbumsTab()
         {
@@ -152,12 +181,7 @@ namespace BeatBaseForms
             nameTextBox.Size = new Size(200, 20);
             profileTab.Controls.Add(nameTextBox);
 
-            Button saveProfileButton = new Button();
-            saveProfileButton.Text = "Save Changes";
-            saveProfileButton.Location = new Point(100, 40);
-            saveProfileButton.Size = new Size(100, 30);
-            saveProfileButton.Click += (sender, e) => { /* Save Profile Logic */ };
-            profileTab.Controls.Add(saveProfileButton);
+          
         }
 
         private void InitializeLeaderboardTab()
@@ -254,6 +278,95 @@ namespace BeatBaseForms
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void artistsTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAddAlbum_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create a SQL command to select a song from the database
+                string selectCommand = "SELECT TOP 1 * FROM Song";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Get the song details from the reader
+                            string songName = reader["Name"].ToString();
+                            string artistName = reader["ArtistID"].ToString();
+                            string genre = reader["Genre"].ToString();
+                            string duration = reader["Duration"].ToString();
+                            string lyrics = reader["Lyrics"].ToString();
+                            string releaseDate = reader["ReleaseDate"].ToString();
+                            string albumID = reader["AlbumID"].ToString();
+
+                            // Display the song details in a message box
+                            MessageBox.Show($"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}");
+                        }
+                        else
+                        {
+                            MessageBox.Show("No songs found in the database.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 // Define a static song
@@ -301,6 +414,16 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSaveProfile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

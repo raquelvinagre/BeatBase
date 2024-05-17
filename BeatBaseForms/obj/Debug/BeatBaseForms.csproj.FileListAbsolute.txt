@@ -19,3 +19,14 @@ C:\Users\Diogo\Desktop\BeatBase-Project\BeatBaseForms\obj\Debug\BeatBaseForms.pd
 C:\Users\Diogo\Desktop\BeatBase-Project\BeatBaseForms\bin\Debug\BeatBaseForms.exe.config
 C:\Users\Diogo\Desktop\BeatBase-Project\BeatBaseForms\bin\Debug\BeatBaseForms.exe
 C:\Users\Diogo\Desktop\BeatBase-Project\BeatBaseForms\bin\Debug\BeatBaseForms.pdb
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\bin\Debug\BeatBaseForms.exe.config
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\bin\Debug\BeatBaseForms.exe
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\bin\Debug\BeatBaseForms.pdb
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.AssemblyReference.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.SuggestedBindingRedirects.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.Form1.resources
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.Properties.Resources.resources
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.GenerateResource.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.csproj.CoreCompileInputs.cache
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.exe
+C:\Users\raque\OneDrive\2º Semestre\BD\Projeto\BeatBase\BeatBaseForms\obj\Debug\BeatBaseForms.pdb
