@@ -83,7 +83,6 @@ namespace BeatBaseForms
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button5 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.listBoxSongs = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label18 = new System.Windows.Forms.Label();
@@ -137,7 +136,7 @@ namespace BeatBaseForms
             this.leaderboardTab.Controls.Add(this.dataGridViewLeaderboard);
             this.leaderboardTab.ImageIndex = 5;
             this.leaderboardTab.Location = new System.Drawing.Point(4, 32);
-            this.leaderboardTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.leaderboardTab.Margin = new System.Windows.Forms.Padding(2);
             this.leaderboardTab.Name = "leaderboardTab";
             this.leaderboardTab.Size = new System.Drawing.Size(592, 330);
             this.leaderboardTab.TabIndex = 5;
@@ -158,7 +157,7 @@ namespace BeatBaseForms
             // 
             this.dataGridViewLeaderboard.ColumnHeadersHeight = 29;
             this.dataGridViewLeaderboard.Location = new System.Drawing.Point(41, 50);
-            this.dataGridViewLeaderboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewLeaderboard.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewLeaderboard.Name = "dataGridViewLeaderboard";
             this.dataGridViewLeaderboard.RowHeadersWidth = 51;
             this.dataGridViewLeaderboard.Size = new System.Drawing.Size(158, 138);
@@ -178,7 +177,7 @@ namespace BeatBaseForms
             this.profileTab.Controls.Add(this.labelName);
             this.profileTab.ImageIndex = 4;
             this.profileTab.Location = new System.Drawing.Point(4, 32);
-            this.profileTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.profileTab.Margin = new System.Windows.Forms.Padding(2);
             this.profileTab.Name = "profileTab";
             this.profileTab.Size = new System.Drawing.Size(592, 330);
             this.profileTab.TabIndex = 4;
@@ -187,7 +186,7 @@ namespace BeatBaseForms
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(270, 216);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 19);
             this.button1.TabIndex = 11;
@@ -198,7 +197,7 @@ namespace BeatBaseForms
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(463, 91);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(2);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(91, 69);
             this.listBox2.TabIndex = 10;
@@ -217,7 +216,7 @@ namespace BeatBaseForms
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(270, 91);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(91, 69);
             this.listBox1.TabIndex = 8;
@@ -247,7 +246,7 @@ namespace BeatBaseForms
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(270, 48);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(76, 20);
             this.textBox1.TabIndex = 5;
@@ -266,7 +265,7 @@ namespace BeatBaseForms
             // pictureBox1
             // 
             this.pictureBox1.Location = new System.Drawing.Point(26, 33);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(164, 147);
             this.pictureBox1.TabIndex = 3;
@@ -286,7 +285,7 @@ namespace BeatBaseForms
             this.playlistsTab.Controls.Add(this.listBoxPlaylists);
             this.playlistsTab.ImageIndex = 3;
             this.playlistsTab.Location = new System.Drawing.Point(4, 32);
-            this.playlistsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.playlistsTab.Margin = new System.Windows.Forms.Padding(2);
             this.playlistsTab.Name = "playlistsTab";
             this.playlistsTab.Size = new System.Drawing.Size(592, 330);
             this.playlistsTab.TabIndex = 3;
@@ -295,7 +294,7 @@ namespace BeatBaseForms
             // buttonCreatePlaylist
             // 
             this.buttonCreatePlaylist.Location = new System.Drawing.Point(256, 150);
-            this.buttonCreatePlaylist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCreatePlaylist.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCreatePlaylist.Name = "buttonCreatePlaylist";
             this.buttonCreatePlaylist.Size = new System.Drawing.Size(148, 19);
             this.buttonCreatePlaylist.TabIndex = 0;
@@ -305,7 +304,7 @@ namespace BeatBaseForms
             // listBoxPlaylists
             // 
             this.listBoxPlaylists.Location = new System.Drawing.Point(41, 39);
-            this.listBoxPlaylists.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxPlaylists.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxPlaylists.Name = "listBoxPlaylists";
             this.listBoxPlaylists.Size = new System.Drawing.Size(160, 160);
             this.listBoxPlaylists.TabIndex = 1;
@@ -315,7 +314,7 @@ namespace BeatBaseForms
             this.artistsTab.Controls.Add(this.artistList);
             this.artistsTab.ImageIndex = 2;
             this.artistsTab.Location = new System.Drawing.Point(4, 32);
-            this.artistsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.artistsTab.Margin = new System.Windows.Forms.Padding(2);
             this.artistsTab.Name = "artistsTab";
             this.artistsTab.Size = new System.Drawing.Size(592, 330);
             this.artistsTab.TabIndex = 2;
@@ -324,7 +323,7 @@ namespace BeatBaseForms
             // artistList
             // 
             this.artistList.Location = new System.Drawing.Point(42, 35);
-            this.artistList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.artistList.Margin = new System.Windows.Forms.Padding(2);
             this.artistList.Name = "artistList";
             this.artistList.Size = new System.Drawing.Size(162, 160);
             this.artistList.TabIndex = 1;
@@ -334,7 +333,7 @@ namespace BeatBaseForms
             this.albumsTab.Controls.Add(this.tabControl1);
             this.albumsTab.ImageIndex = 1;
             this.albumsTab.Location = new System.Drawing.Point(4, 32);
-            this.albumsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.albumsTab.Margin = new System.Windows.Forms.Padding(2);
             this.albumsTab.Name = "albumsTab";
             this.albumsTab.Size = new System.Drawing.Size(592, 330);
             this.albumsTab.TabIndex = 1;
@@ -345,7 +344,7 @@ namespace BeatBaseForms
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(589, 329);
@@ -357,9 +356,9 @@ namespace BeatBaseForms
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.listBoxAlbums);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(581, 303);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Album List";
@@ -391,7 +390,7 @@ namespace BeatBaseForms
             // listBoxAlbums
             // 
             this.listBoxAlbums.Location = new System.Drawing.Point(57, 71);
-            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxAlbums.Name = "listBoxAlbums";
             this.listBoxAlbums.Size = new System.Drawing.Size(158, 160);
             this.listBoxAlbums.TabIndex = 5;
@@ -412,9 +411,9 @@ namespace BeatBaseForms
             this.tabPage3.Controls.Add(this.textBox7);
             this.tabPage3.Controls.Add(this.buttonAddAlbum);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage3.Size = new System.Drawing.Size(581, 303);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Add Album";
@@ -423,7 +422,7 @@ namespace BeatBaseForms
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(393, 156);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(87, 19);
             this.button4.TabIndex = 35;
@@ -443,7 +442,7 @@ namespace BeatBaseForms
             // pictureBox2
             // 
             this.pictureBox2.Location = new System.Drawing.Point(377, 70);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(114, 81);
             this.pictureBox2.TabIndex = 33;
@@ -452,7 +451,7 @@ namespace BeatBaseForms
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(132, 206);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(115, 20);
             this.dateTimePicker1.TabIndex = 32;
@@ -513,7 +512,7 @@ namespace BeatBaseForms
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(132, 154);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(115, 20);
             this.textBox5.TabIndex = 23;
@@ -521,7 +520,7 @@ namespace BeatBaseForms
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(132, 110);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(115, 20);
             this.textBox6.TabIndex = 22;
@@ -529,7 +528,7 @@ namespace BeatBaseForms
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(132, 70);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(115, 20);
             this.textBox7.TabIndex = 21;
@@ -537,7 +536,7 @@ namespace BeatBaseForms
             // buttonAddAlbum
             // 
             this.buttonAddAlbum.Location = new System.Drawing.Point(377, 196);
-            this.buttonAddAlbum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddAlbum.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddAlbum.Name = "buttonAddAlbum";
             this.buttonAddAlbum.Size = new System.Drawing.Size(114, 41);
             this.buttonAddAlbum.TabIndex = 5;
@@ -548,7 +547,7 @@ namespace BeatBaseForms
             this.songsTab.Controls.Add(this.AddSong);
             this.songsTab.ImageIndex = 0;
             this.songsTab.Location = new System.Drawing.Point(4, 32);
-            this.songsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.songsTab.Margin = new System.Windows.Forms.Padding(2);
             this.songsTab.Name = "songsTab";
             this.songsTab.Size = new System.Drawing.Size(592, 330);
             this.songsTab.TabIndex = 0;
@@ -560,7 +559,7 @@ namespace BeatBaseForms
             this.AddSong.Controls.Add(this.List);
             this.AddSong.Controls.Add(this.tabPage2);
             this.AddSong.Location = new System.Drawing.Point(7, 2);
-            this.AddSong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddSong.Margin = new System.Windows.Forms.Padding(2);
             this.AddSong.Name = "AddSong";
             this.AddSong.SelectedIndex = 0;
             this.AddSong.Size = new System.Drawing.Size(581, 406);
@@ -576,12 +575,11 @@ namespace BeatBaseForms
             this.List.Controls.Add(this.progressBar1);
             this.List.Controls.Add(this.button5);
             this.List.Controls.Add(this.label19);
-            this.List.Controls.Add(this.button2);
             this.List.Controls.Add(this.listBoxSongs);
             this.List.Location = new System.Drawing.Point(4, 22);
-            this.List.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.List.Margin = new System.Windows.Forms.Padding(2);
             this.List.Name = "List";
-            this.List.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.List.Padding = new System.Windows.Forms.Padding(2);
             this.List.Size = new System.Drawing.Size(573, 380);
             this.List.TabIndex = 0;
             this.List.Text = "Song List";
@@ -645,7 +643,7 @@ namespace BeatBaseForms
             // 
             this.progressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.progressBar1.Location = new System.Drawing.Point(116, 268);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(329, 8);
             this.progressBar1.TabIndex = 16;
@@ -654,7 +652,7 @@ namespace BeatBaseForms
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(334, 180);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(82, 36);
             this.button5.TabIndex = 15;
@@ -674,23 +672,14 @@ namespace BeatBaseForms
             this.label19.Text = "Song List";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(308, 76);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 74);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Show a song";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // listBoxSongs
             // 
             this.listBoxSongs.Location = new System.Drawing.Point(41, 65);
-            this.listBoxSongs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBoxSongs.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxSongs.Name = "listBoxSongs";
-            this.listBoxSongs.Size = new System.Drawing.Size(164, 160);
+            this.listBoxSongs.Size = new System.Drawing.Size(147, 173);
             this.listBoxSongs.TabIndex = 5;
+            this.listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -710,9 +699,9 @@ namespace BeatBaseForms
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(573, 380);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Song";
@@ -732,7 +721,7 @@ namespace BeatBaseForms
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(358, 135);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(54, 17);
             this.radioButton2.TabIndex = 22;
@@ -744,7 +733,7 @@ namespace BeatBaseForms
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(358, 98);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(80, 17);
             this.radioButton1.TabIndex = 21;
@@ -755,7 +744,7 @@ namespace BeatBaseForms
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(358, 57);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
             this.dateTimePicker2.TabIndex = 20;
@@ -763,7 +752,7 @@ namespace BeatBaseForms
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(88, 188);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(172, 79);
             this.richTextBox1.TabIndex = 19;
@@ -838,7 +827,7 @@ namespace BeatBaseForms
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(88, 136);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(90, 20);
             this.textBox4.TabIndex = 11;
@@ -846,7 +835,7 @@ namespace BeatBaseForms
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(88, 93);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(90, 20);
             this.textBox3.TabIndex = 10;
@@ -855,7 +844,7 @@ namespace BeatBaseForms
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(88, 52);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(90, 20);
             this.textBox2.TabIndex = 9;
@@ -884,7 +873,7 @@ namespace BeatBaseForms
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.ImageList = this.imageList1;
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainTabControl.Margin = new System.Windows.Forms.Padding(2);
             this.mainTabControl.Multiline = true;
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.Padding = new System.Drawing.Point(8, 6);
@@ -912,7 +901,7 @@ namespace BeatBaseForms
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "BeatBase";
             this.leaderboardTab.ResumeLayout(false);
@@ -948,7 +937,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.TabPage songsTab;
         private System.Windows.Forms.TabControl AddSong;
         private System.Windows.Forms.TabPage List;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBoxSongs;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox richTextBox1;

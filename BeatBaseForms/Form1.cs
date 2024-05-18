@@ -21,6 +21,7 @@ namespace BeatBaseForms
         {
             InitializeComponent();
             checkDBConn();
+            loadSongs();
             //
             //InitializeComponents();  
         }
@@ -85,6 +86,59 @@ namespace BeatBaseForms
 
         }
 
+
+        private void loadSongs(){
+
+            try {
+                // Create a SQL command to select all songs from the database
+                string selectCommand = "SELECT * FROM Song";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxSongs.Items.Clear();
+
+                        // Read each song and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating a song object
+                            Song song = new Song();
+                            song.SongID = (int)reader["ID"];
+                            song.songName = reader["Name"].ToString();
+                            song.songArtist = reader["ArtistID"].ToString();
+                            song.songGenre = reader["Genre"].ToString();
+                            song.songDuration = reader["Duration"].ToString();
+                            song.songLyrics = reader["Lyrics"].ToString();
+                            song.songReleaseDate = (System.DateTime)reader["ReleaseDate"];
+                            song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
+                            listBoxSongs.Items.Add(song.ToString());
+
+                            // W/o the song object
+                            // string songName = reader["Name"].ToString();
+                            // string artistName = reader["ArtistID"].ToString();
+                            // string genre = reader["Genre"].ToString();
+                            // string duration = reader["Duration"].ToString();
+                            // string lyrics = reader["Lyrics"].ToString();
+                            // string releaseDate = reader["ReleaseDate"].ToString();
+                            // string albumID = reader["AlbumID"].ToString();
+                            // listBoxSongs.Items.Add($"{songName} by {artistName}");
+
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+
         private void InitializeSongsTab()
         {
             // Create a TabControl for the Songs tab
@@ -102,8 +156,16 @@ namespace BeatBaseForms
             songsSubTabControl.Controls.Add(addSongTab);
             songsSubTabControl.Controls.Add(viewSongsTab);
 
+            listBoxSongs = new ListBox();
+            listBoxSongs.Dock = DockStyle.Fill;
+            viewSongsTab.Controls.Add(listBoxSongs);
+
+
             // Add the TabControl to the songsTab
             songsTab.Controls.Add(songsSubTabControl);
+
+            listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
+
         }
 
         private void InitializeAddSongTab(TabPage addSongTab)
@@ -372,8 +434,8 @@ namespace BeatBaseForms
             
             // Get the song details from the textboxes
             // Id that is autoincremented
-            int songID = 0;
-            string songArtist = "ArtistID";
+            int songID = 420;
+            int songArtist = 2; // This is a placeholder
             string songName = textBox2.Text;
             string songGenre = textBox3.Text;
             string songDuration = textBox4.Text;
@@ -381,33 +443,98 @@ namespace BeatBaseForms
             DateTime songReleaseDate = DateTime.Now;
             int songAlbumID = 0;
 
+
+
+            // Checking if we are missing any values from the textboxes
+            if (string.IsNullOrEmpty(songName) || string.IsNullOrEmpty(songGenre) || string.IsNullOrEmpty(songDuration) || string.IsNullOrEmpty(songLyrics))
+            {
+                MessageBox.Show("Please fill in all the fields.");
+                return;
+            }
+
+            // Check if songDuration is a int or float
+            if (!int.TryParse(songDuration, out int n) && !float.TryParse(songDuration, out float f))
+            {
+                MessageBox.Show("Duration must be a number.");
+                return;
+            }
+
+
             if (radioButton2.Checked)
             {
-                songAlbumID = NULL;
+                songAlbumID = -1;
             }
 
             if (radioButton1.Checked)
             {
                 // n sei bem o que fazer aqui
+                songAlbumID = 10;
             }
 
             string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
                                        "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
 
-
-
-            using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+            try
             {
-                cmd.Parameters.AddWithValue("@ID", songID);
-                cmd.Parameters.AddWithValue("@ArtistID", songArtist);
-                cmd.Parameters.AddWithValue("@Streams", 0); // Starts at 0
-                cmd.Parameters.AddWithValue("@Genre", songGenre);
-                cmd.Parameters.AddWithValue("@Duration", songDuration);
-                cmd.Parameters.AddWithValue("@Lyrics", songLyrics);
-                cmd.Parameters.AddWithValue("@Name", songName);
-                cmd.Parameters.AddWithValue("@ReleaseDate", songReleaseDate);
-                cmd.Parameters.AddWithValue("@AlbumID", songAlbumID);
-                cmd.ExecuteNonQuery();
+                // Create a SQL command to insert a song into the database
+
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", songID);
+                    cmd.Parameters.AddWithValue("@ArtistID", songArtist);
+                    cmd.Parameters.AddWithValue("@Streams", 0); // Starts at 0
+                    cmd.Parameters.AddWithValue("@Genre", songGenre);
+                    cmd.Parameters.AddWithValue("@Duration", songDuration);
+                    cmd.Parameters.AddWithValue("@Lyrics", songLyrics);
+                    cmd.Parameters.AddWithValue("@Name", songName);
+                    cmd.Parameters.AddWithValue("@ReleaseDate", songReleaseDate);
+                    if (songAlbumID == -1)
+                    {
+                        cmd.Parameters.AddWithValue("@AlbumID", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@AlbumID", songAlbumID);
+                    }
+            
+                    int query_changed = cmd.ExecuteNonQuery();
+                    if (query_changed > 0)
+                    {
+                        MessageBox.Show("Song added to the database.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding song to the database.");
+                    }
+                    // Clear the textboxes
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    richTextBox1.Text = "";
+
+
+                    // Reload the songs list
+                    loadSongs();
+                }
+            }
+            catch (Exception ex)
+            {
+                // MessageBox.Show("Error: " + ex.Message);
+                // // Clear the textboxes
+                // textBox2.Text = "";
+                // textBox3.Text = "";
+                // textBox4.Text = "";
+                // richTextBox1.Text = "";
+
+                if (ex.Message.Contains("PRIMARY KEY constraint"))
+                {
+                    MessageBox.Show("Song already exists in the database.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+                
             }
 
 
@@ -426,6 +553,18 @@ namespace BeatBaseForms
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxSongs.SelectedItem != null)
+            {
+                string selectedSong = listBoxSongs.SelectedItem.ToString();
+                MessageBox.Show($"Selected song: {selectedSong}");
+            }
+            // get the selected song for removal in a button
+
+
         }
     }
 }
