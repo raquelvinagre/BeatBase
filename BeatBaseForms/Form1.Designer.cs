@@ -651,13 +651,14 @@ namespace BeatBaseForms
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(334, 180);
+            this.button5.Location = new System.Drawing.Point(313, 180);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(82, 36);
+            this.button5.Size = new System.Drawing.Size(94, 58);
             this.button5.TabIndex = 15;
             this.button5.Text = "Listen";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label19
             // 

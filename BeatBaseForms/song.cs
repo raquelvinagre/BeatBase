@@ -12,6 +12,8 @@
 		public System.DateTime songReleaseDate { get; set; }
 		public int? songAlbumID { get; set; }
 
+		public int streams { get; set; }
+
 
 		public override string ToString()
 		{

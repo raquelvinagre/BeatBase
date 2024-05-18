@@ -114,7 +114,9 @@ namespace BeatBaseForms
                             song.songLyrics = reader["Lyrics"].ToString();
                             song.songReleaseDate = (System.DateTime)reader["ReleaseDate"];
                             song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
-                            listBoxSongs.Items.Add(song.ToString());
+                            song.streams = (int)reader["Streams"];
+                            // listBoxSongs.Items.Add(song.ToString());
+                            listBoxSongs.Items.Add(song);
 
                             // W/o the song object
                             // string songName = reader["Name"].ToString();
@@ -471,8 +473,11 @@ namespace BeatBaseForms
                 songAlbumID = 10;
             }
 
-            string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
-                                       "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+            //string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
+             //                          "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+
+            string insertCommand = "INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
+                           "VALUES (@ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
 
             try
             {
@@ -480,7 +485,7 @@ namespace BeatBaseForms
 
                 using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID", songID);
+                    //cmd.Parameters.AddWithValue("@ID", songID);
                     cmd.Parameters.AddWithValue("@ArtistID", songArtist);
                     cmd.Parameters.AddWithValue("@Streams", 0); // Starts at 0
                     cmd.Parameters.AddWithValue("@Genre", songGenre);
@@ -559,12 +564,56 @@ namespace BeatBaseForms
         {
             if (listBoxSongs.SelectedItem != null)
             {
-                string selectedSong = listBoxSongs.SelectedItem.ToString();
-                MessageBox.Show($"Selected song: {selectedSong}");
+                Song selectedSong = (Song)listBoxSongs.SelectedItem;
+                // Show streams
+                MessageBox.Show($"Song: {selectedSong.songName}\nStreams: {selectedSong.streams}");
             }
-            // get the selected song for removal in a button
+  
 
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            // Get the song
+            Song selectedSong = (Song)listBoxSongs.SelectedItem;
+            // Add a stream to the song
+            string updateCommand = "UPDATE Song SET Streams = Streams + 1 WHERE ID = @ID";
+
+            try
+            {
+                // Create a SQL command to update the song in the database
+                using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", selectedSong.SongID);
+
+                    int query_changed = cmd.ExecuteNonQuery();
+                    if (query_changed > 0)
+                    {
+                        MessageBox.Show("Song stream added.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding stream to the song.");
+                    }
+
+                    // Reload the songs list
+                    loadSongs();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please select a song.");
+                return;
+            }
+   
+    
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            // check 
         }
     }
 }
