@@ -24,6 +24,7 @@ namespace BeatBaseForms
             loadSongs();
             loadAlbums();
             loadArtists();
+            loadPlaylists();
             //
             //InitializeComponents();  
         }
@@ -63,7 +64,6 @@ namespace BeatBaseForms
             artistsTab = new TabPage("Artists");
             playlistsTab = new TabPage("Playlists");
             leaderboardTab = new TabPage("Leaderboard");
-            profileTab = new TabPage("Profile");
 
 
             // Add tabs to TabControl
@@ -72,7 +72,6 @@ namespace BeatBaseForms
             mainTabControl.Controls.Add(artistsTab);
             mainTabControl.Controls.Add(playlistsTab);
             mainTabControl.Controls.Add(leaderboardTab);
-            mainTabControl.Controls.Add(profileTab);
 
 
             // Add TabControl to the form
@@ -84,7 +83,6 @@ namespace BeatBaseForms
             InitializeArtistsTab();
             InitializePlaylistsTab();
             InitializeLeaderboardTab();
-            InitializeProfileTab();
 
         }
 
@@ -227,6 +225,43 @@ namespace BeatBaseForms
             }
         }
 
+        private void loadPlaylists()
+        {
+            try
+            {
+                // Create a SQL command to select all playlists from the database
+                string selectCommand = "SELECT * FROM Playlist";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxPlaylists.Items.Clear();
+
+                        // Read each playlist and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating a playlist object
+                            Playlist playlist = new Playlist();
+                            playlist.playlistName = reader["Name"].ToString();
+                            playlist.genre = reader["Genre"].ToString();
+                            playlist.visibility = (bool)reader["Visibility"];
+                            playlist.totalDuration = (int)reader["TotalDuration"];
+                            playlist.authorID = (int)reader["AuthorID"];
+                            listBoxPlaylists.Items.Add(playlist);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
 
 
         private void InitializeSongsTab()
@@ -321,21 +356,6 @@ namespace BeatBaseForms
             playlistsTab.Controls.Add(playlistListBox);
         }
 
-        private void InitializeProfileTab()
-        {
-            Label nameLabel = new Label();
-            nameLabel.Text = "Name:";
-            nameLabel.Location = new Point(10, 10);
-            nameLabel.Size = new Size(80, 20);
-            profileTab.Controls.Add(nameLabel);
-
-            TextBox nameTextBox = new TextBox();
-            nameTextBox.Location = new Point(100, 10);
-            nameTextBox.Size = new Size(200, 20);
-            profileTab.Controls.Add(nameTextBox);
-
-          
-        }
 
         private void InitializeLeaderboardTab()
         {
@@ -550,15 +570,15 @@ namespace BeatBaseForms
             }
 
 
-            if (radioButton2.Checked)
+            if (radioButton2.Checked) //single
             {
                 songAlbumID = -1;
             }
 
-            if (radioButton1.Checked)
+            if (radioButton1.Checked) //part of album
             {
                 // n sei bem o que fazer aqui
-                songAlbumID = 10;
+                songAlbumID = 10; // ent se o album id existir, mete se como esse
             }
 
             //string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
@@ -638,10 +658,6 @@ namespace BeatBaseForms
 
         }
 
-        private void buttonSaveProfile_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
@@ -812,6 +828,202 @@ namespace BeatBaseForms
                     pictureBox4.Image = Image.FromFile(filePath);
                 }
             }
+        }
+
+        // function to add an album to the database
+
+        private void buttonAddAlbum_Click_2(object sender, EventArgs e)
+        {
+            // Get the album details from the textboxes
+            string albumName = textBox7.Text;
+            int albumDuration = 10; // This should later be the sum of durations of all songs in the album
+            int artistID;
+            DateTime albumReleaseDate = DateTime.Now;
+
+            // Checking if we are missing any values from the textboxes
+            if (string.IsNullOrEmpty(albumName) || !int.TryParse(textBox6.Text, out artistID))
+            {
+                MessageBox.Show("Please fill in all the fields and ensure Artist ID is a number.");
+                return;
+            }
+
+            // SQL insert command
+            string insertCommand = "INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) " +
+                                   "VALUES (@Name, @ReleaseDate, @TotalDuration, @ArtistID)";
+
+            try
+            {
+                // Create a SQL command to insert an album into the database
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", albumName);
+                    cmd.Parameters.AddWithValue("@ReleaseDate", albumReleaseDate);
+                    cmd.Parameters.AddWithValue("@TotalDuration", albumDuration);
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+
+                    int queryChanged = cmd.ExecuteNonQuery();
+                    if (queryChanged > 0)
+                    {
+                        MessageBox.Show("Album added to the database.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding album to the database.");
+                    }
+
+                    // Clear the textboxes
+                    textBox7.Text = "";
+                    textBox6.Text = "";
+
+                    // Reload the albums list
+                    loadAlbums();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("PRIMARY KEY constraint"))
+                {
+                    MessageBox.Show("Album already exists in the database.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // Get the artist details from the textboxes
+            string artistName = textBox10.Text;
+            int streams = 0; // Initialize streams to 0 or calculate it based on your logic
+
+            // Checking if we are missing any values from the textboxes
+            if (string.IsNullOrEmpty(artistName))
+            {
+                MessageBox.Show("Please fill in all the fields.");
+                return;
+            }
+
+            // SQL insert command
+            string insertCommand = "INSERT INTO Artist (ArtistName, Streams) " +
+                                   "VALUES (@ArtistName, @Streams)";
+
+            try
+            {
+                // Create a SQL command to insert an artist into the database
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistName", artistName);
+                    cmd.Parameters.AddWithValue("@Streams", streams);
+
+                    int queryChanged = cmd.ExecuteNonQuery();
+                    if (queryChanged > 0)
+                    {
+                        MessageBox.Show("Artist added to the database.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding artist to the database.");
+                    }
+
+                    // Clear the textboxes
+                    textBox10.Text = "";
+
+                    // Reload the artists list
+                    loadArtists();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("PRIMARY KEY constraint"))
+                {
+                    MessageBox.Show("Artist already exists in the database.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void buttonCreatePlaylist_Click_1(object sender, EventArgs e)
+        {
+            // Get the playlist details from the textboxes
+            string playlistName = textBox11.Text;
+            string genre = textBox9.Text;
+            int authorID;
+            bool visibility = false;
+            int totalDuration = 0; // Initialize or calculate this based on your logic
+
+            // Checking if we are missing any values from the textboxes
+            if (string.IsNullOrEmpty(playlistName) || string.IsNullOrEmpty(genre) || !int.TryParse(textBox1.Text, out authorID))
+            {
+                MessageBox.Show("Please fill in all the fields and ensure Author ID is a number.");
+                return;
+            }
+
+            // Set visibility based on the selected radio button
+            if (radioButton3.Checked)
+            {
+                visibility = false; // Private
+            }
+            else if (radioButton4.Checked)
+            {
+                visibility = true; // Public
+            }
+
+            // SQL insert command
+            string insertCommand = "INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) " +
+                                   "VALUES (@TotalDuration, @Genre, @Visibility, @Name, @AuthorID)";
+
+            try
+            {
+                // Create a SQL command to insert a playlist into the database
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@TotalDuration", totalDuration);
+                    cmd.Parameters.AddWithValue("@Genre", genre);
+                    cmd.Parameters.AddWithValue("@Visibility", visibility);
+                    cmd.Parameters.AddWithValue("@Name", playlistName);
+                    cmd.Parameters.AddWithValue("@AuthorID", authorID);
+
+                    int queryChanged = cmd.ExecuteNonQuery();
+                    if (queryChanged > 0)
+                    {
+                        MessageBox.Show("Playlist added to the database.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding playlist to the database.");
+                    }
+
+                    // Clear the textboxes
+                    textBox11.Text = "";
+                    textBox9.Text = "";
+                    textBox10.Text = "";
+                    textBox1.Text = "";
+
+                    // Reload the playlists list
+                    loadPlaylists();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("PRIMARY KEY constraint"))
+                {
+                    MessageBox.Show("Playlist already exists in the database.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

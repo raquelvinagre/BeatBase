@@ -1,3 +1,14 @@
+-- Clean the values from the tables before inserting new ones
+DELETE FROM ArtistLeaderboard;
+DELETE FROM BelongsTo;
+DELETE FROM Song;
+DELETE FROM Album;
+DELETE FROM Playlist;
+DELETE FROM [User];
+DELETE FROM Artist;
+DELETE FROM Leaderboard;
+DELETE FROM GlobalLeaderboard;
+
 -- Insert into Artist without specifying ID
 INSERT INTO Artist (ArtistName, Streams) VALUES
 ('The Weeknd', 1000000),
@@ -21,7 +32,7 @@ INSERT INTO [User] (Username) VALUES
 
 -- Insert into Playlist without specifying ID
 INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) VALUES
-(3600, 'Pop', 1, 'My Favorite Songs', 1),
+(3600, 'Pop', 1, 'Liked Songs', 1),
 (5400, 'Hip-Hop', 0, 'Workout Playlist', 2),
 (4200, 'Electronic', 1, 'Party Mix', 3);
 
