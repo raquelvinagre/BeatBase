@@ -80,3 +80,39 @@ CREATE TABLE GlobalLeaderboard (
   LeaderID INT NOT NULL,
   FOREIGN KEY (LeaderID) REFERENCES Leaderboard(LeaderID)
 );
+
+-- Trigger for INSERT and UPDATE
+CREATE TRIGGER UpdateArtistStreamsOnSongInsertUpdate
+ON Song
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update artist's streams for the artists of the inserted or updated songs
+    UPDATE Artist
+    SET Streams = (
+        SELECT SUM(Streams)
+        FROM Song
+        WHERE Song.ArtistID = Artist.ID
+    )
+    WHERE ID IN (SELECT DISTINCT ArtistID FROM inserted);
+END;
+
+-- Trigger for DELETE
+CREATE TRIGGER UpdateArtistStreamsOnSongDelete
+ON Song
+AFTER DELETE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update artist's streams for the artists of the deleted songs
+    UPDATE Artist
+    SET Streams = (
+        SELECT SUM(Streams)
+        FROM Song
+        WHERE Song.ArtistID = Artist.ID
+    )
+    WHERE ID IN (SELECT DISTINCT ArtistID FROM deleted);
+END;
