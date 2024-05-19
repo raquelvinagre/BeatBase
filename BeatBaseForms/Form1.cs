@@ -22,6 +22,8 @@ namespace BeatBaseForms
             InitializeComponent();
             checkDBConn();
             loadSongs();
+            loadAlbums();
+            loadArtists();
             //
             //InitializeComponents();  
         }
@@ -131,6 +133,92 @@ namespace BeatBaseForms
                         }
                     }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void loadAlbums()
+        {
+
+            try
+            {
+                // Create a SQL command to select all songs from the database
+                string selectCommand = "SELECT * FROM Album";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxAlbums.Items.Clear();
+
+                        // Read each song and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating an album object
+                            Album album = new Album();
+                            album.albumID = (int)reader["ID"];
+                            album.albumName = reader["Name"].ToString();
+                            album.albumArtist = reader["ArtistID"].ToString();
+                            //album.albumGenre = reader["Genre"].ToString();
+                            album.albumDuration = reader["TotalDuration"].ToString();
+                            album.albumReleaseDate = (System.DateTime)reader["ReleaseDate"];
+                            //album.streams = (int)reader["Streams"];
+                            // listBoxalbums.Items.Add(album.ToString());
+                            listBoxAlbums.Items.Add(album);
+
+                            // W/o the album object
+                            // string albumName = reader["Name"].ToString();
+                            // string artistName = reader["ArtistID"].ToString();
+                            // string genre = reader["Genre"].ToString();
+                            // string duration = reader["Duration"].ToString();
+                            // string lyrics = reader["Lyrics"].ToString();
+                            // string releaseDate = reader["ReleaseDate"].ToString();
+                            // string albumID = reader["AlbumID"].ToString();
+                            // listBoxAlbums.Items.Add($"{albumName} by {artistName}");
+
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void loadArtists()
+        {
+            try
+            {
+                // Create a SQL command to select all artists from the database
+                string selectCommand = "SELECT * FROM Artist";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        artistList.Items.Clear();
+
+                        // Read each artist and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating an artist object
+                            Artist artist = new Artist();
+                            artist.artistID = (int)reader["ID"];
+                            artist.artistName = reader["ArtistName"].ToString();
+                            artist.streams = (int)reader["Streams"];
+                            artistList.Items.Add(artist);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -614,6 +702,116 @@ namespace BeatBaseForms
         private void button2_Click_2(object sender, EventArgs e)
         {
             // check 
+        }
+
+        private void listBoxAlbums_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listBoxAlbums.SelectedItem != null)
+            {
+                Album selectedAlbum = (Album)listBoxAlbums.SelectedItem;
+                // Show streams
+                MessageBox.Show($"Album: {selectedAlbum.albumName}\n");
+            }
+        }
+
+        private void artistList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (artistList.SelectedItem != null)
+            {
+                Artist selectedArtist = (Artist)artistList.SelectedItem;
+                // Show artist details or perform any other action
+                MessageBox.Show($"Artist: {selectedArtist.artistName}\nStreams: {selectedArtist.streams}");
+            }
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the path of the selected file
+                    string filePath = openFileDialog.FileName;
+
+                    // Load the image into the PictureBox
+                    pictureBox2.Image = Image.FromFile(filePath);
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the path of the selected file
+                    string filePath = openFileDialog.FileName;
+
+                    // Load the image into the PictureBox
+                    pictureBox4.Image = Image.FromFile(filePath);
+                }
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the path of the selected file
+                    string filePath = openFileDialog.FileName;
+
+                    // Load the image into the PictureBox
+                    pictureBox4.Image = Image.FromFile(filePath);
+                }
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Get the path of the selected file
+                    string filePath = openFileDialog.FileName;
+
+                    // Load the image into the PictureBox
+                    pictureBox4.Image = Image.FromFile(filePath);
+                }
+            }
         }
     }
 }
