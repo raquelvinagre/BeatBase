@@ -81,6 +81,7 @@ namespace BeatBaseForms
             this.label20 = new System.Windows.Forms.Label();
             this.listBoxAlbums = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -122,8 +123,26 @@ namespace BeatBaseForms
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.mainTabControl = new System.Windows.Forms.TabControl();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label45 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.leaderboardTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLeaderboard)).BeginInit();
@@ -146,6 +165,7 @@ namespace BeatBaseForms
             this.AddSong.SuspendLayout();
             this.List.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,20 +193,19 @@ namespace BeatBaseForms
             this.leaderboardTab.Controls.Add(this.label5);
             this.leaderboardTab.Controls.Add(this.dataGridViewLeaderboard);
             this.leaderboardTab.ImageIndex = 5;
-            this.leaderboardTab.Location = new System.Drawing.Point(4, 43);
-            this.leaderboardTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.leaderboardTab.Location = new System.Drawing.Point(4, 34);
+            this.leaderboardTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leaderboardTab.Name = "leaderboardTab";
-            this.leaderboardTab.Size = new System.Drawing.Size(1353, 999);
+            this.leaderboardTab.Size = new System.Drawing.Size(792, 412);
             this.leaderboardTab.TabIndex = 5;
             this.leaderboardTab.Text = "Leaderboards";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(78, 48);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(52, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 25);
+            this.label5.Size = new System.Drawing.Size(117, 16);
             this.label5.TabIndex = 1;
             this.label5.Text = "Top Global Songs";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -194,21 +213,21 @@ namespace BeatBaseForms
             // dataGridViewLeaderboard
             // 
             this.dataGridViewLeaderboard.ColumnHeadersHeight = 29;
-            this.dataGridViewLeaderboard.Location = new System.Drawing.Point(82, 97);
-            this.dataGridViewLeaderboard.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridViewLeaderboard.Location = new System.Drawing.Point(55, 62);
+            this.dataGridViewLeaderboard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewLeaderboard.Name = "dataGridViewLeaderboard";
             this.dataGridViewLeaderboard.RowHeadersWidth = 51;
-            this.dataGridViewLeaderboard.Size = new System.Drawing.Size(316, 266);
+            this.dataGridViewLeaderboard.Size = new System.Drawing.Size(211, 170);
             this.dataGridViewLeaderboard.TabIndex = 0;
             // 
             // playlistsTab
             // 
             this.playlistsTab.Controls.Add(this.tabControl3);
             this.playlistsTab.ImageIndex = 3;
-            this.playlistsTab.Location = new System.Drawing.Point(4, 43);
-            this.playlistsTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.playlistsTab.Location = new System.Drawing.Point(4, 34);
+            this.playlistsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.playlistsTab.Name = "playlistsTab";
-            this.playlistsTab.Size = new System.Drawing.Size(1353, 999);
+            this.playlistsTab.Size = new System.Drawing.Size(792, 412);
             this.playlistsTab.TabIndex = 3;
             this.playlistsTab.Text = "Playlists";
             // 
@@ -216,11 +235,11 @@ namespace BeatBaseForms
             // 
             this.tabControl3.Controls.Add(this.tabPage6);
             this.tabControl3.Controls.Add(this.tabPage7);
-            this.tabControl3.Location = new System.Drawing.Point(6, 6);
-            this.tabControl3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabControl3.Location = new System.Drawing.Point(4, 4);
+            this.tabControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(1178, 633);
+            this.tabControl3.Size = new System.Drawing.Size(785, 405);
             this.tabControl3.TabIndex = 2;
             // 
             // tabPage6
@@ -228,11 +247,11 @@ namespace BeatBaseForms
             this.tabPage6.Controls.Add(this.label33);
             this.tabPage6.Controls.Add(this.listBoxPlaylists);
             this.tabPage6.Controls.Add(this.label28);
-            this.tabPage6.Location = new System.Drawing.Point(8, 39);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage6.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage6.Size = new System.Drawing.Size(777, 376);
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Playlists";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -240,20 +259,19 @@ namespace BeatBaseForms
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(951, 128);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Location = new System.Drawing.Point(634, 82);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(60, 25);
+            this.label33.Size = new System.Drawing.Size(36, 16);
             this.label33.TabIndex = 34;
             this.label33.Text = "Filter";
             // 
             // listBoxPlaylists
             // 
-            this.listBoxPlaylists.ItemHeight = 25;
-            this.listBoxPlaylists.Location = new System.Drawing.Point(106, 128);
-            this.listBoxPlaylists.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.listBoxPlaylists.ItemHeight = 16;
+            this.listBoxPlaylists.Location = new System.Drawing.Point(71, 82);
+            this.listBoxPlaylists.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxPlaylists.Name = "listBoxPlaylists";
-            this.listBoxPlaylists.Size = new System.Drawing.Size(316, 304);
+            this.listBoxPlaylists.Size = new System.Drawing.Size(212, 196);
             this.listBoxPlaylists.TabIndex = 33;
             // 
             // label28
@@ -261,10 +279,9 @@ namespace BeatBaseForms
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label28.Location = new System.Drawing.Point(100, 56);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Location = new System.Drawing.Point(67, 36);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(124, 31);
+            this.label28.Size = new System.Drawing.Size(81, 20);
             this.label28.TabIndex = 31;
             this.label28.Text = "Playlists";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,11 +302,11 @@ namespace BeatBaseForms
             this.tabPage7.Controls.Add(this.label32);
             this.tabPage7.Controls.Add(this.label36);
             this.tabPage7.Controls.Add(this.textBox11);
-            this.tabPage7.Location = new System.Drawing.Point(8, 39);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage7.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage7.Size = new System.Drawing.Size(777, 376);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "Create Playlist";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -297,10 +314,9 @@ namespace BeatBaseForms
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(394, 420);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButton4.Location = new System.Drawing.Point(263, 269);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(102, 29);
+            this.radioButton4.Size = new System.Drawing.Size(65, 20);
             this.radioButton4.TabIndex = 43;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Public";
@@ -309,10 +325,9 @@ namespace BeatBaseForms
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(264, 420);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.radioButton3.Location = new System.Drawing.Point(176, 269);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(110, 29);
+            this.radioButton3.Size = new System.Drawing.Size(70, 20);
             this.radioButton3.TabIndex = 42;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Private";
@@ -321,66 +336,62 @@ namespace BeatBaseForms
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 420);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(79, 269);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 25);
+            this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 41;
             this.label2.Text = "Visibility";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(264, 322);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox1.Location = new System.Drawing.Point(176, 206);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 31);
+            this.textBox1.Size = new System.Drawing.Size(152, 22);
             this.textBox1.TabIndex = 40;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(118, 327);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(79, 209);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 25);
+            this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 39;
             this.label1.Text = "Artist ID";
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(810, 294);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Location = new System.Drawing.Point(540, 188);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(125, 25);
+            this.label37.Size = new System.Drawing.Size(77, 16);
             this.label37.TabIndex = 38;
             this.label37.Text = "Click to add";
             // 
             // buttonCreatePlaylist
             // 
-            this.buttonCreatePlaylist.Location = new System.Drawing.Point(756, 397);
-            this.buttonCreatePlaylist.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonCreatePlaylist.Location = new System.Drawing.Point(504, 254);
+            this.buttonCreatePlaylist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCreatePlaylist.Name = "buttonCreatePlaylist";
-            this.buttonCreatePlaylist.Size = new System.Drawing.Size(228, 73);
+            this.buttonCreatePlaylist.Size = new System.Drawing.Size(152, 47);
             this.buttonCreatePlaylist.TabIndex = 37;
             this.buttonCreatePlaylist.Text = "Create Playlist";
             this.buttonCreatePlaylist.Click += new System.EventHandler(this.buttonCreatePlaylist_Click_1);
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(264, 222);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox9.Location = new System.Drawing.Point(176, 142);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(226, 31);
+            this.textBox9.Size = new System.Drawing.Size(152, 22);
             this.textBox9.TabIndex = 36;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(663, 134);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Location = new System.Drawing.Point(442, 86);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(69, 25);
+            this.label29.Size = new System.Drawing.Size(43, 16);
             this.label29.TabIndex = 34;
             this.label29.Text = "Cover";
             // 
@@ -388,10 +399,10 @@ namespace BeatBaseForms
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Gray;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(756, 134);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(504, 86);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(228, 156);
+            this.pictureBox4.Size = new System.Drawing.Size(152, 100);
             this.pictureBox4.TabIndex = 33;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
@@ -399,10 +410,9 @@ namespace BeatBaseForms
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(118, 222);
-            this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label31.Location = new System.Drawing.Point(79, 142);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(71, 25);
+            this.label31.Size = new System.Drawing.Size(44, 16);
             this.label31.TabIndex = 26;
             this.label31.Text = "Genre";
             // 
@@ -411,10 +421,9 @@ namespace BeatBaseForms
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label32.Location = new System.Drawing.Point(106, 52);
-            this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label32.Location = new System.Drawing.Point(71, 33);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(205, 31);
+            this.label32.Size = new System.Drawing.Size(133, 20);
             this.label32.TabIndex = 25;
             this.label32.Text = "Create Playlist";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -422,29 +431,28 @@ namespace BeatBaseForms
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(118, 134);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Location = new System.Drawing.Point(79, 86);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(68, 25);
+            this.label36.Size = new System.Drawing.Size(44, 16);
             this.label36.TabIndex = 24;
             this.label36.Text = "Name";
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(264, 134);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox11.Location = new System.Drawing.Point(176, 86);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(226, 31);
+            this.textBox11.Size = new System.Drawing.Size(152, 22);
             this.textBox11.TabIndex = 21;
             // 
             // artistsTab
             // 
             this.artistsTab.Controls.Add(this.tabControl2);
             this.artistsTab.ImageIndex = 2;
-            this.artistsTab.Location = new System.Drawing.Point(4, 43);
-            this.artistsTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.artistsTab.Location = new System.Drawing.Point(4, 34);
+            this.artistsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.artistsTab.Name = "artistsTab";
-            this.artistsTab.Size = new System.Drawing.Size(1353, 999);
+            this.artistsTab.Size = new System.Drawing.Size(792, 412);
             this.artistsTab.TabIndex = 2;
             this.artistsTab.Text = "Artists";
             // 
@@ -452,11 +460,11 @@ namespace BeatBaseForms
             // 
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Location = new System.Drawing.Point(6, 6);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabControl2.Location = new System.Drawing.Point(4, 4);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1178, 633);
+            this.tabControl2.Size = new System.Drawing.Size(785, 405);
             this.tabControl2.TabIndex = 1;
             // 
             // tabPage4
@@ -464,11 +472,11 @@ namespace BeatBaseForms
             this.tabPage4.Controls.Add(this.label4);
             this.tabPage4.Controls.Add(this.label27);
             this.tabPage4.Controls.Add(this.artistList);
-            this.tabPage4.Location = new System.Drawing.Point(8, 39);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage4.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage4.Size = new System.Drawing.Size(777, 376);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Artist List";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -476,10 +484,9 @@ namespace BeatBaseForms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(944, 142);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(629, 91);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 25);
+            this.label4.Size = new System.Drawing.Size(36, 16);
             this.label4.TabIndex = 32;
             this.label4.Text = "Filter";
             // 
@@ -488,21 +495,20 @@ namespace BeatBaseForms
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label27.Location = new System.Drawing.Point(100, 56);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Location = new System.Drawing.Point(67, 36);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(138, 31);
+            this.label27.Size = new System.Drawing.Size(93, 20);
             this.label27.TabIndex = 31;
             this.label27.Text = "Artist List";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // artistList
             // 
-            this.artistList.ItemHeight = 25;
-            this.artistList.Location = new System.Drawing.Point(106, 142);
-            this.artistList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.artistList.ItemHeight = 16;
+            this.artistList.Location = new System.Drawing.Point(71, 91);
+            this.artistList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.artistList.Name = "artistList";
-            this.artistList.Size = new System.Drawing.Size(320, 304);
+            this.artistList.Size = new System.Drawing.Size(215, 196);
             this.artistList.TabIndex = 30;
             // 
             // tabPage5
@@ -514,11 +520,11 @@ namespace BeatBaseForms
             this.tabPage5.Controls.Add(this.label35);
             this.tabPage5.Controls.Add(this.textBox10);
             this.tabPage5.Controls.Add(this.button6);
-            this.tabPage5.Location = new System.Drawing.Point(8, 39);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage5.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage5.Size = new System.Drawing.Size(777, 376);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Add Artist";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -526,20 +532,18 @@ namespace BeatBaseForms
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(812, 294);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Location = new System.Drawing.Point(541, 188);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(125, 25);
+            this.label39.Size = new System.Drawing.Size(77, 16);
             this.label39.TabIndex = 40;
             this.label39.Text = "Click to add";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(663, 134);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Location = new System.Drawing.Point(442, 86);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(68, 25);
+            this.label30.Size = new System.Drawing.Size(42, 16);
             this.label30.TabIndex = 34;
             this.label30.Text = "Photo";
             // 
@@ -548,10 +552,10 @@ namespace BeatBaseForms
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Location = new System.Drawing.Point(756, 134);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(504, 86);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(228, 156);
+            this.pictureBox3.Size = new System.Drawing.Size(152, 100);
             this.pictureBox3.TabIndex = 33;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
@@ -561,10 +565,9 @@ namespace BeatBaseForms
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label34.Location = new System.Drawing.Point(106, 52);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Location = new System.Drawing.Point(71, 33);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(142, 31);
+            this.label34.Size = new System.Drawing.Size(93, 20);
             this.label34.TabIndex = 25;
             this.label34.Text = "Add Artist";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -572,27 +575,26 @@ namespace BeatBaseForms
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(108, 134);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Location = new System.Drawing.Point(72, 86);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(68, 25);
+            this.label35.Size = new System.Drawing.Size(44, 16);
             this.label35.TabIndex = 24;
             this.label35.Text = "Name";
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(256, 134);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox10.Location = new System.Drawing.Point(171, 86);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(226, 31);
+            this.textBox10.Size = new System.Drawing.Size(152, 22);
             this.textBox10.TabIndex = 21;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(756, 397);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button6.Location = new System.Drawing.Point(504, 254);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(228, 78);
+            this.button6.Size = new System.Drawing.Size(152, 50);
             this.button6.TabIndex = 5;
             this.button6.Text = "Add Artist";
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -601,10 +603,10 @@ namespace BeatBaseForms
             // 
             this.albumsTab.Controls.Add(this.tabControl1);
             this.albumsTab.ImageIndex = 1;
-            this.albumsTab.Location = new System.Drawing.Point(4, 43);
-            this.albumsTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.albumsTab.Location = new System.Drawing.Point(4, 34);
+            this.albumsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.albumsTab.Name = "albumsTab";
-            this.albumsTab.Size = new System.Drawing.Size(1192, 656);
+            this.albumsTab.Size = new System.Drawing.Size(792, 412);
             this.albumsTab.TabIndex = 1;
             this.albumsTab.Text = "Albums";
             // 
@@ -612,11 +614,11 @@ namespace BeatBaseForms
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabControl1.Location = new System.Drawing.Point(4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1178, 633);
+            this.tabControl1.Size = new System.Drawing.Size(785, 405);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -624,11 +626,11 @@ namespace BeatBaseForms
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.listBoxAlbums);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(777, 376);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Album List";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -636,10 +638,9 @@ namespace BeatBaseForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(952, 136);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(635, 87);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 25);
+            this.label3.Size = new System.Drawing.Size(36, 16);
             this.label3.TabIndex = 27;
             this.label3.Text = "Filter";
             // 
@@ -648,21 +649,20 @@ namespace BeatBaseForms
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label20.Location = new System.Drawing.Point(108, 47);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(72, 30);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(150, 31);
+            this.label20.Size = new System.Drawing.Size(99, 20);
             this.label20.TabIndex = 26;
             this.label20.Text = "Album List";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // listBoxAlbums
             // 
-            this.listBoxAlbums.ItemHeight = 25;
-            this.listBoxAlbums.Location = new System.Drawing.Point(114, 136);
-            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.listBoxAlbums.ItemHeight = 16;
+            this.listBoxAlbums.Location = new System.Drawing.Point(76, 87);
+            this.listBoxAlbums.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxAlbums.Name = "listBoxAlbums";
-            this.listBoxAlbums.Size = new System.Drawing.Size(312, 304);
+            this.listBoxAlbums.Size = new System.Drawing.Size(209, 196);
             this.listBoxAlbums.TabIndex = 5;
             this.listBoxAlbums.SelectedIndexChanged += new System.EventHandler(this.listBoxAlbums_SelectedIndexChanged_1);
             // 
@@ -679,32 +679,39 @@ namespace BeatBaseForms
             this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.textBox7);
             this.tabPage3.Controls.Add(this.buttonAddAlbum);
-            this.tabPage3.Location = new System.Drawing.Point(8, 39);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage3.Size = new System.Drawing.Size(1162, 586);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage3.Size = new System.Drawing.Size(777, 376);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Add Album";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(176, 137);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(152, 24);
+            this.comboBox2.TabIndex = 41;
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(810, 294);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(540, 188);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(125, 25);
+            this.label21.Size = new System.Drawing.Size(77, 16);
             this.label21.TabIndex = 40;
             this.label21.Text = "Click to add";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(664, 134);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(443, 86);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 25);
+            this.label12.Size = new System.Drawing.Size(43, 16);
             this.label12.TabIndex = 34;
             this.label12.Text = "Cover";
             // 
@@ -713,39 +720,37 @@ namespace BeatBaseForms
             this.pictureBox2.BackColor = System.Drawing.Color.Gray;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Location = new System.Drawing.Point(754, 134);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(503, 86);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(228, 156);
+            this.pictureBox2.Size = new System.Drawing.Size(152, 100);
             this.pictureBox2.TabIndex = 33;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(264, 322);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dateTimePicker1.Location = new System.Drawing.Point(176, 206);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(226, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(152, 22);
             this.dateTimePicker1.TabIndex = 32;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(118, 322);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(79, 206);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(142, 25);
+            this.label13.Size = new System.Drawing.Size(91, 16);
             this.label13.TabIndex = 29;
             this.label13.Text = "Release Date";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(118, 222);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(79, 142);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(87, 25);
+            this.label15.Size = new System.Drawing.Size(52, 16);
             this.label15.TabIndex = 26;
             this.label15.Text = "Artist ID";
             // 
@@ -754,10 +759,9 @@ namespace BeatBaseForms
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label16.Location = new System.Drawing.Point(106, 52);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(71, 33);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(154, 31);
+            this.label16.Size = new System.Drawing.Size(99, 20);
             this.label16.TabIndex = 25;
             this.label16.Text = "Add Album";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -765,27 +769,26 @@ namespace BeatBaseForms
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(118, 134);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(79, 86);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 25);
+            this.label17.Size = new System.Drawing.Size(44, 16);
             this.label17.TabIndex = 24;
             this.label17.Text = "Name";
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(264, 134);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox7.Location = new System.Drawing.Point(176, 86);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(226, 31);
+            this.textBox7.Size = new System.Drawing.Size(152, 22);
             this.textBox7.TabIndex = 21;
             // 
             // buttonAddAlbum
             // 
-            this.buttonAddAlbum.Location = new System.Drawing.Point(754, 377);
-            this.buttonAddAlbum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonAddAlbum.Location = new System.Drawing.Point(503, 241);
+            this.buttonAddAlbum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAddAlbum.Name = "buttonAddAlbum";
-            this.buttonAddAlbum.Size = new System.Drawing.Size(228, 78);
+            this.buttonAddAlbum.Size = new System.Drawing.Size(152, 50);
             this.buttonAddAlbum.TabIndex = 5;
             this.buttonAddAlbum.Text = "Add Album";
             this.buttonAddAlbum.Click += new System.EventHandler(this.buttonAddAlbum_Click_2);
@@ -794,10 +797,10 @@ namespace BeatBaseForms
             // 
             this.songsTab.Controls.Add(this.AddSong);
             this.songsTab.ImageIndex = 0;
-            this.songsTab.Location = new System.Drawing.Point(4, 43);
-            this.songsTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.songsTab.Location = new System.Drawing.Point(4, 34);
+            this.songsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.songsTab.Name = "songsTab";
-            this.songsTab.Size = new System.Drawing.Size(1192, 656);
+            this.songsTab.Size = new System.Drawing.Size(792, 412);
             this.songsTab.TabIndex = 0;
             this.songsTab.Text = "Songs";
             this.songsTab.Click += new System.EventHandler(this.songsTab_Click);
@@ -806,15 +809,18 @@ namespace BeatBaseForms
             // 
             this.AddSong.Controls.Add(this.List);
             this.AddSong.Controls.Add(this.tabPage2);
-            this.AddSong.Location = new System.Drawing.Point(14, 3);
-            this.AddSong.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.AddSong.Controls.Add(this.tabPage8);
+            this.AddSong.Location = new System.Drawing.Point(9, 2);
+            this.AddSong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddSong.Name = "AddSong";
             this.AddSong.SelectedIndex = 0;
-            this.AddSong.Size = new System.Drawing.Size(1162, 781);
+            this.AddSong.Size = new System.Drawing.Size(775, 500);
             this.AddSong.TabIndex = 0;
+            this.AddSong.SelectedIndexChanged += new System.EventHandler(this.AddSong_SelectedIndexChanged);
             // 
             // List
             // 
+            this.List.Controls.Add(this.label48);
             this.List.Controls.Add(this.button1);
             this.List.Controls.Add(this.label14);
             this.List.Controls.Add(this.label26);
@@ -826,21 +832,21 @@ namespace BeatBaseForms
             this.List.Controls.Add(this.button5);
             this.List.Controls.Add(this.label19);
             this.List.Controls.Add(this.listBoxSongs);
-            this.List.Location = new System.Drawing.Point(8, 39);
-            this.List.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.List.Location = new System.Drawing.Point(4, 25);
+            this.List.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.List.Name = "List";
-            this.List.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.List.Size = new System.Drawing.Size(1146, 734);
+            this.List.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.List.Size = new System.Drawing.Size(767, 471);
             this.List.TabIndex = 0;
             this.List.Text = "Song List";
             this.List.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(666, 234);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button1.Location = new System.Drawing.Point(392, 335);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 111);
+            this.button1.Size = new System.Drawing.Size(108, 39);
             this.button1.TabIndex = 29;
             this.button1.Text = "Like ❤️";
             this.button1.UseVisualStyleBackColor = true;
@@ -849,10 +855,9 @@ namespace BeatBaseForms
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(951, 141);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(52, 71);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 25);
+            this.label14.Size = new System.Drawing.Size(36, 16);
             this.label14.TabIndex = 28;
             this.label14.Text = "Filter";
             // 
@@ -860,10 +865,9 @@ namespace BeatBaseForms
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(516, 486);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(344, 293);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(24, 25);
+            this.label26.Size = new System.Drawing.Size(14, 16);
             this.label26.TabIndex = 21;
             this.label26.Text = "<";
             // 
@@ -871,10 +875,9 @@ namespace BeatBaseForms
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(584, 486);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(389, 293);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(24, 25);
+            this.label25.Size = new System.Drawing.Size(14, 16);
             this.label25.TabIndex = 20;
             this.label25.Text = ">";
             // 
@@ -882,30 +885,27 @@ namespace BeatBaseForms
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(548, 486);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(365, 293);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(28, 25);
+            this.label24.Size = new System.Drawing.Size(16, 16);
             this.label24.TabIndex = 19;
             this.label24.Text = "| |";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(176, 506);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(117, 306);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(54, 25);
+            this.label23.Size = new System.Drawing.Size(31, 16);
             this.label23.TabIndex = 18;
             this.label23.Text = "2:08";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(900, 506);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(600, 306);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(54, 25);
+            this.label22.Size = new System.Drawing.Size(31, 16);
             this.label22.TabIndex = 17;
             this.label22.Text = "3:27";
             this.label22.Click += new System.EventHandler(this.label22_Click);
@@ -913,19 +913,19 @@ namespace BeatBaseForms
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.progressBar1.Location = new System.Drawing.Point(232, 516);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.progressBar1.Location = new System.Drawing.Point(155, 312);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(658, 16);
+            this.progressBar1.Size = new System.Drawing.Size(439, 10);
             this.progressBar1.TabIndex = 16;
             this.progressBar1.Value = 67;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(438, 234);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button5.Location = new System.Drawing.Point(249, 335);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(188, 111);
+            this.button5.Size = new System.Drawing.Size(109, 39);
             this.button5.TabIndex = 15;
             this.button5.Text = "Listen";
             this.button5.UseVisualStyleBackColor = true;
@@ -936,26 +936,26 @@ namespace BeatBaseForms
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label19.Location = new System.Drawing.Point(76, 52);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(51, 33);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(136, 31);
+            this.label19.Size = new System.Drawing.Size(89, 20);
             this.label19.TabIndex = 14;
             this.label19.Text = "Song List";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // listBoxSongs
             // 
-            this.listBoxSongs.ItemHeight = 25;
-            this.listBoxSongs.Location = new System.Drawing.Point(82, 125);
-            this.listBoxSongs.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.listBoxSongs.ItemHeight = 16;
+            this.listBoxSongs.Location = new System.Drawing.Point(135, 71);
+            this.listBoxSongs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxSongs.Name = "listBoxSongs";
-            this.listBoxSongs.Size = new System.Drawing.Size(290, 329);
+            this.listBoxSongs.Size = new System.Drawing.Size(472, 212);
             this.listBoxSongs.TabIndex = 5;
             this.listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label47);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.radioButton2);
@@ -972,11 +972,11 @@ namespace BeatBaseForms
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(1146, 734);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Size = new System.Drawing.Size(767, 471);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Song";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -984,29 +984,29 @@ namespace BeatBaseForms
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(425, 541);
+            this.comboBox1.Location = new System.Drawing.Point(117, 228);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(485, 33);
+            this.comboBox1.Size = new System.Drawing.Size(119, 24);
             this.comboBox1.TabIndex = 24;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(632, 189);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(372, 236);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 25);
+            this.label18.Size = new System.Drawing.Size(39, 16);
             this.label18.TabIndex = 23;
             this.label18.Text = "Type";
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(716, 259);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioButton2.Location = new System.Drawing.Point(591, 236);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(103, 29);
+            this.radioButton2.Size = new System.Drawing.Size(66, 20);
             this.radioButton2.TabIndex = 22;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Single";
@@ -1015,10 +1015,10 @@ namespace BeatBaseForms
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(716, 189);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioButton1.Location = new System.Drawing.Point(477, 236);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(156, 29);
+            this.radioButton1.Size = new System.Drawing.Size(99, 20);
             this.radioButton1.TabIndex = 21;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Album song";
@@ -1026,48 +1026,48 @@ namespace BeatBaseForms
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(716, 109);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dateTimePicker2.Location = new System.Drawing.Point(477, 70);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(238, 31);
+            this.dateTimePicker2.Size = new System.Drawing.Size(160, 22);
             this.dateTimePicker2.TabIndex = 20;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(176, 361);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.richTextBox1.Location = new System.Drawing.Point(477, 114);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(340, 148);
+            this.richTextBox1.Size = new System.Drawing.Size(160, 96);
             this.richTextBox1.TabIndex = 19;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(92, 361);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(369, 120);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 25);
+            this.label11.Size = new System.Drawing.Size(42, 16);
             this.label11.TabIndex = 18;
             this.label11.Text = "Lyrics";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(554, 109);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(369, 70);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(142, 25);
+            this.label10.Size = new System.Drawing.Size(91, 16);
             this.label10.TabIndex = 17;
             this.label10.Text = "Release Date";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(88, 266);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(59, 170);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 25);
+            this.label9.Size = new System.Drawing.Size(57, 16);
             this.label9.TabIndex = 15;
             this.label9.Text = "Duration";
             this.label9.Click += new System.EventHandler(this.label9_Click);
@@ -1075,22 +1075,21 @@ namespace BeatBaseForms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(88, 183);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(59, 117);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 25);
+            this.label8.Size = new System.Drawing.Size(44, 16);
             this.label8.TabIndex = 14;
             this.label8.Text = "Genre";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label7.Location = new System.Drawing.Point(88, 36);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(59, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 31);
+            this.label7.Size = new System.Drawing.Size(89, 20);
             this.label7.TabIndex = 13;
             this.label7.Text = "Add Song";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1099,51 +1098,76 @@ namespace BeatBaseForms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 100);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(59, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 25);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 12;
             this.label6.Text = "Name";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(176, 261);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox4.Location = new System.Drawing.Point(117, 167);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(176, 31);
+            this.textBox4.Size = new System.Drawing.Size(119, 22);
             this.textBox4.TabIndex = 11;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(176, 178);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox3.Location = new System.Drawing.Point(117, 114);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(176, 31);
+            this.textBox3.Size = new System.Drawing.Size(119, 22);
             this.textBox3.TabIndex = 10;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(176, 100);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox2.Location = new System.Drawing.Point(117, 64);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(176, 31);
+            this.textBox2.Size = new System.Drawing.Size(119, 22);
             this.textBox2.TabIndex = 9;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(716, 361);
-            this.button3.Margin = new System.Windows.Forms.Padding(6);
+            this.button3.Location = new System.Drawing.Point(503, 282);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 75);
+            this.button3.Size = new System.Drawing.Size(119, 48);
             this.button3.TabIndex = 8;
             this.button3.Text = "Add Song";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage8.Controls.Add(this.label46);
+            this.tabPage8.Controls.Add(this.comboBox4);
+            this.tabPage8.Controls.Add(this.label45);
+            this.tabPage8.Controls.Add(this.comboBox3);
+            this.tabPage8.Controls.Add(this.dateTimePicker3);
+            this.tabPage8.Controls.Add(this.richTextBox2);
+            this.tabPage8.Controls.Add(this.label40);
+            this.tabPage8.Controls.Add(this.label41);
+            this.tabPage8.Controls.Add(this.label42);
+            this.tabPage8.Controls.Add(this.label43);
+            this.tabPage8.Controls.Add(this.label44);
+            this.tabPage8.Controls.Add(this.textBox5);
+            this.tabPage8.Controls.Add(this.textBox6);
+            this.tabPage8.Controls.Add(this.textBox8);
+            this.tabPage8.Controls.Add(this.button2);
+            this.tabPage8.Controls.Add(this.label38);
+            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(767, 471);
+            this.tabPage8.TabIndex = 2;
+            this.tabPage8.Text = "Edit Details";
             // 
             // mainTabControl
             // 
@@ -1157,31 +1181,188 @@ namespace BeatBaseForms
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.ImageList = this.imageList1;
             this.mainTabControl.Location = new System.Drawing.Point(0, 0);
-            this.mainTabControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.mainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainTabControl.Multiline = true;
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.Padding = new System.Drawing.Point(8, 6);
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1200, 703);
+            this.mainTabControl.Size = new System.Drawing.Size(800, 450);
             this.mainTabControl.TabIndex = 5;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
-            // comboBox2
+            // label38
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(264, 214);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(226, 33);
-            this.comboBox2.TabIndex = 41;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label38.Location = new System.Drawing.Point(69, 37);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(156, 20);
+            this.label38.TabIndex = 14;
+            this.label38.Text = "Edit Song Details";
+            this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(130, 276);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(191, 24);
+            this.comboBox3.TabIndex = 36;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(488, 86);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(191, 22);
+            this.dateTimePicker3.TabIndex = 35;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(488, 174);
+            this.richTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(191, 96);
+            this.richTextBox2.TabIndex = 34;
+            this.richTextBox2.Text = "";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(380, 177);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(42, 16);
+            this.label40.TabIndex = 33;
+            this.label40.Text = "Lyrics";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(380, 86);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(91, 16);
+            this.label41.TabIndex = 32;
+            this.label41.Text = "Release Date";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(72, 227);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(57, 16);
+            this.label42.TabIndex = 31;
+            this.label42.Text = "Duration";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(72, 174);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(44, 16);
+            this.label43.TabIndex = 30;
+            this.label43.Text = "Genre";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(72, 127);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(44, 16);
+            this.label44.TabIndex = 29;
+            this.label44.Text = "Name";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(130, 224);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(191, 22);
+            this.textBox5.TabIndex = 28;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(130, 171);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(191, 22);
+            this.textBox6.TabIndex = 27;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(130, 124);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(191, 22);
+            this.textBox8.TabIndex = 26;
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(522, 290);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(119, 48);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Edit Song";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(72, 83);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(39, 16);
+            this.label45.TabIndex = 37;
+            this.label45.Text = "Song";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(130, 83);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(191, 24);
+            this.comboBox4.TabIndex = 38;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(72, 276);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(36, 16);
+            this.label46.TabIndex = 39;
+            this.label46.Text = "Artist";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(60, 231);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(36, 16);
+            this.label47.TabIndex = 25;
+            this.label47.Text = "Artist";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(193, 33);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(401, 16);
+            this.label48.TabIndex = 30;
+            this.label48.Text = "meter aqui os detalhes todos, incluindo coisas calculadas com udf";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 703);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "BeatBase";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -1215,6 +1396,8 @@ namespace BeatBaseForms
             this.List.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1313,5 +1496,24 @@ namespace BeatBaseForms
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label47;
     }
 }
