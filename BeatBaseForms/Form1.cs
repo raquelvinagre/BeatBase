@@ -87,116 +87,92 @@ namespace BeatBaseForms
         }
 
 
-        private void loadSongs(){
+private void loadSongs()
+{
+    try
+    {
+        // Create a SQL command to call the stored procedure
+        string storedProcedure = "GetAllSongs";
 
-            try {
-                // Create a SQL command to select all songs from the database
-                string selectCommand = "SELECT * FROM Song";
-
-                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
-                {
-                    // Execute the SQL command and read the result
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Clear the listbox
-                        listBoxSongs.Items.Clear();
-
-                        // Read each song and add it to the listbox
-                        while (reader.Read())
-                        {
-                            // Creating a song object
-                            Song song = new Song();
-                            song.SongID = (int)reader["ID"];
-                            song.songName = reader["Name"].ToString();
-                            song.songArtist = reader["ArtistID"].ToString();
-                            song.songGenre = reader["Genre"].ToString();
-                            song.songDuration = reader["Duration"].ToString();
-                            song.songLyrics = reader["Lyrics"].ToString();
-                            song.songReleaseDate = (System.DateTime)reader["ReleaseDate"];
-                            song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
-                            song.streams = (int)reader["Streams"];
-                            // listBoxSongs.Items.Add(song.ToString());
-                            listBoxSongs.Items.Add(song);
-
-                            // W/o the song object
-                            // string songName = reader["Name"].ToString();
-                            // string artistName = reader["ArtistID"].ToString();
-                            // string genre = reader["Genre"].ToString();
-                            // string duration = reader["Duration"].ToString();
-                            // string lyrics = reader["Lyrics"].ToString();
-                            // string releaseDate = reader["ReleaseDate"].ToString();
-                            // string albumID = reader["AlbumID"].ToString();
-                            // listBoxSongs.Items.Add($"{songName} by {artistName}");
-
-                        }
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void loadAlbums()
+        using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
         {
+            // Set the command type to StoredProcedure
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            try
+            // Execute the SQL command and read the result
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                // Create a SQL command to select all songs from the database
-                string selectCommand = "SELECT * FROM Album";
+                // Clear the listbox
+                listBoxSongs.Items.Clear();
 
-                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                // Read each song and add it to the listbox
+                while (reader.Read())
                 {
-                    // Execute the SQL command and read the result
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Clear the listbox
-                        listBoxAlbums.Items.Clear();
-
-                        // Read each song and add it to the listbox
-                        while (reader.Read())
-                        {
-                            // Creating an album object
-                            Album album = new Album();
-                            album.albumID = (int)reader["ID"];
-                            album.albumName = reader["Name"].ToString();
-                            album.albumArtist = reader["ArtistID"].ToString();
-                            //album.albumGenre = reader["Genre"].ToString();
-                            album.albumDuration = reader["TotalDuration"].ToString();
-                            album.albumReleaseDate = (System.DateTime)reader["ReleaseDate"];
-                            //album.streams = (int)reader["Streams"];
-                            // listBoxalbums.Items.Add(album.ToString());
-                            listBoxAlbums.Items.Add(album);
-
-                            // W/o the album object
-                            // string albumName = reader["Name"].ToString();
-                            // string artistName = reader["ArtistID"].ToString();
-                            // string genre = reader["Genre"].ToString();
-                            // string duration = reader["Duration"].ToString();
-                            // string lyrics = reader["Lyrics"].ToString();
-                            // string releaseDate = reader["ReleaseDate"].ToString();
-                            // string albumID = reader["AlbumID"].ToString();
-                            // listBoxAlbums.Items.Add($"{albumName} by {artistName}");
-
-                        }
-                    }
-
+                    // Creating a song object
+                    Song song = new Song();
+                    song.SongID = (int)reader["ID"];
+                    song.songName = reader["Name"].ToString();
+                    song.songArtist = reader["ArtistID"].ToString();
+                    song.songGenre = reader["Genre"].ToString();
+                    song.songDuration = reader["Duration"].ToString();
+                    song.songLyrics = reader["Lyrics"].ToString();
+                    song.songReleaseDate = (DateTime)reader["ReleaseDate"];
+                    song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
+                    song.streams = (int)reader["Streams"];
+                    listBoxSongs.Items.Add(song);
                 }
             }
-            catch (Exception ex)
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+}
+private void loadAlbums()
+{
+    try
+    {
+        // Create a SQL command to call the stored procedure
+        string storedProcedure = "GetAllAlbums";
+
+        using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
+        {
+            // Set the command type to StoredProcedure
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // Execute the SQL command and read the result
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                MessageBox.Show("Error: " + ex.Message);
+                // Clear the listbox
+                listBoxAlbums.Items.Clear();
+
+                // Read each album and add it to the listbox
+                while (reader.Read())
+                {
+                    // Creating an album object
+                    Album album = new Album();
+                    album.albumID = (int)reader["ID"];
+                    album.albumName = reader["Name"].ToString();
+                    album.albumArtist = reader["ArtistID"].ToString();
+                    album.albumDuration = reader["TotalDuration"].ToString();
+                    album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
+                    listBoxAlbums.Items.Add(album);
+                }
             }
         }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+}
+
 
         private void loadArtists()
         {
             try
             {
-
-
                 comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
@@ -204,11 +180,14 @@ namespace BeatBaseForms
                 comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox2.DropDownStyle = ComboBoxStyle.DropDown;
 
-                // Create a SQL command to select all artists from the database
-                string selectCommand = "SELECT * FROM Artist";
+                // Create a SQL command to call the stored procedure
+                string storedProcedure = "GetAllArtists";
 
-                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
                 {
+                    // Set the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     // Execute the SQL command and read the result
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -225,6 +204,7 @@ namespace BeatBaseForms
                             artist.streams = (int)reader["Streams"];
                             artistList.Items.Add(artist);
                         }
+
                         // Add artists to the combobox
                         comboBox1.DataSource = artistList.Items;
                         comboBox1.DisplayMember = "artistName";
@@ -245,11 +225,14 @@ namespace BeatBaseForms
         {
             try
             {
-                // Create a SQL command to select all playlists from the database
-                string selectCommand = "SELECT * FROM Playlist";
+                // Create a SQL command to call the stored procedure
+                string storedProcedure = "GetAllPlaylists";
 
-                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
                 {
+                    // Set the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     // Execute the SQL command and read the result
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -276,6 +259,7 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
 
 
@@ -559,11 +543,15 @@ namespace BeatBaseForms
         {
             
             // Get the song details from the textboxes
-            // Id that is autoincremented
-            // int songID = 420;
-            // int songArtist = 2; // This is a placeholder
-            //get the artistId from the comboBox1
-            int songArtist = (int)comboBox1.SelectedValue;
+            int songArtist;
+            try {
+                songArtist = (int)comboBox1.SelectedValue;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please select an artist.");
+                return;
+            }
             string songName = textBox2.Text;
             string songGenre = textBox3.Text;
             string songDuration = textBox4.Text;
@@ -1041,7 +1029,6 @@ namespace BeatBaseForms
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            // This will show every artist in the database
 
 
 
