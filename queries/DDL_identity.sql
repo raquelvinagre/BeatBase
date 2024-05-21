@@ -1,3 +1,4 @@
+-- Drop existing tables if they exist
 DROP TABLE IF EXISTS BelongsTo;
 DROP TABLE IF EXISTS GlobalLeaderboard;
 DROP TABLE IF EXISTS ArtistLeaderboard;
@@ -8,10 +9,11 @@ DROP TABLE IF EXISTS Playlist;
 DROP TABLE IF EXISTS Artist;
 DROP TABLE IF EXISTS [User];
 
+-- Create tables
 CREATE TABLE Artist (
   ID INT NOT NULL IDENTITY(1,1),
   ArtistName VARCHAR(255) NOT NULL,
-  Streams INT,
+  Streams INT DEFAULT 0,
   PRIMARY KEY(ID)
 );
 
@@ -80,39 +82,3 @@ CREATE TABLE GlobalLeaderboard (
   LeaderID INT NOT NULL,
   FOREIGN KEY (LeaderID) REFERENCES Leaderboard(LeaderID)
 );
-
--- Trigger for INSERT and UPDATE
-CREATE TRIGGER UpdateArtistStreamsOnSongInsertUpdate
-ON Song
-AFTER INSERT, UPDATE
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    -- Update artist's streams for the artists of the inserted or updated songs
-    UPDATE Artist
-    SET Streams = (
-        SELECT SUM(Streams)
-        FROM Song
-        WHERE Song.ArtistID = Artist.ID
-    )
-    WHERE ID IN (SELECT DISTINCT ArtistID FROM inserted);
-END;
-
--- Trigger for DELETE
-CREATE TRIGGER UpdateArtistStreamsOnSongDelete
-ON Song
-AFTER DELETE
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    -- Update artist's streams for the artists of the deleted songs
-    UPDATE Artist
-    SET Streams = (
-        SELECT SUM(Streams)
-        FROM Song
-        WHERE Song.ArtistID = Artist.ID
-    )
-    WHERE ID IN (SELECT DISTINCT ArtistID FROM deleted);
-END;

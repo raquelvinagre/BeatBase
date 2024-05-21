@@ -195,6 +195,12 @@ namespace BeatBaseForms
         {
             try
             {
+
+
+                comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
+
                 // Create a SQL command to select all artists from the database
                 string selectCommand = "SELECT * FROM Artist";
 
@@ -216,6 +222,10 @@ namespace BeatBaseForms
                             artist.streams = (int)reader["Streams"];
                             artistList.Items.Add(artist);
                         }
+                        // Add artists to the combobox
+                        comboBox1.DataSource = artistList.Items;
+                        comboBox1.DisplayMember = "artistName";
+                        comboBox1.ValueMember = "artistID";
                     }
                 }
             }
@@ -544,8 +554,10 @@ namespace BeatBaseForms
             
             // Get the song details from the textboxes
             // Id that is autoincremented
-            int songID = 420;
-            int songArtist = 2; // This is a placeholder
+            // int songID = 420;
+            // int songArtist = 2; // This is a placeholder
+            //get the artistId from the comboBox1
+            int songArtist = (int)comboBox1.SelectedValue;
             string songName = textBox2.Text;
             string songGenre = textBox3.Text;
             string songDuration = textBox4.Text;
@@ -702,8 +714,8 @@ namespace BeatBaseForms
                         MessageBox.Show("Error adding stream to the song.");
                     }
 
-                    // Reload the songs list
                     loadSongs();
+                    loadArtists();
                 }
             }
             catch (Exception ex)
@@ -1024,6 +1036,31 @@ namespace BeatBaseForms
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            // This will show every artist in the database
+
+
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_3(object sender, EventArgs e)
+        {
+
+            int songArtist = (int)comboBox1.SelectedValue;
+            MessageBox.Show(songArtist.ToString());
         }
     }
 }

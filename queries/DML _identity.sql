@@ -20,7 +20,8 @@ INSERT INTO Artist (ArtistName, Streams) VALUES
 ('Ariana Grande', 0),
 ('Ed Sheeran', 0),
 ('Post Malone', 0),
-('Bad Bunny', 0);
+('Bad Bunny', 0),
+('Raquel Vinagre',0);
 
 -- Insert into [User] without specifying ID
 INSERT INTO [User] (Username) VALUES
