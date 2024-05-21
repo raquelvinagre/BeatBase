@@ -89,7 +89,6 @@ namespace BeatBaseForms
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.buttonAddAlbum = new System.Windows.Forms.Button();
             this.songsTab = new System.Windows.Forms.TabPage();
@@ -124,6 +123,7 @@ namespace BeatBaseForms
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.leaderboardTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLeaderboard)).BeginInit();
@@ -604,7 +604,7 @@ namespace BeatBaseForms
             this.albumsTab.Location = new System.Drawing.Point(4, 43);
             this.albumsTab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.albumsTab.Name = "albumsTab";
-            this.albumsTab.Size = new System.Drawing.Size(1353, 999);
+            this.albumsTab.Size = new System.Drawing.Size(1192, 656);
             this.albumsTab.TabIndex = 1;
             this.albumsTab.Text = "Albums";
             // 
@@ -668,6 +668,7 @@ namespace BeatBaseForms
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.comboBox2);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.pictureBox2);
@@ -676,7 +677,6 @@ namespace BeatBaseForms
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.textBox6);
             this.tabPage3.Controls.Add(this.textBox7);
             this.tabPage3.Controls.Add(this.buttonAddAlbum);
             this.tabPage3.Location = new System.Drawing.Point(8, 39);
@@ -771,14 +771,6 @@ namespace BeatBaseForms
             this.label17.Size = new System.Drawing.Size(68, 25);
             this.label17.TabIndex = 24;
             this.label17.Text = "Name";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(264, 211);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(226, 31);
-            this.textBox6.TabIndex = 22;
             // 
             // textBox7
             // 
@@ -1174,6 +1166,14 @@ namespace BeatBaseForms
             this.mainTabControl.TabIndex = 5;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(264, 214);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(226, 33);
+            this.comboBox2.TabIndex = 41;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1301,7 +1301,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.Label label2;
@@ -1313,5 +1312,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

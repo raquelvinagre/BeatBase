@@ -200,6 +200,9 @@ namespace BeatBaseForms
                 comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox1.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox2.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to select all artists from the database
                 string selectCommand = "SELECT * FROM Artist";
@@ -226,6 +229,9 @@ namespace BeatBaseForms
                         comboBox1.DataSource = artistList.Items;
                         comboBox1.DisplayMember = "artistName";
                         comboBox1.ValueMember = "artistID";
+                        comboBox2.DataSource = artistList.Items;
+                        comboBox2.DisplayMember = "artistName";
+                        comboBox2.ValueMember = "artistID";
                     }
                 }
             }
@@ -849,15 +855,9 @@ namespace BeatBaseForms
             // Get the album details from the textboxes
             string albumName = textBox7.Text;
             int albumDuration = 10; // This should later be the sum of durations of all songs in the album
-            int artistID;
+            int artistID = (int)comboBox2.SelectedValue;
             DateTime albumReleaseDate = DateTime.Now;
 
-            // Checking if we are missing any values from the textboxes
-            if (string.IsNullOrEmpty(albumName) || !int.TryParse(textBox6.Text, out artistID))
-            {
-                MessageBox.Show("Please fill in all the fields and ensure Artist ID is a number.");
-                return;
-            }
 
             // SQL insert command
             string insertCommand = "INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) " +
@@ -883,11 +883,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Error adding album to the database.");
                     }
 
-                    // Clear the textboxes
                     textBox7.Text = "";
-                    textBox6.Text = "";
-
-                    // Reload the albums list
                     loadAlbums();
                 }
             }
@@ -1054,13 +1050,6 @@ namespace BeatBaseForms
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void button2_Click_3(object sender, EventArgs e)
-        {
-
-            int songArtist = (int)comboBox1.SelectedValue;
-            MessageBox.Show(songArtist.ToString());
         }
     }
 }
