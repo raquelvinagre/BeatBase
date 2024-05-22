@@ -91,8 +91,13 @@ private void loadSongs()
 {
     try
     {
-        // Create a SQL command to call the stored procedure
-        string storedProcedure = "GetAllSongs";
+
+                comboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox4.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox4.DropDownStyle = ComboBoxStyle.DropDown;
+
+                // Create a SQL command to call the stored procedure
+                string storedProcedure = "GetAllSongs";
 
         using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
         {
@@ -121,6 +126,10 @@ private void loadSongs()
                     song.streams = (int)reader["Streams"];
                     listBoxSongs.Items.Add(song);
                 }
+
+                    comboBox4.DataSource = listBoxSongs.Items;
+                    comboBox4.DisplayMember = "songName";
+                    comboBox4.ValueMember = "SongID";
             }
         }
     }
@@ -179,6 +188,13 @@ private void loadAlbums()
                 comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox2.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox3.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox3.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox6.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox6.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox6.DropDownStyle = ComboBoxStyle.DropDown;
+
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllArtists";
@@ -212,6 +228,12 @@ private void loadAlbums()
                         comboBox2.DataSource = artistList.Items;
                         comboBox2.DisplayMember = "artistName";
                         comboBox2.ValueMember = "artistID";
+                        comboBox3.DataSource = artistList.Items;
+                        comboBox3.DisplayMember = "artistName";
+                        comboBox3.ValueMember = "artistID";
+                        comboBox6.DataSource = artistList.Items;
+                        comboBox6.DisplayMember = "artistName";
+                        comboBox6.ValueMember = "artistID";
                     }
                 }
             }
@@ -1061,7 +1083,7 @@ private void loadAlbums()
 
         private void label8_Click(object sender, EventArgs e)
         {
-            textBox8.Text = 
+            
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
@@ -1077,6 +1099,119 @@ private void loadAlbums()
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FilterSongsByGenre(string genre)
+        {
+            try
+            {
+                // Call the UDF to filter songs by genre
+                string selectCommand = "SELECT * FROM dbo.FilterSongsByGenre(@Genre)";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Genre", genre);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxSongs.Items.Clear();
+
+                        // Read each song and add it to the listbox
+                        while (reader.Read())
+                        {
+                            Song song = new Song
+                            {
+                                SongID = (int)reader["ID"],
+                                songName = reader["Name"].ToString(),
+                                songArtist = reader["ArtistID"].ToString(),
+                                songGenre = reader["Genre"].ToString(),
+                                songDuration = reader["Duration"].ToString(),
+                                songLyrics = reader["Lyrics"].ToString(),
+                                songReleaseDate = (DateTime)reader["ReleaseDate"],
+                                songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null,
+                                streams = (int)reader["Streams"]
+                            };
+
+                            listBoxSongs.Items.Add(song);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void FilterSongsByArtistID(int artistID)
+        {
+            try
+            {
+                // Call the UDF to filter songs by artist ID
+                string selectCommand = "SELECT * FROM dbo.FilterSongsByArtistID(@ArtistID)";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxSongs.Items.Clear();
+
+                        // Read each song and add it to the listbox
+                        while (reader.Read())
+                        {
+                            Song song = new Song
+                            {
+                                SongID = (int)reader["ID"],
+                                songName = reader["Name"].ToString(),
+                                songArtist = reader["ArtistID"].ToString(),
+                                songGenre = reader["Genre"].ToString(),
+                                songDuration = reader["Duration"].ToString(),
+                                songLyrics = reader["Lyrics"].ToString(),
+                                songReleaseDate = (DateTime)reader["ReleaseDate"],
+                                songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null,
+                                streams = (int)reader["Streams"]
+                            };
+
+                            listBoxSongs.Items.Add(song);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedFilter = comboBox5.SelectedItem.ToString();
+
+            if (!string.IsNullOrEmpty(selectedFilter))
+            {
+                // Example: Filter songs by genre
+                FilterSongsByGenre(selectedFilter);
+            }
+
+            else
+            {
+                loadSongs();
+            }
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox6.SelectedItem != null)
+            {
+                int artistID = (int)comboBox6.SelectedValue;
+
+                // Example: Filter songs by the selected artist ID
+                FilterSongsByArtistID(artistID);
+            }
         }
     }
 }

@@ -18,3 +18,4 @@ Raquel Vinagre 113736
 - [ ]  vídeo
 - [ ]  powerpoint
 - [ ]  preencher apft submit
+- [ ]  alterar estrutura da pasta para ser igual à do mail
