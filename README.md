@@ -11,8 +11,10 @@ Raquel Vinagre 113736
 - [ ]  formatar detalhes nas listas ig
 - [ ]  editar músicas, álbuns...
 - [ ]  fazer leaderboards
-- [ ]  filtros
-- [ ]  udfs e cursores
+- [x]  filtros
+- [x]  udfs
+- [ ]  indexes
+- [ ]  cursores
 - [ ]  atualizar os diagramas
 - [ ]  relatório
 - [ ]  vídeo
