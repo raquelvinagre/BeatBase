@@ -8,7 +8,6 @@ Raquel Vinagre 113736
 # To-do:
 - [ ]  adicionar músicas a playlists
 - [ ]  mostrar músicas dos álbuns
-- [ ]  formatar detalhes nas listas ig
 - [ ]  editar músicas, álbuns...
 - [x]  (melhorar)fazer leaderboards
 - [x]  filtros
@@ -17,6 +16,7 @@ Raquel Vinagre 113736
 - [ ]  transformar a listbox das songs numa datagridview 
 - [ ]  indexes
 - [ ]  cursores
+- [ ]  normalizacao ? misterio
 - [ ]  atualizar os diagramas
 - [ ]  relatório
 - [ ]  vídeo
