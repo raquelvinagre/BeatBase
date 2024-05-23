@@ -89,6 +89,9 @@ namespace BeatBaseForms
                 comboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox4.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox4.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox9.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox9.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox9.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllSongs";
@@ -129,6 +132,9 @@ namespace BeatBaseForms
                         comboBox4.DataSource = listBoxSongs.Items;
                         comboBox4.DisplayMember = "songName";
                         comboBox4.ValueMember = "SongID";
+                        comboBox9.DataSource = listBoxSongs.Items;
+                        comboBox9.DisplayMember = "songName";
+                        comboBox9.ValueMember = "SongID";
                     }
                 }
             }
@@ -193,6 +199,9 @@ namespace BeatBaseForms
                 comboBox6.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox6.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox6.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox11.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox11.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox11.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllArtists";
@@ -235,6 +244,9 @@ namespace BeatBaseForms
                         comboBox6.DataSource = artistList.Items;
                         comboBox6.DisplayMember = "artistName";
                         comboBox6.ValueMember = "artistID";
+                        comboBox11.DataSource = artistList.Items;
+                        comboBox11.DisplayMember = "artistName";
+                        comboBox11.ValueMember = "artistID";
                     }
                 }
             }
@@ -715,91 +727,8 @@ namespace BeatBaseForms
 
         private void label27_Click(object sender, EventArgs e) { }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter =
-                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the path of the selected file
-                    string filePath = openFileDialog.FileName;
-
-                    // Load the image into the PictureBox
-                    pictureBox2.Image = Image.FromFile(filePath);
-                }
-            }
-        }
-
         private void button4_Click(object sender, EventArgs e) { }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter =
-                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the path of the selected file
-                    string filePath = openFileDialog.FileName;
-
-                    // Load the image into the PictureBox
-                    pictureBox4.Image = Image.FromFile(filePath);
-                }
-            }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter =
-                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the path of the selected file
-                    string filePath = openFileDialog.FileName;
-
-                    // Load the image into the PictureBox
-                    pictureBox4.Image = Image.FromFile(filePath);
-                }
-            }
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter =
-                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the path of the selected file
-                    string filePath = openFileDialog.FileName;
-
-                    // Load the image into the PictureBox
-                    pictureBox4.Image = Image.FromFile(filePath);
-                }
-            }
-        }
 
         // function to add an album to the database
 
@@ -1057,6 +986,86 @@ namespace BeatBaseForms
             }
         }
 
+        private void FilterPlaylistsByGenre(string genre)
+        {
+            try
+            {
+                // Call the UDF to filter playlists by genre
+                string selectCommand = "SELECT * FROM dbo.FilterPlaylistsByGenre(@Genre)";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Genre", genre);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxPlaylists.Items.Clear();
+
+                        // Read each playlist and add it to the listbox
+                        while (reader.Read())
+                        {
+                            Playlist playlist = new Playlist
+                            {
+                                playlistName = reader["Name"].ToString(),
+                                authorID = (int)reader["AuthorID"],
+                                totalDuration = (int)reader["TotalDuration"],
+                                genre = reader["Genre"].ToString(),
+                                visibility = (bool)reader["Visibility"]
+                            };
+
+                            listBoxPlaylists.Items.Add(playlist);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void FilterPlaylistsByVisibility(bool visibility)
+        {
+            try
+            {
+                // Call the UDF to filter playlists by visibility
+                string selectCommand = "SELECT * FROM dbo.FilterPlaylistsByVisibility(@Visibility)";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Visibility", visibility);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxPlaylists.Items.Clear();
+
+                        // Read each playlist and add it to the listbox
+                        while (reader.Read())
+                        {
+                            Playlist playlist = new Playlist
+                            {
+                                playlistName = reader["Name"].ToString(),
+                                authorID = (int)reader["AuthorID"],
+                                totalDuration = (int)reader["TotalDuration"],
+                                genre = reader["Genre"].ToString(),
+                                visibility = (bool)reader["Visibility"]
+                            };
+
+                            listBoxPlaylists.Items.Add(playlist);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+
         private void FilterSongsByArtistID(int artistID)
         {
             try
@@ -1224,5 +1233,82 @@ namespace BeatBaseForms
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void textBox13_TextChanged(object sender, EventArgs e) { }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedFilter = comboBox7.SelectedItem.ToString();
+
+            if (!string.IsNullOrEmpty(selectedFilter))
+            {
+                FilterPlaylistsByGenre(selectedFilter);
+            }
+            else
+            {
+                loadPlaylists();
+            }
+        }
+
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool visibility = (bool)comboBox8.SelectedValue;
+
+            if (comboBox8.SelectedValue != null)
+            {
+                FilterPlaylistsByVisibility(visibility);
+            }
+            else
+            {
+                loadPlaylists();
+            }
+        }
+
+        private void FilterAlbumsByArtistID(int artistID)
+        {
+            try
+            {
+                // Call the UDF to filter albums by artist ID
+                string selectCommand = "SELECT * FROM dbo.FilterAlbumsByArtistID(@ArtistID)";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxAlbums.Items.Clear();
+
+                        // Read each album and add it to the listbox
+                        while (reader.Read())
+                        {
+                            Album album = new Album();
+                            album.albumID = (int)reader["ID"];
+                            album.albumName = reader["Name"].ToString();
+                            album.albumArtist = reader["ArtistID"].ToString();
+                            album.albumDuration = reader["TotalDuration"].ToString();
+                            album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
+                            listBoxAlbums.Items.Add(album);
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox11.SelectedItem != null)
+            {
+                int artistID = (int)comboBox11.SelectedValue;
+
+                // Example: Filter songs by the selected artist ID
+                FilterAlbumsByArtistID(artistID);
+            }
+        }
     }
 }
