@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Security.Cryptography;
 
 namespace BeatBaseForms
 {
     public partial class Form1 : Form
     {
-
         private SqlConnection conn;
         private Dictionary<int, Artist> artists = new Dictionary<int, Artist>();
         private Dictionary<int, Song> songs = new Dictionary<int, Song>();
@@ -28,13 +27,15 @@ namespace BeatBaseForms
             loadArtists();
             loadPlaylists();
             loadArtistLeaderboard(5);
-            LoadSongLeaderboard(5); 
+            LoadSongLeaderboard(5);
         }
 
         private SqlConnection getSqlConn()
         {
             // Needs to be changed to the online server
-            return new SqlConnection("data source = tcp:mednat.ieeta.pt\\SQLSERVER, 8101; Initial Catalog = p4g6; uid = p4g6; password = euadorobasededados69$");
+            return new SqlConnection(
+                "data source = tcp:mednat.ieeta.pt\\SQLSERVER, 8101; Initial Catalog = p4g6; uid = p4g6; password = euadorobasededados69$"
+            );
         }
 
         private bool checkDBConn()
@@ -48,11 +49,7 @@ namespace BeatBaseForms
             return conn.State == ConnectionState.Open;
         }
 
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Form1_Load(object sender, EventArgs e) { }
 
         private void InitializeComponents()
         {
@@ -67,14 +64,12 @@ namespace BeatBaseForms
             playlistsTab = new TabPage("Playlists");
             leaderboardTab = new TabPage("Leaderboard");
 
-
             // Add tabs to TabControl
             mainTabControl.Controls.Add(songsTab);
             mainTabControl.Controls.Add(albumsTab);
             mainTabControl.Controls.Add(artistsTab);
             mainTabControl.Controls.Add(playlistsTab);
             mainTabControl.Controls.Add(leaderboardTab);
-
 
             // Add TabControl to the form
             this.Controls.Add(mainTabControl);
@@ -85,15 +80,12 @@ namespace BeatBaseForms
             InitializeArtistsTab();
             InitializePlaylistsTab();
             InitializeLeaderboardTab();
-
         }
 
-
-private void loadSongs()
-{
-    try
-    {
-
+        private void loadSongs()
+        {
+            try
+            {
                 comboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox4.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox4.DropDownStyle = ComboBoxStyle.DropDown;
@@ -101,88 +93,89 @@ private void loadSongs()
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllSongs";
 
-        using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
-        {
-            // Set the command type to StoredProcedure
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            // Execute the SQL command and read the result
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                // Clear the listbox
-                listBoxSongs.Items.Clear();
-                //Clear the dictionary
-                songs.Clear();
-
-                // Read each song and add it to the listbox
-                while (reader.Read())
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
                 {
-                    // Creating a song object
-                    Song song = new Song();
-                    song.SongID = (int)reader["ID"];
-                    song.songName = reader["Name"].ToString();
-                    song.songArtist = reader["ArtistID"].ToString();
-                    song.songGenre = reader["Genre"].ToString();
-                    song.songDuration = reader["Duration"].ToString();
-                    song.songLyrics = reader["Lyrics"].ToString();
-                    song.songReleaseDate = (DateTime)reader["ReleaseDate"];
-                    song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
-                    song.streams = (int)reader["Streams"];
-                    // add to dictionary
-                    songs[song.SongID] = song;
-                    listBoxSongs.Items.Add(song);
-                }
+                    // Set the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                    comboBox4.DataSource = listBoxSongs.Items;
-                    comboBox4.DisplayMember = "songName";
-                    comboBox4.ValueMember = "SongID";
-            }
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error: " + ex.Message);
-    }
-}
-private void loadAlbums()
-{
-    try
-    {
-        // Create a SQL command to call the stored procedure
-        string storedProcedure = "GetAllAlbums";
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxSongs.Items.Clear();
+                        //Clear the dictionary
+                        songs.Clear();
 
-        using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
-        {
-            // Set the command type to StoredProcedure
-            cmd.CommandType = CommandType.StoredProcedure;
+                        // Read each song and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating a song object
+                            Song song = new Song();
+                            song.SongID = (int)reader["ID"];
+                            song.songName = reader["Name"].ToString();
+                            song.songArtist = reader["ArtistID"].ToString();
+                            song.songGenre = reader["Genre"].ToString();
+                            song.songDuration = reader["Duration"].ToString();
+                            song.songLyrics = reader["Lyrics"].ToString();
+                            song.songReleaseDate = (DateTime)reader["ReleaseDate"];
+                            song.songAlbumID =
+                                reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
+                            song.streams = (int)reader["Streams"];
+                            // add to dictionary
+                            songs[song.SongID] = song;
+                            listBoxSongs.Items.Add(song);
+                        }
 
-            // Execute the SQL command and read the result
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                // Clear the listbox
-                listBoxAlbums.Items.Clear();
-
-                // Read each album and add it to the listbox
-                while (reader.Read())
-                {
-                    // Creating an album object
-                    Album album = new Album();
-                    album.albumID = (int)reader["ID"];
-                    album.albumName = reader["Name"].ToString();
-                    album.albumArtist = reader["ArtistID"].ToString();
-                    album.albumDuration = reader["TotalDuration"].ToString();
-                    album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
-                    listBoxAlbums.Items.Add(album);
+                        comboBox4.DataSource = listBoxSongs.Items;
+                        comboBox4.DisplayMember = "songName";
+                        comboBox4.ValueMember = "SongID";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error: " + ex.Message);
-    }
-}
 
+        private void loadAlbums()
+        {
+            try
+            {
+                // Create a SQL command to call the stored procedure
+                string storedProcedure = "GetAllAlbums";
+
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
+                {
+                    // Set the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Execute the SQL command and read the result
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the listbox
+                        listBoxAlbums.Items.Clear();
+
+                        // Read each album and add it to the listbox
+                        while (reader.Read())
+                        {
+                            // Creating an album object
+                            Album album = new Album();
+                            album.albumID = (int)reader["ID"];
+                            album.albumName = reader["Name"].ToString();
+                            album.albumArtist = reader["ArtistID"].ToString();
+                            album.albumDuration = reader["TotalDuration"].ToString();
+                            album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
+                            listBoxAlbums.Items.Add(album);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
 
         private void loadArtists()
         {
@@ -200,7 +193,6 @@ private void loadAlbums()
                 comboBox6.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox6.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox6.DropDownStyle = ComboBoxStyle.DropDown;
-
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllArtists";
@@ -291,10 +283,6 @@ private void loadAlbums()
             }
         }
 
-
-
-
-
         private void InitializeSongsTab()
         {
             // Create a TabControl for the Songs tab
@@ -316,39 +304,45 @@ private void loadAlbums()
             listBoxSongs.Dock = DockStyle.Fill;
             viewSongsTab.Controls.Add(listBoxSongs);
 
-
             // Add the TabControl to the songsTab
             songsTab.Controls.Add(songsSubTabControl);
 
-            listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
-
+            listBoxSongs.SelectedIndexChanged += new System.EventHandler(
+                this.listBoxSongs_SelectedIndexChanged
+            );
         }
 
         private void InitializeAddSongTab(TabPage addSongTab)
         {
             Button addButton = new Button();
             addButton.Text = "Add Song";
-            addButton.Location = new Point(10, 10);  // Position the button
+            addButton.Location = new Point(10, 10); // Position the button
             addButton.Size = new Size(100, 30);
-            addButton.Click += (sender, e) => { /* Add Song Logic */ };
+            addButton.Click += (
+                sender,
+                e
+            ) => { /* Add Song Logic */
+            };
             addSongTab.Controls.Add(addButton);
-
         }
-
 
         private void InitializeAlbumsTab()
         {
             Button addAlbumButton = new Button();
             addAlbumButton.Text = "Add Album";
-            addAlbumButton.Location = new Point(10, 10);  // Position the button
+            addAlbumButton.Location = new Point(10, 10); // Position the button
             addAlbumButton.Size = new Size(100, 30);
-            addAlbumButton.Click += (sender, e) => { /* Add Album Logic */ };
+            addAlbumButton.Click += (
+                sender,
+                e
+            ) => { /* Add Album Logic */
+            };
             albumsTab.Controls.Add(addAlbumButton);
 
             ListView albumList = new ListView();
             albumList.Location = new Point(10, 50);
             albumList.Size = new Size(500, 300);
-            albumList.View = View.List;  // Display in list view, you can change to Details for more complex data
+            albumList.View = View.List; // Display in list view, you can change to Details for more complex data
             albumsTab.Controls.Add(albumList);
         }
 
@@ -357,19 +351,22 @@ private void loadAlbums()
             // Creating and setting properties of the add artist button
             Button addArtistButton = new Button();
             addArtistButton.Text = "Add Artist";
-            addArtistButton.Location = new Point(10, 10);  // Position the button
+            addArtistButton.Location = new Point(10, 10); // Position the button
             addArtistButton.Size = new Size(100, 30);
-            addArtistButton.Click += (sender, e) => { /* Add Artist Logic */ };
+            addArtistButton.Click += (
+                sender,
+                e
+            ) => { /* Add Artist Logic */
+            };
             artistsTab.Controls.Add(addArtistButton);
 
             // Creating and setting properties of the list view for artists
             ListView artistList = new ListView();
             artistList.Location = new Point(10, 50);
             artistList.Size = new Size(500, 300);
-            artistList.View = View.List;  // Display in list view, you can change to Details for more complex data
+            artistList.View = View.List; // Display in list view, you can change to Details for more complex data
             artistsTab.Controls.Add(artistList);
         }
-
 
         private void InitializePlaylistsTab()
         {
@@ -377,7 +374,11 @@ private void loadAlbums()
             createPlaylistButton.Text = "Create Playlist";
             createPlaylistButton.Location = new Point(10, 10);
             createPlaylistButton.Size = new Size(120, 30);
-            createPlaylistButton.Click += (sender, e) => { /* Create Playlist Logic */ };
+            createPlaylistButton.Click += (
+                sender,
+                e
+            ) => { /* Create Playlist Logic */
+            };
             playlistsTab.Controls.Add(createPlaylistButton);
 
             ListBox playlistListBox = new ListBox();
@@ -386,57 +387,36 @@ private void loadAlbums()
             playlistsTab.Controls.Add(playlistListBox);
         }
 
-
         private void InitializeLeaderboardTab()
         {
-
-
-            listBox1= new ListBox();
+            listBox1 = new ListBox();
             listBox1.Dock = DockStyle.Fill;
             leaderboardTab.Controls.Add(listBox1);
-            listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            listBox1.SelectedIndexChanged += new System.EventHandler(
+                this.listBox1_SelectedIndexChanged
+            );
 
             listBox2 = new ListBox();
             listBox2.Dock = DockStyle.Fill;
             leaderboardTab.Controls.Add(listBox2);
-            listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-
+            listBox2.SelectedIndexChanged += new System.EventHandler(
+                this.listBox2_SelectedIndexChanged
+            );
         }
 
-        private void buttonCreatePlaylist_Click(object sender, EventArgs e)
-        {
+        private void buttonCreatePlaylist_Click(object sender, EventArgs e) { }
 
-        }
+        private void buttonAddAlbum_Click(object sender, EventArgs e) { }
 
-        private void buttonAddAlbum_Click(object sender, EventArgs e)
-        {
+        private void label1_Click(object sender, EventArgs e) { }
 
-        }
+        private void label2_Click(object sender, EventArgs e) { }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+        private void label3_Click(object sender, EventArgs e) { }
 
-        }
+        private void label5_Click(object sender, EventArgs e) { }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void songsTab_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void songsTab_Click(object sender, EventArgs e) { }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -464,7 +444,9 @@ private void loadAlbums()
                             string albumID = reader["AlbumID"].ToString();
 
                             // Display the song details in a message box
-                            MessageBox.Show($"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}");
+                            MessageBox.Show(
+                                $"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}"
+                            );
                         }
                         else
                         {
@@ -479,55 +461,25 @@ private void loadAlbums()
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-        }
+        private void button3_Click(object sender, EventArgs e) { }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+        private void textBox2_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void label6_Click(object sender, EventArgs e) { }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
+        private void label7_Click(object sender, EventArgs e) { }
 
-        }
+        private void label9_Click(object sender, EventArgs e) { }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
+        private void artistsTab_Click(object sender, EventArgs e) { }
 
-        }
+        private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void label9_Click(object sender, EventArgs e)
-        {
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        }
+        private void buttonAddAlbum_Click_1(object sender, EventArgs e) { }
 
-        private void artistsTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBoxAlbums_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonAddAlbum_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e) { }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -553,7 +505,9 @@ private void loadAlbums()
                             string albumID = reader["AlbumID"].ToString();
 
                             // Display the song details in a message box
-                            MessageBox.Show($"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}");
+                            MessageBox.Show(
+                                $"Song Name: {songName}\nArtist Name: {artistName}\nGenre: {genre}\nDuration: {duration}\nLyrics: {lyrics}\nRelease Date: {releaseDate}\nAlbum ID: {albumID}"
+                            );
                         }
                         else
                         {
@@ -571,10 +525,10 @@ private void loadAlbums()
         // function to add a song to the database
         private void button3_Click_1(object sender, EventArgs e)
         {
-            
             // Get the song details from the textboxes
             int songArtist;
-            try {
+            try
+            {
                 songArtist = (int)comboBox1.SelectedValue;
             }
             catch (Exception ex)
@@ -589,22 +543,26 @@ private void loadAlbums()
             DateTime songReleaseDate = DateTime.Now;
             int songAlbumID = 0;
 
-
-
             // Checking if we are missing any values from the textboxes
-            if (string.IsNullOrEmpty(songName) || string.IsNullOrEmpty(songGenre) || string.IsNullOrEmpty(songDuration) || string.IsNullOrEmpty(songLyrics))
+            if (
+                string.IsNullOrEmpty(songName)
+                || string.IsNullOrEmpty(songGenre)
+                || string.IsNullOrEmpty(songDuration)
+                || string.IsNullOrEmpty(songLyrics)
+            )
             {
                 MessageBox.Show("Please fill in all the fields.");
                 return;
             }
 
             // Check if songDuration is a int or float
-            if (!int.TryParse(songDuration, out int n) && !float.TryParse(songDuration, out float f))
+            if (
+                !int.TryParse(songDuration, out int n) && !float.TryParse(songDuration, out float f)
+            )
             {
                 MessageBox.Show("Duration must be a number.");
                 return;
             }
-
 
             if (radioButton2.Checked) //single
             {
@@ -618,10 +576,11 @@ private void loadAlbums()
             }
 
             //string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
-             //                          "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+            //                          "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
 
-            string insertCommand = "INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
-                           "VALUES (@ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+            string insertCommand =
+                "INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) "
+                + "VALUES (@ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
 
             try
             {
@@ -645,7 +604,7 @@ private void loadAlbums()
                     {
                         cmd.Parameters.AddWithValue("@AlbumID", songAlbumID);
                     }
-            
+
                     int query_changed = cmd.ExecuteNonQuery();
                     if (query_changed > 0)
                     {
@@ -661,14 +620,12 @@ private void loadAlbums()
                     textBox4.Text = "";
                     richTextBox1.Text = "";
 
-
                     // Reload the songs list
                     loadSongs();
                 }
             }
             catch (Exception ex)
             {
-
                 if (ex.Message.Contains("PRIMARY KEY constraint"))
                 {
                     MessageBox.Show("Song already exists in the database.");
@@ -677,22 +634,12 @@ private void loadAlbums()
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-                
             }
-
-
         }
 
-        private void label22_Click(object sender, EventArgs e)
-        {
+        private void label22_Click(object sender, EventArgs e) { }
 
-        }
-
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+        private void textBox3_TextChanged(object sender, EventArgs e) { }
 
         private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -702,14 +649,10 @@ private void loadAlbums()
                 // Show streams
                 MessageBox.Show($"Song: {selectedSong.songName}\nStreams: {selectedSong.streams}");
             }
-  
-
-
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
             // Get the song
             Song selectedSong = (Song)listBoxSongs.SelectedItem;
             // Add a stream to the song
@@ -741,13 +684,11 @@ private void loadAlbums()
                 MessageBox.Show("Please select a song.");
                 return;
             }
-   
-    
         }
 
         private void button2_Click_2(object sender, EventArgs e)
         {
-            // check 
+            // check
         }
 
         private void listBoxAlbums_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -766,21 +707,21 @@ private void loadAlbums()
             {
                 Artist selectedArtist = (Artist)artistList.SelectedItem;
                 // Show artist details or perform any other action
-                MessageBox.Show($"Artist: {selectedArtist.artistName}\nStreams: {selectedArtist.streams}");
+                MessageBox.Show(
+                    $"Artist: {selectedArtist.artistName}\nStreams: {selectedArtist.streams}"
+                );
             }
         }
 
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void label27_Click(object sender, EventArgs e) { }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.Filter =
+                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -795,17 +736,15 @@ private void loadAlbums()
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void button4_Click(object sender, EventArgs e) { }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.Filter =
+                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -825,7 +764,8 @@ private void loadAlbums()
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.Filter =
+                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -845,7 +785,8 @@ private void loadAlbums()
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
+                openFileDialog.Filter =
+                    "Image Files (*.bmp;*.jpg;*.jpeg;*.png)|*.bmp;*.jpg;*.jpeg;*.png|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
@@ -870,10 +811,10 @@ private void loadAlbums()
             int artistID = (int)comboBox2.SelectedValue;
             DateTime albumReleaseDate = DateTime.Now;
 
-
             // SQL insert command
-            string insertCommand = "INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) " +
-                                   "VALUES (@Name, @ReleaseDate, @TotalDuration, @ArtistID)";
+            string insertCommand =
+                "INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) "
+                + "VALUES (@Name, @ReleaseDate, @TotalDuration, @ArtistID)";
 
             try
             {
@@ -926,8 +867,8 @@ private void loadAlbums()
             }
 
             // SQL insert command
-            string insertCommand = "INSERT INTO Artist (ArtistName, Streams) " +
-                                   "VALUES (@ArtistName, @Streams)";
+            string insertCommand =
+                "INSERT INTO Artist (ArtistName, Streams) " + "VALUES (@ArtistName, @Streams)";
 
             try
             {
@@ -977,7 +918,11 @@ private void loadAlbums()
             int totalDuration = 0; // Initialize or calculate this based on your logic
 
             // Checking if we are missing any values from the textboxes
-            if (string.IsNullOrEmpty(playlistName) || string.IsNullOrEmpty(genre) || !int.TryParse(textBox1.Text, out authorID))
+            if (
+                string.IsNullOrEmpty(playlistName)
+                || string.IsNullOrEmpty(genre)
+                || !int.TryParse(textBox1.Text, out authorID)
+            )
             {
                 MessageBox.Show("Please fill in all the fields and ensure Author ID is a number.");
                 return;
@@ -994,8 +939,9 @@ private void loadAlbums()
             }
 
             // SQL insert command
-            string insertCommand = "INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) " +
-                                   "VALUES (@TotalDuration, @Genre, @Visibility, @Name, @AuthorID)";
+            string insertCommand =
+                "INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) "
+                + "VALUES (@TotalDuration, @Genre, @Visibility, @Name, @AuthorID)";
 
             try
             {
@@ -1041,67 +987,29 @@ private void loadAlbums()
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+        private void button1_Click(object sender, EventArgs e) { }
 
-        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
 
-        }
+        private void textBox4_TextChanged(object sender, EventArgs e) { }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
+        private void AddSong_SelectedIndexChanged(object sender, EventArgs e) { }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e) { }
 
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e) { }
 
-        }
+        private void label10_Click(object sender, EventArgs e) { }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
+        private void label8_Click(object sender, EventArgs e) { }
 
-        }
+        private void textBox8_TextChanged(object sender, EventArgs e) { }
 
-        private void AddSong_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void FilterSongsByGenre(string genre)
         {
@@ -1131,7 +1039,10 @@ private void loadAlbums()
                                 songDuration = reader["Duration"].ToString(),
                                 songLyrics = reader["Lyrics"].ToString(),
                                 songReleaseDate = (DateTime)reader["ReleaseDate"],
-                                songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null,
+                                songAlbumID =
+                                    reader["AlbumID"] != DBNull.Value
+                                        ? (int?)reader["AlbumID"]
+                                        : null,
                                 streams = (int)reader["Streams"]
                             };
 
@@ -1174,7 +1085,10 @@ private void loadAlbums()
                                 songDuration = reader["Duration"].ToString(),
                                 songLyrics = reader["Lyrics"].ToString(),
                                 songReleaseDate = (DateTime)reader["ReleaseDate"],
-                                songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null,
+                                songAlbumID =
+                                    reader["AlbumID"] != DBNull.Value
+                                        ? (int?)reader["AlbumID"]
+                                        : null,
                                 streams = (int)reader["Streams"]
                             };
 
@@ -1197,7 +1111,6 @@ private void loadAlbums()
             {
                 FilterSongsByGenre(selectedFilter);
             }
-
             else
             {
                 loadSongs();
@@ -1252,13 +1165,7 @@ private void loadAlbums()
             }
         }
 
-
-
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
@@ -1270,10 +1177,8 @@ private void loadAlbums()
                 return;
             }
 
-            loadArtistLeaderboard(topN); 
-
+            loadArtistLeaderboard(topN);
         }
-
 
         public void LoadSongLeaderboard(int topN)
         {
@@ -1294,11 +1199,9 @@ private void loadAlbums()
                         {
                             Song song = songs[(int)reader["ID"]];
                             listBox2.Items.Add(song);
-
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -1318,14 +1221,8 @@ private void loadAlbums()
             LoadSongLeaderboard(topN);
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        }
-
-        private void textBox13_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void textBox13_TextChanged(object sender, EventArgs e) { }
     }
 }
