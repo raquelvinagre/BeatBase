@@ -28,7 +28,7 @@ namespace BeatBaseForms
             loadArtists();
             loadPlaylists();
             loadArtistLeaderboard(5);
-            LoadSongLeaderboard(5); // AAAAAAAAAA
+            LoadSongLeaderboard(5); 
         }
 
         private SqlConnection getSqlConn()
@@ -333,7 +333,6 @@ private void loadAlbums()
             addButton.Click += (sender, e) => { /* Add Song Logic */ };
             addSongTab.Controls.Add(addButton);
 
-            // Add additional controls for song details here, such as textboxes for song name, artist, etc.
         }
 
 
@@ -669,12 +668,6 @@ private void loadAlbums()
             }
             catch (Exception ex)
             {
-                // MessageBox.Show("Error: " + ex.Message);
-                // // Clear the textboxes
-                // textBox2.Text = "";
-                // textBox3.Text = "";
-                // textBox4.Text = "";
-                // richTextBox1.Text = "";
 
                 if (ex.Message.Contains("PRIMARY KEY constraint"))
                 {
@@ -1202,7 +1195,6 @@ private void loadAlbums()
 
             if (!string.IsNullOrEmpty(selectedFilter))
             {
-                // Example: Filter songs by genre
                 FilterSongsByGenre(selectedFilter);
             }
 
@@ -1285,7 +1277,6 @@ private void loadAlbums()
 
         public void LoadSongLeaderboard(int topN)
         {
-            // DOES NOT WORK AS INTENDED
             try
             {
                 string query = "SELECT * FROM dbo.GetTopSongs(@TopN)";
@@ -1301,10 +1292,6 @@ private void loadAlbums()
 
                         while (reader.Read())
                         {
-                            // MessageBox.Show("ID: " + (int)reader["ID"]);
-                            // Song song = (Song)listBoxSongs.Items[(int)reader["ID"] - 1];
-                            // Song song1 = (Song)listBoxSongs.Items
-                            // get song from dic
                             Song song = songs[(int)reader["ID"]];
                             listBox2.Items.Add(song);
 
