@@ -37,3 +37,27 @@ RETURN
     WHERE ArtistID = @ArtistID
 );
 GO
+
+
+
+DROP FUNCTION IF EXISTS GetTopArtists;
+CREATE FUNCTION GetTopArtists (@TopN INT)
+RETURNS TABLE
+AS
+RETURN (
+  SELECT TOP(@TopN) ID, ArtistName, Streams
+  FROM Artist
+  ORDER BY Streams DESC
+);
+
+DROP FUNCTION IF EXISTS GetTopSongs;
+CREATE FUNCTION GetTopSongs (@TopN INT)
+RETURNS TABLE
+AS
+RETURN (
+  SELECT TOP(@TopN) ID, SongName, Streams
+  FROM Song
+  ORDER BY Streams DESC 
+);
+
+

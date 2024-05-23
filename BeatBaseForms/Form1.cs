@@ -16,6 +16,8 @@ namespace BeatBaseForms
     {
 
         private SqlConnection conn;
+        private Dictionary<int, Artist> artists = new Dictionary<int, Artist>();
+        private Dictionary<int, Song> songs = new Dictionary<int, Song>();
 
         public Form1()
         {
@@ -25,8 +27,8 @@ namespace BeatBaseForms
             loadAlbums();
             loadArtists();
             loadPlaylists();
-            //
-            //InitializeComponents();  
+            loadArtistLeaderboard(5);
+            LoadSongLeaderboard(5); // AAAAAAAAAA
         }
 
         private SqlConnection getSqlConn()
@@ -109,6 +111,8 @@ private void loadSongs()
             {
                 // Clear the listbox
                 listBoxSongs.Items.Clear();
+                //Clear the dictionary
+                songs.Clear();
 
                 // Read each song and add it to the listbox
                 while (reader.Read())
@@ -124,6 +128,8 @@ private void loadSongs()
                     song.songReleaseDate = (DateTime)reader["ReleaseDate"];
                     song.songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null;
                     song.streams = (int)reader["Streams"];
+                    // add to dictionary
+                    songs[song.SongID] = song;
                     listBoxSongs.Items.Add(song);
                 }
 
@@ -209,6 +215,8 @@ private void loadAlbums()
                     {
                         // Clear the listbox
                         artistList.Items.Clear();
+                        // Clear the dictionary
+                        artists.Clear();
 
                         // Read each artist and add it to the listbox
                         while (reader.Read())
@@ -218,6 +226,7 @@ private void loadAlbums()
                             artist.artistID = (int)reader["ID"];
                             artist.artistName = reader["ArtistName"].ToString();
                             artist.streams = (int)reader["Streams"];
+                            artists[artist.artistID] = artist;
                             artistList.Items.Add(artist);
                         }
 
@@ -381,18 +390,18 @@ private void loadAlbums()
 
         private void InitializeLeaderboardTab()
         {
-            DataGridView leaderboardDataGridView = new DataGridView();
-            leaderboardDataGridView.Location = new Point(10, 10);
-            leaderboardDataGridView.Size = new Size(780, 300);
-            leaderboardDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Example columns
-            leaderboardDataGridView.Columns.Add("Rank", "Rank");
-            leaderboardDataGridView.Columns.Add("ArtistName", "Artist Name");
-            leaderboardDataGridView.Columns.Add("Album", "Album");
-            leaderboardDataGridView.Columns.Add("Plays", "Plays");
 
-            leaderboardTab.Controls.Add(leaderboardDataGridView);
+            listBox1= new ListBox();
+            listBox1.Dock = DockStyle.Fill;
+            leaderboardTab.Controls.Add(listBox1);
+            listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+
+            listBox2 = new ListBox();
+            listBox2.Dock = DockStyle.Fill;
+            leaderboardTab.Controls.Add(listBox2);
+            listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+
         }
 
         private void buttonCreatePlaylist_Click(object sender, EventArgs e)
@@ -1212,6 +1221,124 @@ private void loadAlbums()
                 // Example: Filter songs by the selected artist ID
                 FilterSongsByArtistID(artistID);
             }
+        }
+
+        public void loadArtistLeaderboard(int topN)
+        {
+            // get the UDF GetTopArtists and load everything into listbox1
+
+            try
+            {
+                // Query string to call the UDF with a parameter
+                string query = "SELECT * FROM dbo.GetTopArtists(@TopN)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    // Adding the parameter required by the UDF
+                    cmd.Parameters.AddWithValue("@TopN", topN);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        listBox1.Items.Clear();
+
+                        // Reading data from the UDF result set
+                        while (reader.Read())
+                        {
+                            Artist artist = artists[(int)reader["ID"]];
+                            listBox1.Items.Add(artist);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            // this gets the number from textbox12, and then calls loadLeaderboard with that number
+            int topN = 0;
+            if (!int.TryParse(textBox12.Text, out topN))
+            {
+                MessageBox.Show("Please enter a valid number.");
+                return;
+            }
+
+            loadArtistLeaderboard(topN); 
+
+        }
+
+
+        public void LoadSongLeaderboard(int topN)
+        {
+            // DOES NOT WORK AS INTENDED
+            try
+            {
+                string query = "SELECT * FROM dbo.GetTopSongs(@TopN)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@TopN", topN);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        listBox2.Items.Clear();
+
+                        while (reader.Read())
+                        {
+                            // MessageBox.Show("ID: " + (int)reader["ID"]);
+                            // Song song = (Song)listBoxSongs.Items[(int)reader["ID"] - 1];
+                            // Song song1 = (Song)listBoxSongs.Items
+                            // get song from dic
+                            Song song = songs[(int)reader["ID"]];
+                            listBox2.Items.Add(song);
+
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int topN = 0;
+            if (!int.TryParse(textBox13.Text, out topN))
+            {
+                MessageBox.Show("Please enter a valid number.");
+                return;
+            }
+
+            LoadSongLeaderboard(topN);
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
