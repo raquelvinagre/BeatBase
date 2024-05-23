@@ -22,9 +22,9 @@ namespace BeatBaseForms
         {
             InitializeComponent();
             checkDBConn();
+            loadArtists();
             loadSongs();
             loadAlbums();
-            loadArtists();
             loadPlaylists();
             loadArtistLeaderboard(5);
             LoadSongLeaderboard(5);
@@ -105,7 +105,6 @@ namespace BeatBaseForms
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         // Clear the listbox
-                        listBoxSongs.Items.Clear();
                         //Clear the dictionary
                         songs.Clear();
 
@@ -126,13 +125,27 @@ namespace BeatBaseForms
                             song.streams = (int)reader["Streams"];
                             // add to dictionary
                             songs[song.SongID] = song;
-                            listBoxSongs.Items.Add(song);
+                            dataGridView1.DataSource = songs.Values.ToList();
+
+                            // //add columns to the datagridview
+                            // dataGridView1.ColumnCount = 8;
+                            // dataGridView1.Columns[0].Name = "Name";
+                            // dataGridView1.Columns[1].Name = "Artist";
+                            // dataGridView1.Columns[2].Name = "Genre";
+                            // dataGridView1.Columns[3].Name = "Duration";
+                            // dataGridView1.Columns[4].Name = "Lyrics";
+                            // dataGridView1.Columns[5].Name = "Release Date";
+                            // dataGridView1.Columns[6].Name = "Album ID";
+                            // dataGridView1.Columns[7].Name = "Streams";
+                            // //add rows to the datagridview
+                            // dataGridView1.Rows.Add(song.songName, song.songArtist, song.songGenre, song.songDuration, song.songLyrics, song.songReleaseDate, song.songAlbumID, song.streams);
                         }
 
-                        comboBox4.DataSource = listBoxSongs.Items;
+                        // Add songs to the combobox
+                        comboBox4.DataSource = songs.Values.ToList();
                         comboBox4.DisplayMember = "songName";
                         comboBox4.ValueMember = "SongID";
-                        comboBox9.DataSource = listBoxSongs.Items;
+                        comboBox9.DataSource = songs.Values.ToList();
                         comboBox9.DisplayMember = "songName";
                         comboBox9.ValueMember = "SongID";
                     }
@@ -312,15 +325,23 @@ namespace BeatBaseForms
             songsSubTabControl.Controls.Add(addSongTab);
             songsSubTabControl.Controls.Add(viewSongsTab);
 
-            listBoxSongs = new ListBox();
-            listBoxSongs.Dock = DockStyle.Fill;
-            viewSongsTab.Controls.Add(listBoxSongs);
+            dataGridView1 = new DataGridView();
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ReadOnly = true; // Make the DataGridView read-only
+            dataGridView1.AllowUserToAddRows = false; // Prevent adding rows
+            dataGridView1.AllowUserToDeleteRows = false; // Prevent deleting rows
+            dataGridView1.AllowUserToOrderColumns = true; // Allow column reordering
+            dataGridView1.MultiSelect = false;
+
+            viewSongsTab.Controls.Add(dataGridView1);
 
             // Add the TabControl to the songsTab
             songsTab.Controls.Add(songsSubTabControl);
 
-            listBoxSongs.SelectedIndexChanged += new System.EventHandler(
-                this.listBoxSongs_SelectedIndexChanged
+            dataGridView1.SelectionChanged += new System.EventHandler(
+                this.dataGridView1_SelectionChanged
             );
         }
 
@@ -653,20 +674,10 @@ namespace BeatBaseForms
 
         private void textBox3_TextChanged(object sender, EventArgs e) { }
 
-        private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxSongs.SelectedItem != null)
-            {
-                Song selectedSong = (Song)listBoxSongs.SelectedItem;
-                // Show streams
-                MessageBox.Show($"Song: {selectedSong.songName}\nStreams: {selectedSong.streams}");
-            }
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             // Get the song
-            Song selectedSong = (Song)listBoxSongs.SelectedItem;
+            Song selectedSong = (Song)dataGridView1.CurrentRow.DataBoundItem;
             // Add a stream to the song
             string updateCommand = "UPDATE Song SET Streams = Streams + 1 WHERE ID = @ID";
 
@@ -728,7 +739,6 @@ namespace BeatBaseForms
         private void label27_Click(object sender, EventArgs e) { }
 
         private void button4_Click(object sender, EventArgs e) { }
-
 
         // function to add an album to the database
 
@@ -947,14 +957,16 @@ namespace BeatBaseForms
                 // Call the UDF to filter songs by genre
                 string selectCommand = "SELECT * FROM dbo.FilterSongsByGenre(@Genre)";
 
+                List<Song> songs_filter = new List<Song>();
+
                 using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
                 {
                     cmd.Parameters.AddWithValue("@Genre", genre);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Clear the listbox
-                        listBoxSongs.Items.Clear();
+                        //Clear data grid view
+                        dataGridView1.DataSource = null;
 
                         // Read each song and add it to the listbox
                         while (reader.Read())
@@ -974,9 +986,10 @@ namespace BeatBaseForms
                                         : null,
                                 streams = (int)reader["Streams"]
                             };
-
-                            listBoxSongs.Items.Add(song);
+                            songs_filter.Add(song);
                         }
+
+                        dataGridView1.DataSource = songs_filter;
                     }
                 }
             }
@@ -1064,14 +1077,14 @@ namespace BeatBaseForms
             }
         }
 
-
-
         private void FilterSongsByArtistID(int artistID)
         {
             try
             {
                 // Call the UDF to filter songs by artist ID
                 string selectCommand = "SELECT * FROM dbo.FilterSongsByArtistID(@ArtistID)";
+
+                List<Song> songs_filter = new List<Song>();
 
                 using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
                 {
@@ -1080,7 +1093,9 @@ namespace BeatBaseForms
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         // Clear the listbox
-                        listBoxSongs.Items.Clear();
+
+                        //Clear data grid view
+                        dataGridView1.DataSource = null;
 
                         // Read each song and add it to the listbox
                         while (reader.Read())
@@ -1101,8 +1116,10 @@ namespace BeatBaseForms
                                 streams = (int)reader["Streams"]
                             };
 
-                            listBoxSongs.Items.Add(song);
+                            songs_filter.Add(song);
                         }
+
+                        dataGridView1.DataSource = songs_filter;
                     }
                 }
             }
@@ -1250,11 +1267,12 @@ namespace BeatBaseForms
 
         private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool visibility = (bool)comboBox8.SelectedValue;
+            string visibility = comboBox8.SelectedItem.ToString();
 
-            if (comboBox8.SelectedValue != null)
+            if (visibility != "")
             {
-                FilterPlaylistsByVisibility(visibility);
+                int visibility_int = Int32.Parse(visibility);
+                FilterPlaylistsByVisibility(Convert.ToBoolean(visibility_int));
             }
             else
             {
@@ -1288,7 +1306,6 @@ namespace BeatBaseForms
                             album.albumDuration = reader["TotalDuration"].ToString();
                             album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
                             listBoxAlbums.Items.Add(album);
-
                         }
                     }
                 }
@@ -1299,7 +1316,6 @@ namespace BeatBaseForms
             }
         }
 
-
         private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox11.SelectedItem != null)
@@ -1309,6 +1325,36 @@ namespace BeatBaseForms
                 // Example: Filter songs by the selected artist ID
                 FilterAlbumsByArtistID(artistID);
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            //Message box to show the selected song
+
+            Song selectedSong2 = (Song)dataGridView1.CurrentRow.DataBoundItem;
+            MessageBox.Show($"You selected {selectedSong2.songName}");
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            // if (dataGridView1.SelectedRows.Count > 0)
+            // {
+            //     int selectedSongId = (int)dataGridView1.SelectedRows[0].Cells["ID"].Value;
+            //     Song selectedSong;
+            //     if (songs.TryGetValue(selectedSongId, out selectedSong))
+            //     {
+            //         // Handle the selected song
+            //         MessageBox.Show($"You selected {selectedSong.songName}");
+            //     }
+            // }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Song selectedSong2 = (Song)dataGridView1.CurrentRow.DataBoundItem;
+            MessageBox.Show($"You selected {selectedSong2.songName}");
         }
     }
 }

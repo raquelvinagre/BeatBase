@@ -8,6 +8,8 @@
 		public int streams { get; set; }
 
 
+
+
 		public override string ToString()
 		{
 			return artistName + " | Streams:  " + streams ;;

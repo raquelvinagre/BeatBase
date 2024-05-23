@@ -24,4 +24,4 @@ Raquel Vinagre 113736
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
 - [ ]  remover músicas
-
+- [x]  losing my fucking mind 
