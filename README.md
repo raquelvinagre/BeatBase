@@ -10,9 +10,11 @@ Raquel Vinagre 113736
 - [ ]  mostrar músicas dos álbuns
 - [ ]  formatar detalhes nas listas ig
 - [ ]  editar músicas, álbuns...
-- [ ]  fazer leaderboards
+- [x]  (melhorar)fazer leaderboards
 - [x]  filtros
 - [x]  udfs
+- [x]  triggers
+- [ ]  transformar a listbox das songs numa datagridview 
 - [ ]  indexes
 - [ ]  cursores
 - [ ]  atualizar os diagramas
@@ -21,3 +23,5 @@ Raquel Vinagre 113736
 - [ ]  powerpoint
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
+- [ ]  remover músicas
+
