@@ -12,20 +12,6 @@ RETURN
 );
 GO
 
-DROP FUNCTION IF EXISTS FilterSongsByName;
-GO
-CREATE FUNCTION FilterSongsByName (@Name VARCHAR(255))
-RETURNS TABLE
-AS
-RETURN
-(
-    SELECT *
-    FROM Song
-    WHERE Name LIKE '%' + @Name + '%'
-);
-GO
-
-
 DROP FUNCTION IF EXISTS FilterSongsByArtistID;
 GO
 CREATE FUNCTION FilterSongsByArtistID (@ArtistID INT)
