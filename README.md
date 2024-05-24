@@ -8,13 +8,13 @@ Raquel Vinagre 113736
 # To-do:
 - [ ]  adicionar músicas a playlists
 - [ ]  mostrar músicas dos álbuns
-- [ ]  editar músicas, álbuns...
+- [x]  editar músicas, álbuns...
 - [x]  (melhorar)fazer leaderboards
 - [x]  filtros
 - [x]  udfs
 - [x]  triggers
-- [ ]  transformar a listbox das songs numa datagridview 
-- [ ]  indexes
+- [x]  transformar a listbox das songs numa datagridview 
+- [x]  indexes
 - [ ]  cursores
 - [ ]  normalizacao ? misterio
 - [ ]  atualizar os diagramas
@@ -24,4 +24,5 @@ Raquel Vinagre 113736
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
 - [ ]  remover músicas
-- [x]  losing my fucking mind 
+- [x]  losing my fucking mind
+- [x]  same
