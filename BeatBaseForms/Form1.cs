@@ -20,6 +20,9 @@ namespace BeatBaseForms
         private Dictionary<int, Song> songs = new Dictionary<int, Song>();
         private Dictionary<int, Album> albums = new Dictionary<int, Album>();
 
+        // This is a very bad way to do this btw
+        private Song previousSelectedSong;
+
         public Form1()
         {
             InitializeComponent();
@@ -82,6 +85,7 @@ namespace BeatBaseForms
             InitializeArtistsTab();
             InitializePlaylistsTab();
             InitializeLeaderboardTab();
+
         }
 
         private void loadSongs()
@@ -153,7 +157,10 @@ namespace BeatBaseForms
                         comboBox9.DataSource = songs.Values.ToList();
                         comboBox9.DisplayMember = "songName";
                         comboBox9.ValueMember = "SongID";
-                        comboBox17.DataSource = songs.Values.ToList();
+
+                        List<Song> stupid_song_list = songs.Values.ToList();
+                        stupid_song_list.Insert(0, new Song { SongID = -1, songName = "Please Select a Song" });
+                        comboBox17.DataSource = stupid_song_list;
                         comboBox17.DisplayMember = "songName";
                         comboBox17.ValueMember = "songName";
                     }
@@ -1503,63 +1510,18 @@ namespace BeatBaseForms
 
         }
 
-        private void SearchSong(string songName)
-        {
-            try
-            {
-                // Call the UDF to filter songs by name
-                string selectCommand = "SELECT * FROM dbo.FilterSongsByName(@Name)";
-
-                List<Song> songs_filter = new List<Song>();
-
-                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Name", songName);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        // Clear the data grid view or list box
-                        dataGridView1.DataSource = null;
-
-                        // Read each song and add it to the list
-                        while (reader.Read())
-                        {
-                            Song song = new Song
-                            {
-                                SongID = (int)reader["ID"],
-                                songName = reader["Name"].ToString(),
-                                songArtist = reader["ArtistID"].ToString(),
-                                songGenre = reader["Genre"].ToString(),
-                                songDuration = reader["Duration"].ToString(),
-                                songLyrics = reader["Lyrics"].ToString(),
-                                songReleaseDate = (DateTime)reader["ReleaseDate"],
-                                songAlbumID =
-                                    reader["AlbumID"] != DBNull.Value
-                                        ? (int?)reader["AlbumID"]
-                                        : null,
-                                streams = (int)reader["Streams"]
-                            };
-
-                            songs_filter.Add(song);
-                        }
-
-                        dataGridView1.DataSource = songs_filter;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
 
         private void comboBox17_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox17.SelectedValue != null)
+            if (comboBox17.SelectedValue != null && comboBox17.SelectedIndex != 0)
             {
-                string selectedSongName = comboBox17.SelectedValue.ToString();
-                SearchSong(selectedSongName);
+                // Get the selected song
+                Song selectedSong = (Song)comboBox17.SelectedItem;
+                dataGridView1.DataSource = new List<Song> { selectedSong };
+            }
+            else if (comboBox17.SelectedIndex == 0)
+            {
+                dataGridView1.DataSource = songs.Values.ToList();
             }
         }
 
