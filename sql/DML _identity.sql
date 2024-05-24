@@ -11,17 +11,17 @@ DELETE FROM GlobalLeaderboard;
 
 -- Insert into Artist without specifying ID
 INSERT INTO Artist (ArtistName, Streams) VALUES
-('The Weeknd', 0),
-('Drake', 0),
-('Taylor Swift', 0),
-('Kendrick Lamar', 0),
-('Billie Eilish', 0),
-('Justin Bieber', 0),
-('Ariana Grande', 0),
-('Ed Sheeran', 0),
-('Post Malone', 0),
-('Bad Bunny', 0),
-('Raquel Vinagre',0);
+('The Weeknd', 2839132),
+('Drake', 483922),
+('Taylor Swift', 7381211),
+('Kendrick Lamar', 1312312),
+('Billie Eilish', 5434222),
+('Justin Bieber', 4324321),
+('Ariana Grande', 7945834),
+('Ed Sheeran', 3423121),
+('Post Malone', 7428223),
+('Bad Bunny', 3218712),
+('Raquel Vinagre',3627);
 
 -- Insert into [User] without specifying ID
 INSERT INTO [User] (Username) VALUES

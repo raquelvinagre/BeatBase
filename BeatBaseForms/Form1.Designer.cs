@@ -50,6 +50,8 @@ namespace BeatBaseForms
             this.playlistsTab = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label58 = new System.Windows.Forms.Label();
+            this.button17 = new System.Windows.Forms.Button();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
@@ -72,15 +74,13 @@ namespace BeatBaseForms
             this.label36 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label59 = new System.Windows.Forms.Label();
             this.artistsTab = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.label27 = new System.Windows.Forms.Label();
-            this.artistList = new System.Windows.Forms.ListBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -89,27 +89,50 @@ namespace BeatBaseForms
             this.albumsTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button16 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label37 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.buttonAddAlbum = new System.Windows.Forms.Button();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.button13 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.songsTab = new System.Windows.Forms.TabPage();
             this.AddSong = new System.Windows.Forms.TabControl();
             this.List = new System.Windows.Forms.TabPage();
+            this.button15 = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
@@ -159,37 +182,41 @@ namespace BeatBaseForms
             this.label38 = new System.Windows.Forms.Label();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.artistLeaderboardTableAdapter1 = new BeatBaseForms.p4g6DataSetTableAdapters.ArtistLeaderboardTableAdapter();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button18 = new System.Windows.Forms.Button();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.label39 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.button19 = new System.Windows.Forms.Button();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
             this.leaderboardTab.SuspendLayout();
             this.playlistsTab.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.artistsTab.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabPage11.SuspendLayout();
             this.albumsTab.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -241,7 +268,7 @@ namespace BeatBaseForms
             this.leaderboardTab.Location = new System.Drawing.Point(4, 34);
             this.leaderboardTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leaderboardTab.Name = "leaderboardTab";
-            this.leaderboardTab.Size = new System.Drawing.Size(779, 490);
+            this.leaderboardTab.Size = new System.Drawing.Size(779, 460);
             this.leaderboardTab.TabIndex = 5;
             this.leaderboardTab.Text = "Leaderboards";
             // 
@@ -278,10 +305,10 @@ namespace BeatBaseForms
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(645, 92);
+            this.button7.Location = new System.Drawing.Point(646, 94);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(60, 25);
+            this.button7.Size = new System.Drawing.Size(75, 25);
             this.button7.TabIndex = 8;
             this.button7.Text = "Search";
             this.button7.UseVisualStyleBackColor = true;
@@ -303,7 +330,7 @@ namespace BeatBaseForms
             this.listBox2.Location = new System.Drawing.Point(456, 122);
             this.listBox2.Margin = new System.Windows.Forms.Padding(4);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(249, 244);
+            this.listBox2.Size = new System.Drawing.Size(265, 244);
             this.listBox2.TabIndex = 6;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
@@ -364,7 +391,7 @@ namespace BeatBaseForms
             this.playlistsTab.Location = new System.Drawing.Point(4, 34);
             this.playlistsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.playlistsTab.Name = "playlistsTab";
-            this.playlistsTab.Size = new System.Drawing.Size(779, 490);
+            this.playlistsTab.Size = new System.Drawing.Size(779, 460);
             this.playlistsTab.TabIndex = 3;
             this.playlistsTab.Text = "Playlists";
             // 
@@ -379,9 +406,12 @@ namespace BeatBaseForms
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(785, 405);
             this.tabControl3.TabIndex = 2;
+            this.tabControl3.SelectedIndexChanged += new System.EventHandler(this.tabControl3_SelectedIndexChanged);
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.label58);
+            this.tabPage6.Controls.Add(this.button17);
             this.tabPage6.Controls.Add(this.comboBox8);
             this.tabPage6.Controls.Add(this.label54);
             this.tabPage6.Controls.Add(this.comboBox7);
@@ -396,6 +426,25 @@ namespace BeatBaseForms
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Playlists";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(499, 186);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(66, 48);
+            this.label58.TabIndex = 39;
+            this.label58.Text = "0 - Private\r\n1 - Public\r\n ";
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(584, 255);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(121, 23);
+            this.button17.TabIndex = 38;
+            this.button17.Text = "Clear Filters";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // comboBox8
             // 
@@ -451,7 +500,7 @@ namespace BeatBaseForms
             this.listBoxPlaylists.Location = new System.Drawing.Point(71, 82);
             this.listBoxPlaylists.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxPlaylists.Name = "listBoxPlaylists";
-            this.listBoxPlaylists.Size = new System.Drawing.Size(283, 196);
+            this.listBoxPlaylists.Size = new System.Drawing.Size(333, 196);
             this.listBoxPlaylists.TabIndex = 33;
             // 
             // label28
@@ -499,6 +548,7 @@ namespace BeatBaseForms
             this.button8.Size = new System.Drawing.Size(120, 28);
             this.button8.TabIndex = 45;
             this.button8.Text = "Add Song";
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // comboBox9
             // 
@@ -508,6 +558,7 @@ namespace BeatBaseForms
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(191, 24);
             this.comboBox9.TabIndex = 44;
+            this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
             // 
             // radioButton4
             // 
@@ -520,6 +571,7 @@ namespace BeatBaseForms
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Public";
             this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -532,6 +584,7 @@ namespace BeatBaseForms
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Private";
             this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // label2
             // 
@@ -541,6 +594,7 @@ namespace BeatBaseForms
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 41;
             this.label2.Text = "Visibility";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // textBox1
             // 
@@ -549,6 +603,7 @@ namespace BeatBaseForms
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(152, 22);
             this.textBox1.TabIndex = 40;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -558,6 +613,7 @@ namespace BeatBaseForms
             this.label1.Size = new System.Drawing.Size(52, 16);
             this.label1.TabIndex = 39;
             this.label1.Text = "Artist ID";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // buttonCreatePlaylist
             // 
@@ -576,6 +632,7 @@ namespace BeatBaseForms
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(152, 22);
             this.textBox9.TabIndex = 36;
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label29
             // 
@@ -594,6 +651,7 @@ namespace BeatBaseForms
             this.label31.Size = new System.Drawing.Size(44, 16);
             this.label31.TabIndex = 26;
             this.label31.Text = "Genre";
+            this.label31.Click += new System.EventHandler(this.label31_Click);
             // 
             // label32
             // 
@@ -615,6 +673,7 @@ namespace BeatBaseForms
             this.label36.Size = new System.Drawing.Size(44, 16);
             this.label36.TabIndex = 24;
             this.label36.Text = "Name";
+            this.label36.Click += new System.EventHandler(this.label36_Click);
             // 
             // textBox11
             // 
@@ -623,9 +682,27 @@ namespace BeatBaseForms
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(152, 22);
             this.textBox11.TabIndex = 21;
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.button20);
+            this.tabPage9.Controls.Add(this.comboBox19);
+            this.tabPage9.Controls.Add(this.label67);
+            this.tabPage9.Controls.Add(this.button18);
+            this.tabPage9.Controls.Add(this.comboBox18);
+            this.tabPage9.Controls.Add(this.radioButton5);
+            this.tabPage9.Controls.Add(this.radioButton6);
+            this.tabPage9.Controls.Add(this.label39);
+            this.tabPage9.Controls.Add(this.textBox17);
+            this.tabPage9.Controls.Add(this.label63);
+            this.tabPage9.Controls.Add(this.button19);
+            this.tabPage9.Controls.Add(this.textBox18);
+            this.tabPage9.Controls.Add(this.label64);
+            this.tabPage9.Controls.Add(this.label65);
+            this.tabPage9.Controls.Add(this.label66);
+            this.tabPage9.Controls.Add(this.textBox19);
+            this.tabPage9.Controls.Add(this.label59);
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage9.Name = "tabPage9";
@@ -634,6 +711,18 @@ namespace BeatBaseForms
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "Edit Playlists";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label59.Location = new System.Drawing.Point(64, 31);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(176, 20);
+            this.label59.TabIndex = 26;
+            this.label59.Text = "Edit Playlist Details";
+            this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // artistsTab
             // 
@@ -660,8 +749,8 @@ namespace BeatBaseForms
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.dataGridView3);
             this.tabPage4.Controls.Add(this.label27);
-            this.tabPage4.Controls.Add(this.artistList);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
@@ -670,6 +759,17 @@ namespace BeatBaseForms
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Artist List";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(71, 84);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(368, 234);
+            this.dataGridView3.TabIndex = 32;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // label27
             // 
@@ -683,20 +783,8 @@ namespace BeatBaseForms
             this.label27.Text = "Artist List";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // artistList
-            // 
-            this.artistList.ItemHeight = 16;
-            this.artistList.Location = new System.Drawing.Point(71, 91);
-            this.artistList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.artistList.Name = "artistList";
-            this.artistList.Size = new System.Drawing.Size(215, 196);
-            this.artistList.TabIndex = 30;
-            // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.label39);
-            this.tabPage5.Controls.Add(this.label30);
-            this.tabPage5.Controls.Add(this.pictureBox3);
             this.tabPage5.Controls.Add(this.label34);
             this.tabPage5.Controls.Add(this.label35);
             this.tabPage5.Controls.Add(this.textBox10);
@@ -709,36 +797,6 @@ namespace BeatBaseForms
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Add Artist";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(541, 188);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(77, 16);
-            this.label39.TabIndex = 40;
-            this.label39.Text = "Click to add";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(443, 86);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(42, 16);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "Photo";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Location = new System.Drawing.Point(504, 86);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(152, 100);
-            this.pictureBox3.TabIndex = 33;
-            this.pictureBox3.TabStop = false;
             // 
             // label34
             // 
@@ -781,6 +839,9 @@ namespace BeatBaseForms
             // 
             // tabPage11
             // 
+            this.tabPage11.Controls.Add(this.textBox16);
+            this.tabPage11.Controls.Add(this.label61);
+            this.tabPage11.Controls.Add(this.label60);
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
@@ -814,6 +875,7 @@ namespace BeatBaseForms
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button16);
             this.tabPage1.Controls.Add(this.dataGridView2);
             this.tabPage1.Controls.Add(this.comboBox11);
             this.tabPage1.Controls.Add(this.label3);
@@ -826,6 +888,16 @@ namespace BeatBaseForms
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Album List";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(629, 234);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(121, 23);
+            this.button16.TabIndex = 38;
+            this.button16.Text = "Clear Filters";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // dataGridView2
             // 
@@ -901,6 +973,15 @@ namespace BeatBaseForms
             this.tabPage3.Text = "Add Album";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(531, 132);
+            this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(120, 28);
+            this.button11.TabIndex = 48;
+            this.button11.Text = "Add Song";
+            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(531, 130);
@@ -909,6 +990,15 @@ namespace BeatBaseForms
             this.button9.Size = new System.Drawing.Size(120, 28);
             this.button9.TabIndex = 48;
             this.button9.Text = "Add Song";
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Location = new System.Drawing.Point(493, 88);
+            this.comboBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(191, 24);
+            this.comboBox13.TabIndex = 47;
             // 
             // comboBox10
             // 
@@ -919,6 +1009,15 @@ namespace BeatBaseForms
             this.comboBox10.Size = new System.Drawing.Size(191, 24);
             this.comboBox10.TabIndex = 47;
             // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(427, 88);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(46, 16);
+            this.label49.TabIndex = 46;
+            this.label49.Text = "Songs";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -927,6 +1026,15 @@ namespace BeatBaseForms
             this.label12.Size = new System.Drawing.Size(46, 16);
             this.label12.TabIndex = 46;
             this.label12.Text = "Songs";
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Location = new System.Drawing.Point(176, 139);
+            this.comboBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(152, 24);
+            this.comboBox12.TabIndex = 41;
             // 
             // comboBox2
             // 
@@ -937,6 +1045,14 @@ namespace BeatBaseForms
             this.comboBox2.Size = new System.Drawing.Size(152, 24);
             this.comboBox2.TabIndex = 41;
             // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.Location = new System.Drawing.Point(176, 208);
+            this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(152, 22);
+            this.dateTimePicker4.TabIndex = 32;
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(176, 206);
@@ -944,6 +1060,15 @@ namespace BeatBaseForms
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(152, 22);
             this.dateTimePicker1.TabIndex = 32;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(79, 208);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(91, 16);
+            this.label37.TabIndex = 29;
+            this.label37.Text = "Release Date";
             // 
             // label13
             // 
@@ -953,6 +1078,15 @@ namespace BeatBaseForms
             this.label13.Size = new System.Drawing.Size(91, 16);
             this.label13.TabIndex = 29;
             this.label13.Text = "Release Date";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(79, 144);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(52, 16);
+            this.label26.TabIndex = 26;
+            this.label26.Text = "Artist ID";
             // 
             // label15
             // 
@@ -975,6 +1109,15 @@ namespace BeatBaseForms
             this.label16.Text = "Add Album";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(79, 88);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(44, 16);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "Name";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -983,6 +1126,24 @@ namespace BeatBaseForms
             this.label17.Size = new System.Drawing.Size(44, 16);
             this.label17.TabIndex = 24;
             this.label17.Text = "Name";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(176, 88);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(152, 22);
+            this.textBox14.TabIndex = 21;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(517, 208);
+            this.button10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(152, 50);
+            this.button10.TabIndex = 5;
+            this.button10.Text = "Add Album";
+            this.button10.Click += new System.EventHandler(this.buttonAddAlbum_Click_2);
             // 
             // textBox7
             // 
@@ -1004,6 +1165,8 @@ namespace BeatBaseForms
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.comboBox16);
+            this.tabPage10.Controls.Add(this.label62);
             this.tabPage10.Controls.Add(this.button14);
             this.tabPage10.Controls.Add(this.button12);
             this.tabPage10.Controls.Add(this.comboBox14);
@@ -1023,6 +1186,103 @@ namespace BeatBaseForms
             this.tabPage10.TabIndex = 2;
             this.tabPage10.Text = "Edit Album";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(601, 177);
+            this.button14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(103, 28);
+            this.button14.TabIndex = 59;
+            this.button14.Text = "Remove Song";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(502, 177);
+            this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(92, 28);
+            this.button12.TabIndex = 58;
+            this.button12.Text = "Add Song";
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Location = new System.Drawing.Point(502, 133);
+            this.comboBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(202, 24);
+            this.comboBox14.TabIndex = 57;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(436, 133);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(46, 16);
+            this.label50.TabIndex = 56;
+            this.label50.Text = "Songs";
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Location = new System.Drawing.Point(185, 184);
+            this.comboBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(152, 24);
+            this.comboBox15.TabIndex = 55;
+            // 
+            // dateTimePicker5
+            // 
+            this.dateTimePicker5.Location = new System.Drawing.Point(185, 253);
+            this.dateTimePicker5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateTimePicker5.Name = "dateTimePicker5";
+            this.dateTimePicker5.Size = new System.Drawing.Size(152, 22);
+            this.dateTimePicker5.TabIndex = 54;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(88, 253);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(91, 16);
+            this.label55.TabIndex = 53;
+            this.label55.Text = "Release Date";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(88, 189);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(52, 16);
+            this.label56.TabIndex = 52;
+            this.label56.Text = "Artist ID";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(88, 133);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(44, 16);
+            this.label57.TabIndex = 51;
+            this.label57.Text = "Name";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(185, 133);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(152, 22);
+            this.textBox15.TabIndex = 50;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(527, 241);
+            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(152, 50);
+            this.button13.TabIndex = 49;
+            this.button13.Text = "Edit Album";
             // 
             // label24
             // 
@@ -1063,6 +1323,9 @@ namespace BeatBaseForms
             // 
             // List
             // 
+            this.List.Controls.Add(this.label30);
+            this.List.Controls.Add(this.comboBox17);
+            this.List.Controls.Add(this.button15);
             this.List.Controls.Add(this.label21);
             this.List.Controls.Add(this.dataGridView1);
             this.List.Controls.Add(this.comboBox6);
@@ -1084,6 +1347,16 @@ namespace BeatBaseForms
             this.List.Text = "Song List";
             this.List.UseVisualStyleBackColor = true;
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(624, 281);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(121, 23);
+            this.button15.TabIndex = 37;
+            this.button15.Text = "Clear Filters";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -1101,12 +1374,12 @@ namespace BeatBaseForms
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(37, 93);
+            this.dataGridView1.Location = new System.Drawing.Point(68, 93);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(567, 229);
+            this.dataGridView1.Size = new System.Drawing.Size(536, 229);
             this.dataGridView1.TabIndex = 35;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
@@ -1119,7 +1392,7 @@ namespace BeatBaseForms
             "Hip-Hop",
             "R&B",
             "Electronic"});
-            this.comboBox6.Location = new System.Drawing.Point(624, 254);
+            this.comboBox6.Location = new System.Drawing.Point(624, 214);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(121, 24);
@@ -1129,7 +1402,7 @@ namespace BeatBaseForms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(621, 224);
+            this.label4.Location = new System.Drawing.Point(621, 184);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 16);
             this.label4.TabIndex = 33;
@@ -1246,7 +1519,7 @@ namespace BeatBaseForms
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(767, 471);
+            this.tabPage2.Size = new System.Drawing.Size(767, 438);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Song";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1622,191 +1895,219 @@ namespace BeatBaseForms
             // 
             this.artistLeaderboardTableAdapter1.ClearBeforeFill = true;
             // 
-            // button10
+            // label60
             // 
-            this.button10.Location = new System.Drawing.Point(517, 208);
-            this.button10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(152, 50);
-            this.button10.TabIndex = 5;
-            this.button10.Text = "Add Album";
-            this.button10.Click += new System.EventHandler(this.buttonAddAlbum_Click_2);
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label60.Location = new System.Drawing.Point(72, 52);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(160, 20);
+            this.label60.TabIndex = 26;
+            this.label60.Text = "Edit Artist Details";
+            this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox14
+            // label61
             // 
-            this.textBox14.Location = new System.Drawing.Point(176, 88);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(152, 22);
-            this.textBox14.TabIndex = 21;
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(73, 111);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(44, 16);
+            this.label61.TabIndex = 27;
+            this.label61.Text = "Name";
             // 
-            // label25
+            // textBox16
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(79, 88);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(44, 16);
-            this.label25.TabIndex = 24;
-            this.label25.Text = "Name";
+            this.textBox16.Location = new System.Drawing.Point(145, 111);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(152, 22);
+            this.textBox16.TabIndex = 28;
             // 
-            // label26
+            // label62
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(79, 144);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(52, 16);
-            this.label26.TabIndex = 26;
-            this.label26.Text = "Artist ID";
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(88, 87);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(45, 16);
+            this.label62.TabIndex = 60;
+            this.label62.Text = "Album";
             // 
-            // label37
+            // comboBox16
             // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(79, 208);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(91, 16);
-            this.label37.TabIndex = 29;
-            this.label37.Text = "Release Date";
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Location = new System.Drawing.Point(185, 84);
+            this.comboBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(152, 24);
+            this.comboBox16.TabIndex = 61;
+            this.comboBox16.SelectedIndexChanged += new System.EventHandler(this.comboBox16_SelectedIndexChanged);
             // 
-            // dateTimePicker4
+            // comboBox17
             // 
-            this.dateTimePicker4.Location = new System.Drawing.Point(176, 208);
-            this.dateTimePicker4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(152, 22);
-            this.dateTimePicker4.TabIndex = 32;
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Location = new System.Drawing.Point(413, 63);
+            this.comboBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(191, 24);
+            this.comboBox17.TabIndex = 39;
+            this.comboBox17.SelectedIndexChanged += new System.EventHandler(this.comboBox17_SelectedIndexChanged);
             // 
-            // comboBox12
+            // label30
             // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(176, 139);
-            this.comboBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(152, 24);
-            this.comboBox12.TabIndex = 41;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(357, 63);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(50, 16);
+            this.label30.TabIndex = 40;
+            this.label30.Text = "Search";
             // 
-            // label49
+            // button18
             // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(427, 88);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(46, 16);
-            this.label49.TabIndex = 46;
-            this.label49.Text = "Songs";
+            this.button18.Location = new System.Drawing.Point(509, 121);
+            this.button18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(92, 28);
+            this.button18.TabIndex = 58;
+            this.button18.Text = "Add Song";
             // 
-            // comboBox13
+            // comboBox18
             // 
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(493, 88);
-            this.comboBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(191, 24);
-            this.comboBox13.TabIndex = 47;
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Location = new System.Drawing.Point(509, 82);
+            this.comboBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(211, 24);
+            this.comboBox18.TabIndex = 57;
             // 
-            // button11
+            // radioButton5
             // 
-            this.button11.Location = new System.Drawing.Point(531, 132);
-            this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(120, 28);
-            this.button11.TabIndex = 48;
-            this.button11.Text = "Add Song";
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(629, 192);
+            this.radioButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(65, 20);
+            this.radioButton5.TabIndex = 56;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Public";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // radioButton6
             // 
-            this.button12.Location = new System.Drawing.Point(500, 147);
-            this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(92, 28);
-            this.button12.TabIndex = 58;
-            this.button12.Text = "Add Song";
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(531, 192);
+            this.radioButton6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(70, 20);
+            this.radioButton6.TabIndex = 55;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Private";
+            this.radioButton6.UseVisualStyleBackColor = true;
             // 
-            // comboBox14
+            // label39
             // 
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Location = new System.Drawing.Point(500, 103);
-            this.comboBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(202, 24);
-            this.comboBox14.TabIndex = 57;
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(437, 192);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(56, 16);
+            this.label39.TabIndex = 54;
+            this.label39.Text = "Visibility";
             // 
-            // label50
+            // textBox17
             // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(434, 103);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(46, 16);
-            this.label50.TabIndex = 56;
-            this.label50.Text = "Songs";
+            this.textBox17.Location = new System.Drawing.Point(170, 241);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(152, 22);
+            this.textBox17.TabIndex = 53;
             // 
-            // comboBox15
+            // label63
             // 
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Location = new System.Drawing.Point(183, 154);
-            this.comboBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(152, 24);
-            this.comboBox15.TabIndex = 55;
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(73, 244);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(52, 16);
+            this.label63.TabIndex = 52;
+            this.label63.Text = "Artist ID";
             // 
-            // dateTimePicker5
+            // button19
             // 
-            this.dateTimePicker5.Location = new System.Drawing.Point(183, 223);
-            this.dateTimePicker5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(152, 22);
-            this.dateTimePicker5.TabIndex = 54;
+            this.button19.Location = new System.Drawing.Point(542, 244);
+            this.button19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(152, 47);
+            this.button19.TabIndex = 51;
+            this.button19.Text = "Edit Playlist";
             // 
-            // label55
+            // textBox18
             // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(86, 223);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(91, 16);
-            this.label55.TabIndex = 53;
-            this.label55.Text = "Release Date";
+            this.textBox18.Location = new System.Drawing.Point(170, 177);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(152, 22);
+            this.textBox18.TabIndex = 50;
             // 
-            // label56
+            // label64
             // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(86, 159);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(52, 16);
-            this.label56.TabIndex = 52;
-            this.label56.Text = "Artist ID";
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(437, 82);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(46, 16);
+            this.label64.TabIndex = 49;
+            this.label64.Text = "Songs";
             // 
-            // label57
+            // label65
             // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(86, 103);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(44, 16);
-            this.label57.TabIndex = 51;
-            this.label57.Text = "Name";
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(73, 177);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(44, 16);
+            this.label65.TabIndex = 48;
+            this.label65.Text = "Genre";
             // 
-            // textBox15
+            // label66
             // 
-            this.textBox15.Location = new System.Drawing.Point(183, 103);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(152, 22);
-            this.textBox15.TabIndex = 50;
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(73, 121);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(44, 16);
+            this.label66.TabIndex = 47;
+            this.label66.Text = "Name";
             // 
-            // button13
+            // textBox19
             // 
-            this.button13.Location = new System.Drawing.Point(525, 211);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(152, 50);
-            this.button13.TabIndex = 49;
-            this.button13.Text = "Edit Album";
+            this.textBox19.Location = new System.Drawing.Point(170, 121);
+            this.textBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(152, 22);
+            this.textBox19.TabIndex = 46;
             // 
-            // button14
+            // comboBox19
             // 
-            this.button14.Location = new System.Drawing.Point(599, 147);
-            this.button14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(103, 28);
-            this.button14.TabIndex = 59;
-            this.button14.Text = "Remove Song";
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Location = new System.Drawing.Point(171, 74);
+            this.comboBox19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(151, 24);
+            this.comboBox19.TabIndex = 60;
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(73, 77);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(50, 16);
+            this.label67.TabIndex = 59;
+            this.label67.Text = "Playlist";
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(607, 121);
+            this.button20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(113, 28);
+            this.button20.TabIndex = 61;
+            this.button20.Text = "Remove Song";
             // 
             // Form1
             // 
@@ -1826,13 +2127,17 @@ namespace BeatBaseForms
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.artistsTab.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
             this.albumsTab.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1879,11 +2184,7 @@ namespace BeatBaseForms
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ListBox artistList;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox textBox10;
@@ -2005,5 +2306,34 @@ namespace BeatBaseForms
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.ComboBox comboBox16;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox comboBox17;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.ComboBox comboBox19;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.ComboBox comboBox18;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.TextBox textBox19;
     }
 }

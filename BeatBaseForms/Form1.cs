@@ -94,6 +94,9 @@ namespace BeatBaseForms
                 comboBox9.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox9.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox9.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox17.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox17.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox17.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllSongs";
@@ -150,6 +153,9 @@ namespace BeatBaseForms
                         comboBox9.DataSource = songs.Values.ToList();
                         comboBox9.DisplayMember = "songName";
                         comboBox9.ValueMember = "SongID";
+                        comboBox17.DataSource = songs.Values.ToList();
+                        comboBox17.DisplayMember = "songName";
+                        comboBox17.ValueMember = "songName";
                     }
                 }
             }
@@ -231,8 +237,6 @@ namespace BeatBaseForms
                     // Execute the SQL command and read the result
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Clear the listbox
-                        artistList.Items.Clear();
                         // Clear the dictionary
                         artists.Clear();
 
@@ -245,23 +249,23 @@ namespace BeatBaseForms
                             artist.artistName = reader["ArtistName"].ToString();
                             artist.streams = (int)reader["Streams"];
                             artists[artist.artistID] = artist;
-                            artistList.Items.Add(artist);
+                            dataGridView3.DataSource = artists.Values.ToList();
                         }
 
                         // Add artists to the combobox
-                        comboBox1.DataSource = artistList.Items;
+                        comboBox1.DataSource = artists.Values.ToList();
                         comboBox1.DisplayMember = "artistName";
                         comboBox1.ValueMember = "artistID";
-                        comboBox2.DataSource = artistList.Items;
+                        comboBox2.DataSource = artists.Values.ToList();
                         comboBox2.DisplayMember = "artistName";
                         comboBox2.ValueMember = "artistID";
-                        comboBox3.DataSource = artistList.Items;
+                        comboBox3.DataSource = artists.Values.ToList();
                         comboBox3.DisplayMember = "artistName";
                         comboBox3.ValueMember = "artistID";
-                        comboBox6.DataSource = artistList.Items;
+                        comboBox6.DataSource = artists.Values.ToList();
                         comboBox6.DisplayMember = "artistName";
                         comboBox6.ValueMember = "artistID";
-                        comboBox11.DataSource = artistList.Items;
+                        comboBox11.DataSource = artists.Values.ToList();
                         comboBox11.DisplayMember = "artistName";
                         comboBox11.ValueMember = "artistID";
                     }
@@ -718,18 +722,6 @@ namespace BeatBaseForms
             // check
         }
 
-
-        private void artistList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (artistList.SelectedItem != null)
-            {
-                Artist selectedArtist = (Artist)artistList.SelectedItem;
-                // Show artist details or perform any other action
-                MessageBox.Show(
-                    $"Artist: {selectedArtist.artistName}\nStreams: {selectedArtist.streams}"
-                );
-            }
-        }
 
         private void label27_Click(object sender, EventArgs e) { }
 
@@ -1452,7 +1444,7 @@ namespace BeatBaseForms
                     cmd.Parameters.AddWithValue("@Lyrics", lyrics);
 
                     // Execute the command
-                    int rowsAffected = cmd.ExecuteNonQuery();
+                    int rowsAffected = cmd.ExecuteNonQuery(); 
 
                     if (rowsAffected > 0)
                     {
@@ -1478,6 +1470,157 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            loadSongs();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            loadAlbums();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            loadPlaylists();
+        }
+
+        private void artistList_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Artist selectedArtist = (Artist)dataGridView3.CurrentRow.DataBoundItem;
+            MessageBox.Show($"You selected {selectedArtist.artistName}");
+        }
+
+        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchSong(string songName)
+        {
+            try
+            {
+                // Call the UDF to filter songs by name
+                string selectCommand = "SELECT * FROM dbo.FilterSongsByName(@Name)";
+
+                List<Song> songs_filter = new List<Song>();
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", songName);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear the data grid view or list box
+                        dataGridView1.DataSource = null;
+
+                        // Read each song and add it to the list
+                        while (reader.Read())
+                        {
+                            Song song = new Song
+                            {
+                                SongID = (int)reader["ID"],
+                                songName = reader["Name"].ToString(),
+                                songArtist = reader["ArtistID"].ToString(),
+                                songGenre = reader["Genre"].ToString(),
+                                songDuration = reader["Duration"].ToString(),
+                                songLyrics = reader["Lyrics"].ToString(),
+                                songReleaseDate = (DateTime)reader["ReleaseDate"],
+                                songAlbumID =
+                                    reader["AlbumID"] != DBNull.Value
+                                        ? (int?)reader["AlbumID"]
+                                        : null,
+                                streams = (int)reader["Streams"]
+                            };
+
+                            songs_filter.Add(song);
+                        }
+
+                        dataGridView1.DataSource = songs_filter;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private void comboBox17_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox17.SelectedValue != null)
+            {
+                string selectedSongName = comboBox17.SelectedValue.ToString();
+                SearchSong(selectedSongName);
+            }
+        }
+
+        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label31_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
