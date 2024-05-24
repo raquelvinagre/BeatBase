@@ -293,6 +293,7 @@ namespace BeatBaseForms
                             artists[artist.artistID] = artist;
                             dataGridView3.DataSource = artists.Values.ToList();
                         }
+                        reader.Close();
 
                         // Add artists to the combobox
                         comboBox1.DataSource = artists.Values.ToList();
@@ -304,7 +305,12 @@ namespace BeatBaseForms
                         comboBox3.DataSource = artists.Values.ToList();
                         comboBox3.DisplayMember = "artistName";
                         comboBox3.ValueMember = "artistID";
-                        comboBox6.DataSource = artists.Values.ToList();
+                        List<Artist> stupid_artist_list = artists.Values.ToList();
+                        stupid_artist_list.Insert(
+                            0,
+                            new Artist { artistID = -1, artistName = "Please Select an Artist" }
+                        );
+                        comboBox6.DataSource = stupid_artist_list; 
                         comboBox6.DisplayMember = "artistName";
                         comboBox6.ValueMember = "artistID";
                         comboBox11.DataSource = artists.Values.ToList();
@@ -1236,7 +1242,7 @@ namespace BeatBaseForms
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox6.SelectedItem != null)
+            if (comboBox6.SelectedItem != null && comboBox6.SelectedIndex != 0)
             {
                 int artistID = (int)comboBox6.SelectedValue;
 
