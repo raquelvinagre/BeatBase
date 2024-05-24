@@ -176,6 +176,10 @@ namespace BeatBaseForms
         {
             try
             {
+
+                comboBox20.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox20.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox20.DropDownStyle = ComboBoxStyle.DropDown;
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllAlbums";
 
@@ -204,6 +208,11 @@ namespace BeatBaseForms
                             albums[album.albumID] = album;
                             dataGridView2.DataSource = albums.Values.ToList();
                         }
+                        List<Album> stupid_album_list = albums.Values.ToList();
+                        stupid_album_list.Insert(0, new Album { albumID = -1, albumName = "Please Select an Album" });
+                        comboBox20.DataSource = stupid_album_list;
+                        comboBox20.DisplayMember = "albumName";
+                        comboBox20.ValueMember = "albumID";
                     }
                 }
             }
@@ -1581,6 +1590,95 @@ namespace BeatBaseForms
         }
 
         private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox20_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // if (comboBox17.SelectedValue != null && comboBox17.SelectedIndex != 0)
+            // {
+            //     // Get the selected song
+            //     Song selectedSong = (Song)comboBox17.SelectedItem;
+            //     dataGridView1.DataSource = new List<Song> { selectedSong };
+            // }
+            // else if (comboBox17.SelectedIndex == 0)
+            // {
+            //     dataGridView1.DataSource = songs.Values.ToList();
+            // }
+            if (comboBox20.SelectedIndex != 0){
+                int albumID = (int)comboBox20.SelectedValue;
+                LoadAlbumSongs(albumID);
+            }
+
+        }
+
+        private void LoadAlbumSongs(int AlbumID)
+        {
+            // uses stored procedure to get all songs from an album and loads it into a List<Song> the stored procedure is GetSongsByAlbumID
+
+            try
+            {
+                // Query string to call the stored procedure
+                string query = "EXEC dbo.GetSongsByAlbumID @AlbumID";
+
+                List<Song> songs_album = new List<Song>();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    // Adding the parameter required by the stored procedure
+                    cmd.Parameters.AddWithValue("@AlbumID", AlbumID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        songs_album.Clear();
+
+                        // Reading data from the stored procedure result set
+                        while (reader.Read())
+                        {
+                            Song song = new Song
+                            {
+                                SongID = (int)reader["ID"],
+                                songName = reader["Name"].ToString(),
+                                songArtist = reader["ArtistID"].ToString(),
+                                songGenre = reader["Genre"].ToString(),
+                                songDuration = reader["Duration"].ToString(),
+                                songLyrics = reader["Lyrics"].ToString(),
+                                songReleaseDate = (DateTime)reader["ReleaseDate"],
+                                songAlbumID =
+                                    reader["AlbumID"] != DBNull.Value
+                                        ? (int?)reader["AlbumID"]
+                                        : null,
+                                streams = (int)reader["Streams"]
+                            };
+                            songs_album.Add(song);
+                        }
+                            dataGridView2.DataSource = songs_album;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = albums.Values.ToList();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label68_Click(object sender, EventArgs e)
         {
 
         }
