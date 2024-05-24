@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace BeatBaseForms
         private SqlConnection conn;
         private Dictionary<int, Artist> artists = new Dictionary<int, Artist>();
         private Dictionary<int, Song> songs = new Dictionary<int, Song>();
+        private Dictionary<int, Album> albums = new Dictionary<int, Album>();
 
         public Form1()
         {
@@ -173,7 +175,7 @@ namespace BeatBaseForms
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         // Clear the listbox
-                        listBoxAlbums.Items.Clear();
+                        albums.Clear();
 
                         // Read each album and add it to the listbox
                         while (reader.Read())
@@ -185,7 +187,9 @@ namespace BeatBaseForms
                             album.albumArtist = reader["ArtistID"].ToString();
                             album.albumDuration = reader["TotalDuration"].ToString();
                             album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
-                            listBoxAlbums.Items.Add(album);
+
+                            albums[album.albumID] = album;
+                            dataGridView2.DataSource = albums.Values.ToList();
                         }
                     }
                 }
@@ -714,15 +718,6 @@ namespace BeatBaseForms
             // check
         }
 
-        private void listBoxAlbums_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (listBoxAlbums.SelectedItem != null)
-            {
-                Album selectedAlbum = (Album)listBoxAlbums.SelectedItem;
-                // Show streams
-                MessageBox.Show($"Album: {selectedAlbum.albumName}\n");
-            }
-        }
 
         private void artistList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -946,7 +941,57 @@ namespace BeatBaseForms
 
         private void textBox8_TextChanged(object sender, EventArgs e) { }
 
-        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox4.SelectedValue is int selectedSongID)
+            {
+                PopulateSongDetails(selectedSongID);
+            }
+        }
+
+        private void PopulateSongDetails(int songID)
+        {
+            try
+            {
+                // Construct the SQL SELECT command to get the song details
+                string selectCommand = "SELECT Name, Genre, ReleaseDate, Duration, ArtistID, Lyrics FROM Song WHERE ID = @SongID";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SongID", songID);
+
+                    // Open the connection if it's not already open
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    using (SqlDataReader reader1 = cmd.ExecuteReader())
+                    {
+                        if (reader1.Read())
+                        {
+                            // Populate the controls with the song details
+                            textBox8.Text = reader1["Name"].ToString();
+                            textBox6.Text = reader1["Genre"].ToString();
+                            dateTimePicker3.Value = (DateTime)reader1["ReleaseDate"];
+                            textBox5.Text = reader1["Duration"].ToString();
+                            comboBox3.SelectedValue = (int)reader1["ArtistID"];
+                            richTextBox2.Text = reader1["Lyrics"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Song not found.");
+                        }
+                        reader1.Close(); // Ensure reader is closed
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) { }
 
@@ -1287,27 +1332,35 @@ namespace BeatBaseForms
                 // Call the UDF to filter albums by artist ID
                 string selectCommand = "SELECT * FROM dbo.FilterAlbumsByArtistID(@ArtistID)";
 
+                List<Album> albums_filter = new List<Album>();
+
                 using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
                 {
                     cmd.Parameters.AddWithValue("@ArtistID", artistID);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        // Clear the listbox
-                        listBoxAlbums.Items.Clear();
+                        // Clear the data grid view
+                        dataGridView2.DataSource = null;
 
-                        // Read each album and add it to the listbox
+                        // Read each album and add it to the list
                         while (reader.Read())
                         {
-                            Album album = new Album();
-                            album.albumID = (int)reader["ID"];
-                            album.albumName = reader["Name"].ToString();
-                            album.albumArtist = reader["ArtistID"].ToString();
-                            album.albumDuration = reader["TotalDuration"].ToString();
-                            album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
-                            listBoxAlbums.Items.Add(album);
-                        }
+                            Album album = new Album
+                            {
+                                albumID = (int)reader["ID"],
+                                albumName = reader["Name"].ToString(),
+                                albumArtist = reader["ArtistID"].ToString(),
+                                albumDuration = reader["TotalDuration"].ToString(),
+                                albumReleaseDate = (DateTime)reader["ReleaseDate"]
+
+                        };
+
+                        albums_filter.Add(album);
                     }
+
+                    dataGridView2.DataSource = albums_filter;
+                }
                 }
             }
             catch (Exception ex)
@@ -1315,6 +1368,7 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1334,7 +1388,7 @@ namespace BeatBaseForms
             //Message box to show the selected song
 
             Song selectedSong2 = (Song)dataGridView1.CurrentRow.DataBoundItem;
-            MessageBox.Show($"You selected {selectedSong2.songName}");
+            label21.Text = $"{selectedSong2.songName} is playing";
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -1351,10 +1405,79 @@ namespace BeatBaseForms
             // }
         }
 
-        private void button10_Click(object sender, EventArgs e)
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Song selectedSong2 = (Song)dataGridView1.CurrentRow.DataBoundItem;
-            MessageBox.Show($"You selected {selectedSong2.songName}");
+            Album selectedAlbum = (Album)dataGridView2.CurrentRow.DataBoundItem;
+            MessageBox.Show($"You selected {selectedAlbum.albumName}");
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_3(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the new values from the text boxes and comboboxes
+                int songID = (int)comboBox4.SelectedValue; 
+                string songName = textBox8.Text;
+                string songGenre = textBox6.Text;
+                DateTime songReleaseDate = dateTimePicker3.Value; 
+                int songDuration;
+                int artistID = (int)comboBox3.SelectedValue;
+                string lyrics = richTextBox2.Text;
+
+                // Validate the duration input
+                if (!int.TryParse(textBox5.Text, out songDuration))
+                {
+                    MessageBox.Show("Duration must be a valid number.");
+                    return;
+                }
+
+                // Construct the SQL UPDATE command
+                string updateCommand = "UPDATE Song SET Name = @Name, Genre = @Genre, ReleaseDate = @ReleaseDate, Duration = @Duration, ArtistID = @ArtistID, Lyrics=@Lyrics WHERE ID = @SongID";
+
+                using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
+                {
+                    // Set the parameters
+                    cmd.Parameters.AddWithValue("@Name", songName);
+                    cmd.Parameters.AddWithValue("@Genre", songGenre);
+                    cmd.Parameters.AddWithValue("@ReleaseDate", songReleaseDate);
+                    cmd.Parameters.AddWithValue("@Duration", songDuration);
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+                    cmd.Parameters.AddWithValue("@SongID", songID);
+                    cmd.Parameters.AddWithValue("@Lyrics", lyrics);
+
+                    // Execute the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Song updated successfully!");
+                        // Optionally, refresh the list of songs
+                        loadSongs();
+
+                        textBox8.Text = string.Empty;
+                        textBox6.Text = string.Empty;
+                        textBox5.Text = string.Empty;
+                        richTextBox2.Text = string.Empty;
+                        comboBox4.SelectedIndex = -1;
+                        comboBox3.SelectedIndex = -1;
+                        dateTimePicker3.Value = DateTime.Now; // Reset to current date
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update the song.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

@@ -58,6 +58,14 @@ INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate,
 (6, 250000, 'Pop', 220, '...', 'Sorry', '2015-10-22', NULL),
 (7, 550000, 'Pop', 240, '...', 'Thank U, Next', '2019-02-08', NULL);
 
+-- Insert sample data into PlaylistSong table
+INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES
+(1, 1), 
+(1, 3), 
+(2, 2), 
+(2, 4), 
+(3, 5); 
+
 -- Insert into BelongsTo without changes
 INSERT INTO BelongsTo (LeaderID, SongID) VALUES
 (1, 1),
