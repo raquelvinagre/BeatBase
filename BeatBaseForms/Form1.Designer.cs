@@ -172,6 +172,7 @@ namespace BeatBaseForms
             this.button5 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBox21 = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -1797,6 +1798,7 @@ namespace BeatBaseForms
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.comboBox21);
             this.tabPage2.Controls.Add(this.label47);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.label18);
@@ -1822,6 +1824,16 @@ namespace BeatBaseForms
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Song";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox21
+            // 
+            this.comboBox21.FormattingEnabled = true;
+            this.comboBox21.Location = new System.Drawing.Point(358, 214);
+            this.comboBox21.Name = "comboBox21";
+            this.comboBox21.Size = new System.Drawing.Size(121, 21);
+            this.comboBox21.TabIndex = 26;
+            this.comboBox21.Visible = false;
+            this.comboBox21.SelectedIndexChanged += new System.EventHandler(this.comboBox21_SelectedIndexChanged);
             // 
             // label47
             // 
@@ -1864,6 +1876,7 @@ namespace BeatBaseForms
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Single";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -1876,6 +1889,7 @@ namespace BeatBaseForms
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Album song";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // dateTimePicker2
             // 
@@ -1993,9 +2007,9 @@ namespace BeatBaseForms
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(377, 229);
+            this.button3.Location = new System.Drawing.Point(358, 241);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 39);
+            this.button3.Size = new System.Drawing.Size(121, 54);
             this.button3.TabIndex = 8;
             this.button3.Text = "Add Song";
             this.button3.UseVisualStyleBackColor = true;
@@ -2437,5 +2451,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.ComboBox comboBox20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.ComboBox comboBox21;
     }
 }

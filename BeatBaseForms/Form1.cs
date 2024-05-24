@@ -85,7 +85,6 @@ namespace BeatBaseForms
             InitializeArtistsTab();
             InitializePlaylistsTab();
             InitializeLeaderboardTab();
-
         }
 
         private void loadSongs()
@@ -150,6 +149,8 @@ namespace BeatBaseForms
                             // dataGridView1.Rows.Add(song.songName, song.songArtist, song.songGenre, song.songDuration, song.songLyrics, song.songReleaseDate, song.songAlbumID, song.streams);
                         }
 
+                        reader.Close(); // Ensure reader is closed
+
                         // Add songs to the combobox
                         comboBox4.DataSource = songs.Values.ToList();
                         comboBox4.DisplayMember = "songName";
@@ -159,7 +160,10 @@ namespace BeatBaseForms
                         comboBox9.ValueMember = "SongID";
 
                         List<Song> stupid_song_list = songs.Values.ToList();
-                        stupid_song_list.Insert(0, new Song { SongID = -1, songName = "Please Select a Song" });
+                        stupid_song_list.Insert(
+                            0,
+                            new Song { SongID = -1, songName = "Please Select a Song" }
+                        );
                         comboBox17.DataSource = stupid_song_list;
                         comboBox17.DisplayMember = "songName";
                         comboBox17.ValueMember = "songName";
@@ -176,10 +180,12 @@ namespace BeatBaseForms
         {
             try
             {
-
                 comboBox20.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox20.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox20.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox21.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox21.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox21.DropDownStyle = ComboBoxStyle.DropDown;
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllAlbums";
 
@@ -201,7 +207,7 @@ namespace BeatBaseForms
                             Album album = new Album();
                             album.albumID = (int)reader["ID"];
                             album.albumName = reader["Name"].ToString();
-                            album.albumArtist = reader["ArtistID"].ToString();
+                            album.albumArtist = (int)reader["ArtistID"];
                             album.albumDuration = reader["TotalDuration"].ToString();
                             album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
 
@@ -209,10 +215,17 @@ namespace BeatBaseForms
                             dataGridView2.DataSource = albums.Values.ToList();
                         }
                         List<Album> stupid_album_list = albums.Values.ToList();
-                        stupid_album_list.Insert(0, new Album { albumID = -1, albumName = "Please Select an Album" });
+                        stupid_album_list.Insert(
+                            0,
+                            new Album { albumID = -1, albumName = "Please Select an Album" }
+                        );
                         comboBox20.DataSource = stupid_album_list;
                         comboBox20.DisplayMember = "albumName";
                         comboBox20.ValueMember = "albumID";
+
+                        comboBox21.DataSource = getAlbumsByArtist(
+                            artists.Values.ToList()[0].artistID
+                        );
                     }
                 }
             }
@@ -220,6 +233,19 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private List<Album> getAlbumsByArtist(int artistID)
+        {
+            List<Album> artistAlbums = new List<Album>();
+            foreach (Album album in albums.Values)
+            {
+                if (album.albumArtist == artistID)
+                {
+                    artistAlbums.Add(album);
+                }
+            }
+            return artistAlbums;
         }
 
         private void loadArtists()
@@ -629,11 +655,21 @@ namespace BeatBaseForms
             if (radioButton1.Checked) //part of album
             {
                 // n sei bem o que fazer aqui
-                songAlbumID = 10; // ent se o album id existir, mete se como esse
+                songAlbumID = (int)comboBox1.SelectedValue;
             }
 
             //string insertCommand = "INSERT INTO Song (ID, ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) " +
             //                          "VALUES (@ID, @ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID)";
+
+
+
+
+            // we have to make sure that the album id is from the selected artist
+            if (songAlbumID != -1 && albums[songAlbumID].albumArtist != songArtist)
+            {
+                MessageBox.Show("Album ID must be from the selected artist.");
+                return;
+            }
 
             string insertCommand =
                 "INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) "
@@ -737,7 +773,6 @@ namespace BeatBaseForms
         {
             // check
         }
-
 
         private void label27_Click(object sender, EventArgs e) { }
 
@@ -933,7 +968,10 @@ namespace BeatBaseForms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            comboBox21.DataSource = getAlbumsByArtist((int)comboBox1.SelectedValue);
+        }
 
         private void textBox4_TextChanged(object sender, EventArgs e) { }
 
@@ -962,7 +1000,8 @@ namespace BeatBaseForms
             try
             {
                 // Construct the SQL SELECT command to get the song details
-                string selectCommand = "SELECT Name, Genre, ReleaseDate, Duration, ArtistID, Lyrics FROM Song WHERE ID = @SongID";
+                string selectCommand =
+                    "SELECT Name, Genre, ReleaseDate, Duration, ArtistID, Lyrics FROM Song WHERE ID = @SongID";
 
                 using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
                 {
@@ -999,7 +1038,6 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) { }
 
@@ -1358,17 +1396,16 @@ namespace BeatBaseForms
                             {
                                 albumID = (int)reader["ID"],
                                 albumName = reader["Name"].ToString(),
-                                albumArtist = reader["ArtistID"].ToString(),
+                                albumArtist = (int)reader["ArtistID"],
                                 albumDuration = reader["TotalDuration"].ToString(),
                                 albumReleaseDate = (DateTime)reader["ReleaseDate"]
+                            };
 
-                        };
+                            albums_filter.Add(album);
+                        }
 
-                        albums_filter.Add(album);
+                        dataGridView2.DataSource = albums_filter;
                     }
-
-                    dataGridView2.DataSource = albums_filter;
-                }
                 }
             }
             catch (Exception ex)
@@ -1376,7 +1413,6 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
 
         private void comboBox11_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1413,27 +1449,23 @@ namespace BeatBaseForms
             // }
         }
 
-
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             Album selectedAlbum = (Album)dataGridView2.CurrentRow.DataBoundItem;
             MessageBox.Show($"You selected {selectedAlbum.albumName}");
         }
 
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void label21_Click(object sender, EventArgs e) { }
 
         private void button2_Click_3(object sender, EventArgs e)
         {
             try
             {
                 // Get the new values from the text boxes and comboboxes
-                int songID = (int)comboBox4.SelectedValue; 
+                int songID = (int)comboBox4.SelectedValue;
                 string songName = textBox8.Text;
                 string songGenre = textBox6.Text;
-                DateTime songReleaseDate = dateTimePicker3.Value; 
+                DateTime songReleaseDate = dateTimePicker3.Value;
                 int songDuration;
                 int artistID = (int)comboBox3.SelectedValue;
                 string lyrics = richTextBox2.Text;
@@ -1446,7 +1478,8 @@ namespace BeatBaseForms
                 }
 
                 // Construct the SQL UPDATE command
-                string updateCommand = "UPDATE Song SET Name = @Name, Genre = @Genre, ReleaseDate = @ReleaseDate, Duration = @Duration, ArtistID = @ArtistID, Lyrics=@Lyrics WHERE ID = @SongID";
+                string updateCommand =
+                    "UPDATE Song SET Name = @Name, Genre = @Genre, ReleaseDate = @ReleaseDate, Duration = @Duration, ArtistID = @ArtistID, Lyrics=@Lyrics WHERE ID = @SongID";
 
                 using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
                 {
@@ -1460,13 +1493,13 @@ namespace BeatBaseForms
                     cmd.Parameters.AddWithValue("@Lyrics", lyrics);
 
                     // Execute the command
-                    int rowsAffected = cmd.ExecuteNonQuery(); 
+                    int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Song updated successfully!");
                         // Optionally, refresh the list of songs
-                        loadSongs();
+                        // loadSongs();
 
                         textBox8.Text = string.Empty;
                         textBox6.Text = string.Empty;
@@ -1503,10 +1536,7 @@ namespace BeatBaseForms
             loadPlaylists();
         }
 
-        private void artistList_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
+        private void artistList_SelectedIndexChanged_1(object sender, EventArgs e) { }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1514,11 +1544,7 @@ namespace BeatBaseForms
             MessageBox.Show($"You selected {selectedArtist.artistName}");
         }
 
-        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void comboBox17_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1534,65 +1560,29 @@ namespace BeatBaseForms
             }
         }
 
-        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void tabControl3_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        }
+        private void label36_Click(object sender, EventArgs e) { }
 
-        private void label36_Click(object sender, EventArgs e)
-        {
+        private void textBox11_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void label31_Click(object sender, EventArgs e) { }
 
-        private void textBox11_TextChanged(object sender, EventArgs e)
-        {
+        private void textBox9_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void label1_Click_1(object sender, EventArgs e) { }
 
-        private void label31_Click(object sender, EventArgs e)
-        {
+        private void textBox1_TextChanged(object sender, EventArgs e) { }
 
-        }
+        private void label2_Click_1(object sender, EventArgs e) { }
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
+        private void radioButton3_CheckedChanged(object sender, EventArgs e) { }
 
-        }
+        private void radioButton4_CheckedChanged(object sender, EventArgs e) { }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void button8_Click(object sender, EventArgs e) { }
 
         private void comboBox20_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1606,11 +1596,11 @@ namespace BeatBaseForms
             // {
             //     dataGridView1.DataSource = songs.Values.ToList();
             // }
-            if (comboBox20.SelectedIndex != 0){
+            if (comboBox20.SelectedIndex != 0)
+            {
                 int albumID = (int)comboBox20.SelectedValue;
                 LoadAlbumSongs(albumID);
             }
-
         }
 
         private void LoadAlbumSongs(int AlbumID)
@@ -1634,7 +1624,6 @@ namespace BeatBaseForms
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-
                         songs_album.Clear();
 
                         // Reading data from the stored procedure result set
@@ -1657,7 +1646,7 @@ namespace BeatBaseForms
                             };
                             songs_album.Add(song);
                         }
-                            dataGridView2.DataSource = songs_album;
+                        dataGridView2.DataSource = songs_album;
                     }
                 }
             }
@@ -1673,14 +1662,26 @@ namespace BeatBaseForms
             dataGridView2.DataSource = albums.Values.ToList();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
+        private void tabPage1_Click(object sender, EventArgs e) { }
 
+        private void label68_Click(object sender, EventArgs e) { }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox21.Visible = true;
         }
 
-        private void label68_Click(object sender, EventArgs e)
-        {
+        private void textBox20_TextChanged(object sender, EventArgs e) { }
 
+        private void label69_Click(object sender, EventArgs e) { }
+
+        private void comboBox21_SelectedIndexChanged(object sender, EventArgs e) { }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBox21.Visible = false;
         }
+
+        private void button22_Click(object sender, EventArgs e) { }
     }
 }
