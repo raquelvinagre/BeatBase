@@ -4,20 +4,22 @@ DROP PROCEDURE GetAllSongs;
 DROP PROCEDURE GetAllAlbums;
 DROP PROCEDURE GetSongsByAlbumID;
 
-
+go
 CREATE PROCEDURE GetAllArtists
 AS
 BEGIN
     SELECT ID, ArtistName, Streams
     FROM Artist
 END
+go
 
 CREATE PROCEDURE GetAllPlaylists
 AS
 BEGIN
-    SELECT Name, Genre, Visibility, TotalDuration, AuthorID
+    SELECT ID, Name, Genre, Visibility, TotalDuration, AuthorID
     FROM Playlist
 END
+go
 
 CREATE PROCEDURE GetAllSongs
 AS
@@ -25,6 +27,7 @@ BEGIN
     SELECT ID, Name, ArtistID, Genre, Duration, Lyrics, ReleaseDate, AlbumID, Streams
     FROM Song
 END
+go
 
 CREATE PROCEDURE GetAllAlbums
 AS
@@ -32,6 +35,7 @@ BEGIN
     SELECT ID, Name, ArtistID, TotalDuration, ReleaseDate
     FROM Album
 END
+go
 
 CREATE PROCEDURE GetSongsByAlbumID
     @AlbumID INT

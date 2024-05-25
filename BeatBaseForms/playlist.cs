@@ -4,6 +4,7 @@ namespace BeatBaseForms
 {
     internal class Playlist
     {
+		public int playlistID { get; set; }
 		public string playlistName { get; set; }
 		public int authorID { get; set; }
 		public int totalDuration { get; set; }

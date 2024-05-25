@@ -76,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="p4g6DataSet.xsc">
       <DependentUpon>p4g6DataSet.xsd</DependentUpon>
@@ -100,6 +101,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_20221109_223711.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\songs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\songs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\album.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\artist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\playlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leaderboard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
