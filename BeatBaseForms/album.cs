@@ -5,7 +5,7 @@
 
 		public int albumID { get; set; }
 		public string albumName { get; set; }
-		public int albumArtist { get; set; }
+		public int? albumArtist { get; set; }
 		//public string albumGenre { get; set; }
 		public string albumDuration { get; set; }
 		//public string albumLyrics { get; set; }
