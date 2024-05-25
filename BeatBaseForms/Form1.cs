@@ -21,6 +21,7 @@ namespace BeatBaseForms
         private Dictionary<int?, Album> albums = new Dictionary<int?, Album>();
         private Dictionary<int, Playlist> playlists = new Dictionary<int, Playlist>();
         private ImageList tabImageList;
+        private List<Song> songsWithoutAlbum_global = new List<Song>();
 
         // This is a very bad way to do this btw
         //private Song previousSelectedSong;
@@ -182,9 +183,9 @@ namespace BeatBaseForms
                         comboBox17.DataSource = stupid_song_list;
                         comboBox17.DisplayMember = "songName";
                         comboBox17.ValueMember = "songName";
-                        comboBox14.DataSource = stupid_song_list;
-                        comboBox14.DisplayMember = "songName";
-                        comboBox14.ValueMember = "songName";
+                        // comboBox14.DataSource = stupid_song_list;
+                        // comboBox14.DisplayMember = "songName";
+                        // comboBox14.ValueMember = "songName";
                     }
                 }
             }
@@ -236,6 +237,7 @@ namespace BeatBaseForms
                             albums[album.albumID] = album;
                             dataGridView2.DataSource = albums.Values.ToList();
                         }
+                        reader.Close();
                         List<Album> stupid_album_list = albums.Values.ToList();
                         stupid_album_list.Insert(
                             0,
@@ -395,7 +397,9 @@ namespace BeatBaseForms
                             playlists[playlist.playlistID] = playlist;
                             dataGridView4.DataSource = playlists.Values.ToList();
                         }
+                        reader.Close();
                     }
+
                 }
             }
             catch (Exception ex)
@@ -584,6 +588,7 @@ namespace BeatBaseForms
                         {
                             MessageBox.Show("No songs found in the database.");
                         }
+                        reader.Close();
                     }
                 }
             }
@@ -645,6 +650,7 @@ namespace BeatBaseForms
                         {
                             MessageBox.Show("No songs found in the database.");
                         }
+                        reader.Close();
                     }
                 }
             }
@@ -1146,6 +1152,7 @@ namespace BeatBaseForms
                             };
                             songs_filter.Add(song);
                         }
+                        reader.Close();
 
                         dataGridView1.DataSource = songs_filter;
                     }
@@ -1189,6 +1196,7 @@ namespace BeatBaseForms
 
                             playlists_filter.Add(playlist);
                         }
+                        reader.Close();
                         dataGridView4.DataSource = playlists_filter;
                     }
                 }
@@ -1231,6 +1239,7 @@ namespace BeatBaseForms
 
                             playlists_filter.Add(playlist);
                         }
+                        reader.Close();
                         dataGridView4.DataSource = playlists_filter;
                     }
                 }
@@ -1282,6 +1291,7 @@ namespace BeatBaseForms
 
                             songs_filter.Add(song);
                         }
+                        reader.Close();
 
                         dataGridView1.DataSource = songs_filter;
                     }
@@ -1349,6 +1359,7 @@ namespace BeatBaseForms
 
                             artists_filter.Add(artist);
                         }
+                        reader.Close();
                     }
                 }
 
@@ -1410,10 +1421,17 @@ namespace BeatBaseForms
 
                             songs_filter.Add(song);
                         }
+                        reader.Close();
                     }
                 }
 
                 dataGridView6.DataSource = songs_filter;
+                dataGridView6.Columns["songArtist"].Visible = false;
+                dataGridView6.Columns["songGenre"].Visible = false;
+                dataGridView6.Columns["songDuration"].Visible = false;
+                dataGridView6.Columns["songLyrics"].Visible = false;
+                dataGridView6.Columns["songReleaseDate"].Visible = false;
+                dataGridView6.Columns["songAlbumID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -1499,6 +1517,7 @@ namespace BeatBaseForms
 
                             albums_filter.Add(album);
                         }
+                        reader.Close();
 
                         dataGridView2.DataSource = albums_filter;
                     }
@@ -1652,11 +1671,6 @@ namespace BeatBaseForms
                 {
                     cmd.Parameters.AddWithValue("@AlbumID", albumID);
 
-                    // Open the connection if it's not already open
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
 
                     using (SqlDataReader reader1 = cmd.ExecuteReader())
                     {
@@ -1673,11 +1687,12 @@ namespace BeatBaseForms
                         }
                         reader1.Close(); // Ensure reader is closed
                     }
+                    
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Erroraa: " + ex.Message);
             }
         }
 
@@ -1685,6 +1700,8 @@ namespace BeatBaseForms
         private void comboBox16_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBox16.SelectedValue is int selectedAlbumID)
             {
+                int artistID = (int)comboBox15.SelectedValue;
+                comboBox14.DataSource = songsWithoutAlbum_global.Where(song => song.songArtist == artistID.ToString()).ToList();
                 PopulateAlbumDetails(selectedAlbumID);
             }
         }
@@ -1789,6 +1806,7 @@ namespace BeatBaseForms
                             };
                             songs_album.Add(song);
                         }
+                        reader.Close();
                         comboBox10.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                         comboBox10.AutoCompleteSource = AutoCompleteSource.ListItems;
                         comboBox10.DropDownStyle = ComboBoxStyle.DropDown;
@@ -1841,8 +1859,16 @@ namespace BeatBaseForms
                                 songAlbumID = null,
                                 streams = (int)reader["Streams"]
                             };
+                            // before adding the song to the list, check if the song is of the artist selected in the combobox15
+                            // MessageBox.Show("Song Artist is " + song.songArtist + " and combobox15 value is " + comboBox15.SelectedValue.ToString());
+                            //if (song.songArtist == comboBox15.SelectedValue.ToString())
+                            //{
+                            //    songsWithoutAlbum.Add(song);
+                            //}
                             songsWithoutAlbum.Add(song);
+                            songsWithoutAlbum_global.Add(song);
                         }
+                        reader.Close();
                         comboBox14.DataSource = songsWithoutAlbum;
                         comboBox14.DisplayMember = "songName";
                         comboBox14.ValueMember = "SongID";
@@ -1855,6 +1881,54 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+// private List<Song> LoadSongsWithoutAlbum()
+// {
+//     List<Song> songsWithoutAlbum = new List<Song>();
+
+//     try
+//     {
+//         // Query string to call the stored procedure
+//         string query = "EXEC GetSongsWithoutAlbum";
+
+//         using (SqlCommand cmd = new SqlCommand(query, conn))
+//         {
+//             // Setting the command type to Text
+//             cmd.CommandType = CommandType.Text;
+
+//             using (SqlDataReader reader = cmd.ExecuteReader())
+//             {
+//                 songsWithoutAlbum.Clear();
+
+//                 // Reading data from the stored procedure result set
+//                 while (reader.Read())
+//                 {
+//                     Song song = new Song
+//                     {
+//                         SongID = (int)reader["ID"],
+//                         songName = reader["Name"].ToString(),
+//                         songArtist = reader["ArtistID"].ToString(),
+//                         songGenre = reader["Genre"].ToString(),
+//                         songDuration = reader["Duration"].ToString(),
+//                         songLyrics = reader["Lyrics"].ToString(),
+//                         songReleaseDate = (DateTime)reader["ReleaseDate"],
+//                         songAlbumID = null,
+//                         streams = (int)reader["Streams"]
+//                     };
+//                     songsWithoutAlbum.Add(song);
+//                 }
+//                 reader.Close();
+//             }
+//         }
+//     }
+//     catch (Exception ex)
+//     {
+//         // Displaying an error message in case of an exception
+//         MessageBox.Show("Error: " + ex.Message);
+//     }
+
+//     return songsWithoutAlbum;
+// }
 
 
 
@@ -2222,7 +2296,11 @@ namespace BeatBaseForms
 
         private void comboBox15_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int artistID = (int)comboBox15.SelectedValue;
+            //remove 
+            comboBox14.DataSource = songsWithoutAlbum_global.Where(song => song.songArtist == artistID.ToString()).ToList();
+            // combo box 14 source is the global songs without album list without the first song
+            
         }
 
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
@@ -2245,6 +2323,12 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Please select both a song and an album.");
             }
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show(comboBox15.SelectedValue.ToString());
+
         }
     }
 }
