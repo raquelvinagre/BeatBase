@@ -23,6 +23,6 @@ Raquel Vinagre 113736
 - [ ]  powerpoint
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
-- [ ]  remover músicas
+- [x]  remover músicas
 - [x]  losing my fucking mind
 - [x]  same
