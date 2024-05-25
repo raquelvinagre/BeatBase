@@ -178,7 +178,7 @@ namespace BeatBaseForms
                         List<Song> stupid_song_list = songs.Values.ToList();
                         stupid_song_list.Insert(
                             0,
-                            new Song { SongID = -1, songName = "Select/Search a Song" }
+                            new Song { SongID = -1, songName = "Select song" }
                         );
                         comboBox17.DataSource = stupid_song_list;
                         comboBox17.DisplayMember = "songName";
@@ -1112,6 +1112,7 @@ namespace BeatBaseForms
             }
         }
 
+
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void FilterSongsByGenre(string genre)
@@ -1623,6 +1624,7 @@ namespace BeatBaseForms
                         comboBox4.SelectedIndex = -1;
                         comboBox3.SelectedIndex = -1;
                         dateTimePicker3.Value = DateTime.Now; // Reset to current date
+                        loadSongs();
                     }
                     else
                     {
@@ -1994,6 +1996,7 @@ namespace BeatBaseForms
                         comboBox16.SelectedIndex = -1;
                         comboBox15.SelectedIndex = -1;
                         dateTimePicker5.Value = DateTime.Now; // Reset to current date
+                        loadAlbums();
                     }
                     else
                     {
@@ -2330,5 +2333,136 @@ namespace BeatBaseForms
             MessageBox.Show(comboBox15.SelectedValue.ToString());
 
         }
+
+        private void tabPage11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox16_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label61_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            // Get the artist details from the textboxes
+            string artistName = textBox10.Text;
+
+            // Validate inputs
+            if (string.IsNullOrEmpty(artistName))
+            {
+                MessageBox.Show("Please enter an artist name.");
+                return;
+            }
+
+            // SQL insert command
+            string insertCommand = "INSERT INTO Artist (ArtistName) VALUES (@ArtistName)";
+
+            try
+            {
+                // Create a SQL command to insert an artist into the database
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistName", artistName);
+
+                    int queryChanged = cmd.ExecuteNonQuery();
+                    if (queryChanged > 0)
+                    {
+                        MessageBox.Show("Artist added to the database.");
+                        // Optionally, refresh the artist list or other UI components
+                        loadArtists();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error adding artist to the database.");
+                    }
+
+                    // Clear the input fields
+                    textBox10.Text = "";
+                    loadArtists();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("PRIMARY KEY constraint"))
+                {
+                    MessageBox.Show("Artist already exists in the database.");
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void comboBox22_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBox22.SelectedValue is int selectedArtistID)
+            {
+                PopulateArtistDetails(selectedArtistID);
+            }
+        }
+
+        private void button22_Click_2(object sender, EventArgs e)
+        {
+            // Get the artist details from the textboxes
+            string artistName = textBox16.Text;
+
+            // Ensure the artist combobox has a selected value
+            if (comboBox22.SelectedValue == null)
+            {
+                MessageBox.Show("Please select an artist.");
+                return;
+            }
+
+            int artistID = (int)comboBox22.SelectedValue;
+
+            // Validate inputs
+            if (string.IsNullOrEmpty(artistName))
+            {
+                MessageBox.Show("Please enter an artist name.");
+                return;
+            }
+
+            // SQL update command
+            string updateCommand = "UPDATE Artist SET ArtistName = @ArtistName WHERE ID = @ArtistID";
+
+            try
+            {
+                // Create a SQL command to update the artist in the database
+                using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistName", artistName);
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Artist updated successfully.");
+                        // Optionally, refresh the artist list or other UI components
+                        loadArtists();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error updating artist in the database.");
+                    }
+
+                    // Clear the input fields
+                    textBox16.Text = "";
+                    comboBox22.SelectedIndex = -1; // Reset combobox selection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
     }
 }
