@@ -6,7 +6,7 @@ Diogo Fernandes 114137
 Raquel Vinagre 113736
 
 # To-do:
-- [ ]  adicionar músicas a playlists
+- [ ]  (quase)adicionar músicas a playlists
 - [x]  mostrar músicas dos álbuns
 - [x]  editar músicas, álbuns...
 - [x]  (melhorar)fazer leaderboards
