@@ -22,9 +22,7 @@ namespace BeatBaseForms
         private Dictionary<int, Playlist> playlists = new Dictionary<int, Playlist>();
         private ImageList tabImageList;
         private List<Song> songsWithoutAlbum_global = new List<Song>();
-
-        // This is a very bad way to do this btw
-        //private Song previousSelectedSong;
+        private Dictionary<int, String> userMap = new Dictionary<int, String>();
 
         public Form1()
         {
@@ -39,7 +37,7 @@ namespace BeatBaseForms
             InitializeImageList();
             InitializeTabControl();
             LoadSongsWithoutAlbum();
-
+            FillUserMap();
         }
 
         private SqlConnection getSqlConn()
@@ -119,6 +117,9 @@ namespace BeatBaseForms
                 comboBox14.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox14.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox14.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox18.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox18.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox18.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllSongs";
@@ -186,6 +187,9 @@ namespace BeatBaseForms
                         // comboBox14.DataSource = stupid_song_list;
                         // comboBox14.DisplayMember = "songName";
                         // comboBox14.ValueMember = "songName";
+                        comboBox18.DataSource = stupid_song_list;
+                        comboBox18.DisplayMember = "songName";
+                        comboBox18.ValueMember = "SongID";
                     }
                 }
             }
@@ -369,6 +373,9 @@ namespace BeatBaseForms
         {
             try
             {
+                comboBox19.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox19.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox19.DropDownStyle = ComboBoxStyle.DropDown;
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllPlaylists";
 
@@ -395,8 +402,12 @@ namespace BeatBaseForms
                             playlist.totalDuration = (int)reader["TotalDuration"];
                             playlist.authorID = (int)reader["AuthorID"];
                             playlists[playlist.playlistID] = playlist;
-                            dataGridView4.DataSource = playlists.Values.ToList();
+                           
                         }
+                        dataGridView4.DataSource = playlists.Values.ToList();
+                        comboBox19.DataSource = playlists.Values.ToList();
+                        comboBox19.DisplayMember = "playlistName";
+                        comboBox19.ValueMember = "playlistID";
                         reader.Close();
                     }
 
@@ -1699,6 +1710,52 @@ namespace BeatBaseForms
         }
 
 
+        private void PopulatePlaylistDetails(int playlistID)
+        {
+            try
+            {
+                // Construct the SQL SELECT command to get the playlist details
+                string selectCommand =
+                    "SELECT Name, Genre, Visibility, TotalDuration, AuthorID FROM Playlist WHERE ID = @PlaylistID";
+
+                using (SqlCommand cmd = new SqlCommand(selectCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+
+                    using (SqlDataReader reader1 = cmd.ExecuteReader())
+                    {
+                        if (reader1.Read())
+                        {
+                            // Populate the controls with the playlist details
+                            textBox19.Text = reader1["Name"].ToString();
+                            textBox18.Text = reader1["Genre"].ToString();
+                            int visibility = (bool)reader1["Visibility"] ? 1 : 0;
+                            if (visibility == 0)
+                            {
+                                radioButton6.Checked = true;
+                                radioButton5.Checked = false;
+                            }
+                            else
+                            {
+                                radioButton5.Checked = true;
+                                radioButton6.Checked = false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Playlist not found.");
+                        }
+                        reader1.Close(); // Ensure reader is closed
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
         private void comboBox16_SelectedIndexChanged(object sender, EventArgs e) {
             if (comboBox16.SelectedValue is int selectedAlbumID)
             {
@@ -2464,5 +2521,62 @@ namespace BeatBaseForms
             }
         }
 
+        private void comboBox19_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox19.SelectedValue is int selectedPlaylistID)
+            {
+                int authorID = (int)comboBox19.SelectedValue;
+                PopulatePlaylistDetails(authorID);
+            }
+        }
+
+        private void FillUserMap()
+        {
+            //use the stored procedure GetAllUsers to fill the user map
+            try
+            {
+                comboBox12.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox12.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox12.DropDownStyle = ComboBoxStyle.DropDown;
+                // Query string to call the stored procedure
+                string query = "EXEC GetAllUsers";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        userMap.Clear();
+
+                        // Reading data from the stored procedure result set
+                        while (reader.Read())
+                        {
+                            userMap.Add((int)reader["ID"], reader["Username"].ToString());
+                        }
+                        comboBox12.DataSource = new BindingSource(userMap, null);
+                        comboBox12.DisplayMember = "Value";
+                        comboBox12.ValueMember = "Key";
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button8_Click_2(object sender, EventArgs e)
+        {
+            MessageBox.Show(comboBox12.SelectedValue.ToString());
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

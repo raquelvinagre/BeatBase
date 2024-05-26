@@ -4,6 +4,7 @@ DROP PROCEDURE GetAllSongs;
 DROP PROCEDURE GetAllAlbums;
 DROP PROCEDURE GetSongsByAlbumID;
 DROP PROCEDURE GetSongsWithoutAlbum;
+DROP PROCEDURE GetAllUsers;
 
 go
 CREATE PROCEDURE GetAllArtists
@@ -67,3 +68,9 @@ BEGIN
     WHERE AlbumID IS NULL;
 END;
 go
+
+CREATE PROCEDURE GetAllUsers
+AS
+BEGIN
+    SELECT ID, Username FROM [User];
+END;
