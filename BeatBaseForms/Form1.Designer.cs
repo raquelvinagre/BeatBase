@@ -50,6 +50,8 @@ namespace BeatBaseForms
             this.playlistsTab = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.comboBox23 = new System.Windows.Forms.ComboBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.label58 = new System.Windows.Forms.Label();
             this.button17 = new System.Windows.Forms.Button();
@@ -91,6 +93,8 @@ namespace BeatBaseForms
             this.artistsTab = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label26 = new System.Windows.Forms.Label();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
             this.comboBox22 = new System.Windows.Forms.ComboBox();
             this.label69 = new System.Windows.Forms.Label();
             this.button22 = new System.Windows.Forms.Button();
@@ -106,6 +110,8 @@ namespace BeatBaseForms
             this.albumsTab = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
             this.label68 = new System.Windows.Forms.Label();
             this.button21 = new System.Windows.Forms.Button();
             this.comboBox20 = new System.Windows.Forms.ComboBox();
@@ -144,22 +150,6 @@ namespace BeatBaseForms
             this.label24 = new System.Windows.Forms.Label();
             this.songsTab = new System.Windows.Forms.TabPage();
             this.AddSong = new System.Windows.Forms.TabControl();
-            this.List = new System.Windows.Forms.TabPage();
-            this.label30 = new System.Windows.Forms.Label();
-            this.comboBox17 = new System.Windows.Forms.ComboBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.comboBox21 = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
@@ -198,12 +188,22 @@ namespace BeatBaseForms
             this.label38 = new System.Windows.Forms.Label();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.artistLeaderboardTableAdapter1 = new BeatBaseForms.p4g6DataSetTableAdapters.ArtistLeaderboardTableAdapter();
-            this.label25 = new System.Windows.Forms.Label();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.List = new System.Windows.Forms.TabPage();
             this.leaderboardTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
@@ -226,11 +226,11 @@ namespace BeatBaseForms
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             this.songsTab.SuspendLayout();
             this.AddSong.SuspendLayout();
-            this.List.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.mainTabControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.List.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonAddArtist
@@ -431,6 +431,24 @@ namespace BeatBaseForms
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Playlists";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(473, 66);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(50, 16);
+            this.label29.TabIndex = 45;
+            this.label29.Text = "Search";
+            // 
+            // comboBox23
+            // 
+            this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Location = new System.Drawing.Point(539, 62);
+            this.comboBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox23.Name = "comboBox23";
+            this.comboBox23.Size = new System.Drawing.Size(191, 24);
+            this.comboBox23.TabIndex = 44;
             // 
             // dataGridView4
             // 
@@ -895,6 +913,24 @@ namespace BeatBaseForms
             this.tabPage4.Text = "Manage Artists";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(229, 58);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(50, 16);
+            this.label26.TabIndex = 45;
+            this.label26.Text = "Search";
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Location = new System.Drawing.Point(285, 54);
+            this.comboBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(159, 24);
+            this.comboBox13.TabIndex = 44;
+            // 
             // comboBox22
             // 
             this.comboBox22.FormattingEnabled = true;
@@ -1060,6 +1096,24 @@ namespace BeatBaseForms
             this.tabPage1.Text = "Album List";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(464, 55);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(50, 16);
+            this.label25.TabIndex = 43;
+            this.label25.Text = "Search";
+            // 
+            // comboBox9
+            // 
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Location = new System.Drawing.Point(530, 51);
+            this.comboBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(191, 24);
+            this.comboBox9.TabIndex = 42;
             // 
             // label68
             // 
@@ -1466,201 +1520,6 @@ namespace BeatBaseForms
             this.AddSong.Size = new System.Drawing.Size(1013, 590);
             this.AddSong.TabIndex = 0;
             this.AddSong.SelectedIndexChanged += new System.EventHandler(this.AddSong_SelectedIndexChanged);
-            // 
-            // List
-            // 
-            this.List.Controls.Add(this.label30);
-            this.List.Controls.Add(this.comboBox17);
-            this.List.Controls.Add(this.button15);
-            this.List.Controls.Add(this.label21);
-            this.List.Controls.Add(this.dataGridView1);
-            this.List.Controls.Add(this.comboBox6);
-            this.List.Controls.Add(this.label4);
-            this.List.Controls.Add(this.comboBox5);
-            this.List.Controls.Add(this.button1);
-            this.List.Controls.Add(this.label14);
-            this.List.Controls.Add(this.label23);
-            this.List.Controls.Add(this.label22);
-            this.List.Controls.Add(this.progressBar1);
-            this.List.Controls.Add(this.button5);
-            this.List.Controls.Add(this.label19);
-            this.List.Location = new System.Drawing.Point(4, 25);
-            this.List.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.List.Name = "List";
-            this.List.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.List.Size = new System.Drawing.Size(1005, 561);
-            this.List.TabIndex = 0;
-            this.List.Text = "Song List";
-            this.List.UseVisualStyleBackColor = true;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(563, 50);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(50, 16);
-            this.label30.TabIndex = 40;
-            this.label30.Text = "Search";
-            // 
-            // comboBox17
-            // 
-            this.comboBox17.FormattingEnabled = true;
-            this.comboBox17.Location = new System.Drawing.Point(627, 47);
-            this.comboBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox17.Name = "comboBox17";
-            this.comboBox17.Size = new System.Drawing.Size(191, 24);
-            this.comboBox17.TabIndex = 39;
-            this.comboBox17.SelectedIndexChanged += new System.EventHandler(this.comboBox17_SelectedIndexChanged);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(857, 351);
-            this.button15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(121, 23);
-            this.button15.TabIndex = 37;
-            this.button15.Text = "Clear Filters";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(401, 443);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(137, 16);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Select a song to listen";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(68, 94);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(749, 331);
-            this.dataGridView1.TabIndex = 35;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
-            // 
-            // comboBox6
-            // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
-            "",
-            "Pop",
-            "Hip-Hop",
-            "R&B",
-            "Electronic"});
-            this.comboBox6.Location = new System.Drawing.Point(857, 284);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 24);
-            this.comboBox6.TabIndex = 34;
-            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(853, 255);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 16);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Filter by Artist";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "",
-            "Pop",
-            "Hip-Hop",
-            "R&B",
-            "Electronic"});
-            this.comboBox5.Location = new System.Drawing.Point(857, 182);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 24);
-            this.comboBox5.TabIndex = 32;
-            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(480, 492);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 39);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Like ❤️";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(853, 164);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 16);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Filter by Genre";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(181, 464);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(31, 16);
-            this.label23.TabIndex = 18;
-            this.label23.Text = "2:08";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(701, 464);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(31, 16);
-            this.label22.TabIndex = 17;
-            this.label22.Text = "3:27";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.progressBar1.Location = new System.Drawing.Point(219, 470);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(475, 10);
-            this.progressBar1.TabIndex = 16;
-            this.progressBar1.Value = 67;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(337, 492);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(109, 39);
-            this.button5.TabIndex = 15;
-            this.button5.Text = "Listen";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label19.Location = new System.Drawing.Point(64, 47);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(89, 20);
-            this.label19.TabIndex = 14;
-            this.label19.Text = "Song List";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -2077,59 +1936,201 @@ namespace BeatBaseForms
             // 
             this.artistLeaderboardTableAdapter1.ClearBeforeFill = true;
             // 
-            // label25
+            // label19
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(464, 55);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(50, 16);
-            this.label25.TabIndex = 43;
-            this.label25.Text = "Search";
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label19.Location = new System.Drawing.Point(64, 47);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(89, 20);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Song List";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox9
+            // button5
             // 
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(530, 51);
-            this.comboBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(191, 24);
-            this.comboBox9.TabIndex = 42;
+            this.button5.Location = new System.Drawing.Point(337, 492);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(109, 39);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "Listen";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // label26
+            // progressBar1
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(229, 58);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(50, 16);
-            this.label26.TabIndex = 45;
-            this.label26.Text = "Search";
+            this.progressBar1.BackColor = System.Drawing.SystemColors.Window;
+            this.progressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.progressBar1.Location = new System.Drawing.Point(219, 470);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(475, 10);
+            this.progressBar1.TabIndex = 16;
+            this.progressBar1.Value = 67;
             // 
-            // comboBox13
+            // label22
             // 
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(285, 54);
-            this.comboBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(159, 24);
-            this.comboBox13.TabIndex = 44;
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(701, 464);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(31, 16);
+            this.label22.TabIndex = 17;
+            this.label22.Text = "3:27";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
-            // label29
+            // label23
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(473, 66);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(50, 16);
-            this.label29.TabIndex = 45;
-            this.label29.Text = "Search";
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(181, 464);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(31, 16);
+            this.label23.TabIndex = 18;
+            this.label23.Text = "2:08";
             // 
-            // comboBox23
+            // label14
             // 
-            this.comboBox23.FormattingEnabled = true;
-            this.comboBox23.Location = new System.Drawing.Point(539, 62);
-            this.comboBox23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox23.Name = "comboBox23";
-            this.comboBox23.Size = new System.Drawing.Size(191, 24);
-            this.comboBox23.TabIndex = 44;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(853, 164);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(94, 16);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Filter by Genre";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(480, 492);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 39);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Like ❤️";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "",
+            "Pop",
+            "Hip-Hop",
+            "R&B",
+            "Electronic"});
+            this.comboBox5.Location = new System.Drawing.Point(857, 182);
+            this.comboBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 24);
+            this.comboBox5.TabIndex = 32;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(853, 255);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 16);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Filter by Artist";
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "",
+            "Pop",
+            "Hip-Hop",
+            "R&B",
+            "Electronic"});
+            this.comboBox6.Location = new System.Drawing.Point(857, 284);
+            this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(121, 24);
+            this.comboBox6.TabIndex = 34;
+            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(68, 94);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(749, 331);
+            this.dataGridView1.TabIndex = 35;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(401, 443);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(137, 16);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Select a song to listen";
+            this.label21.Click += new System.EventHandler(this.label21_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(857, 351);
+            this.button15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(121, 23);
+            this.button15.TabIndex = 37;
+            this.button15.Text = "Clear Filters";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // comboBox17
+            // 
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Location = new System.Drawing.Point(627, 47);
+            this.comboBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(191, 24);
+            this.comboBox17.TabIndex = 39;
+            this.comboBox17.SelectedIndexChanged += new System.EventHandler(this.comboBox17_SelectedIndexChanged);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(563, 50);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(50, 16);
+            this.label30.TabIndex = 40;
+            this.label30.Text = "Search";
+            // 
+            // List
+            // 
+            this.List.Controls.Add(this.label30);
+            this.List.Controls.Add(this.comboBox17);
+            this.List.Controls.Add(this.button15);
+            this.List.Controls.Add(this.label21);
+            this.List.Controls.Add(this.dataGridView1);
+            this.List.Controls.Add(this.comboBox6);
+            this.List.Controls.Add(this.label4);
+            this.List.Controls.Add(this.comboBox5);
+            this.List.Controls.Add(this.button1);
+            this.List.Controls.Add(this.label14);
+            this.List.Controls.Add(this.label23);
+            this.List.Controls.Add(this.label22);
+            this.List.Controls.Add(this.progressBar1);
+            this.List.Controls.Add(this.button5);
+            this.List.Controls.Add(this.label19);
+            this.List.Location = new System.Drawing.Point(4, 25);
+            this.List.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.List.Name = "List";
+            this.List.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.List.Size = new System.Drawing.Size(1005, 561);
+            this.List.TabIndex = 0;
+            this.List.Text = "Song List";
+            this.List.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -2172,14 +2173,14 @@ namespace BeatBaseForms
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
             this.songsTab.ResumeLayout(false);
             this.AddSong.ResumeLayout(false);
-            this.List.ResumeLayout(false);
-            this.List.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.List.ResumeLayout(false);
+            this.List.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2217,12 +2218,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.Button buttonAddAlbum;
         private System.Windows.Forms.TabPage songsTab;
         private System.Windows.Forms.TabControl AddSong;
-        private System.Windows.Forms.TabPage List;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.RadioButton radioButton2;
@@ -2247,8 +2242,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TabPage tabPage8;
@@ -2269,9 +2262,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label48;
@@ -2287,9 +2277,7 @@ namespace BeatBaseForms
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.ComboBox comboBox11;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label37;
@@ -2304,7 +2292,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Label label58;
@@ -2312,8 +2299,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.ComboBox comboBox16;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox comboBox17;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Label label67;
@@ -2357,5 +2342,21 @@ namespace BeatBaseForms
         private System.Windows.Forms.ComboBox comboBox13;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.TabPage List;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox comboBox17;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label19;
     }
 }
