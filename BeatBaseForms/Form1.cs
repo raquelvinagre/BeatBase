@@ -187,6 +187,8 @@ namespace BeatBaseForms
                         // comboBox14.DataSource = stupid_song_list;
                         // comboBox14.DisplayMember = "songName";
                         // comboBox14.ValueMember = "songName";
+
+                        // comboBox18.DataSource = stupid_song_list;
                         comboBox18.DataSource = stupid_song_list;
                         comboBox18.DisplayMember = "songName";
                         comboBox18.ValueMember = "SongID";
@@ -2525,8 +2527,14 @@ namespace BeatBaseForms
         {
             if (comboBox19.SelectedValue is int selectedPlaylistID)
             {
-                int authorID = (int)comboBox19.SelectedValue;
-                PopulatePlaylistDetails(authorID);
+                int PlaylistID = (int)comboBox19.SelectedValue;
+                PopulatePlaylistDetails(PlaylistID);
+                loadPlaylistSongs(PlaylistID);
+                List<Song> box18src = comboBox18.DataSource as List<Song>;
+                // we have to remove the songs that are already in the playlist from the combobox
+                // ! TODO diogu 
+                List<Song> songs_playlist = dataGridView8.DataSource as List<Song>;
+                comboBox18.DataSource = box18src;   
             }
         }
 
@@ -2577,6 +2585,47 @@ namespace BeatBaseForms
         private void label49_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadPlaylistSongs(int PlaylistID)
+        {
+            // uses udf GetSongsInPlaylist(int playlistID) to get all songs in a playlist
+            try
+            {
+                // Query string to call the UDF
+                string query = "SELECT * FROM dbo.GetSongsInPlaylist(@PlaylistID)";
+
+                List<Song> songs_playlist = new List<Song>();
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    // Adding the parameter required by the UDF
+                    cmd.Parameters.AddWithValue("@PlaylistID", PlaylistID);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        songs_playlist.Clear();
+
+                        // Reading data from the UDF result set
+                        while (reader.Read())
+                        {
+                            //get the song from the global list of songs
+                            Song song = songs[(int)reader["SongID"]];
+                            songs_playlist.Add(song);
+                        }
+                        reader.Close();
+                        dataGridView8.DataSource = songs_playlist;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }

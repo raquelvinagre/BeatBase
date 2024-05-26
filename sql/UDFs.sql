@@ -87,3 +87,14 @@ RETURN (
   ORDER BY Streams DESC 
 );
 GO
+
+DROP FUNCTION IF EXISTS GetSongsInPlaylist;
+CREATE FUNCTION GetSongsInPlaylist (@PlaylistID INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT ps.SongID
+    FROM PlaylistSong ps
+    WHERE ps.PlaylistID = @PlaylistID
+);
