@@ -26,3 +26,4 @@ Raquel Vinagre 113736
 - [x]  remover músicas
 - [x]  losing my fucking mind
 - [x]  same
+- [ ]  meter pra adicionar so dps do edit playlist e song

@@ -189,9 +189,9 @@ namespace BeatBaseForms
                         // comboBox14.ValueMember = "songName";
 
                         // comboBox18.DataSource = stupid_song_list;
-                        comboBox18.DataSource = stupid_song_list;
-                        comboBox18.DisplayMember = "songName";
-                        comboBox18.ValueMember = "SongID";
+                        // comboBox18.DataSource = stupid_song_list;
+                        // comboBox18.DisplayMember = "songName";
+                        // comboBox18.ValueMember = "SongID";
                     }
                 }
             }
@@ -241,8 +241,17 @@ namespace BeatBaseForms
                             album.albumReleaseDate = (DateTime)reader["ReleaseDate"];
 
                             albums[album.albumID] = album;
-                            dataGridView2.DataSource = albums.Values.ToList();
+
                         }
+                        List<Album> temp_list = albums.Values.ToList();
+                        temp_list.Insert(
+                            0,
+                            new Album { albumID = -1, albumName = "Please Select an Album" }
+                        );
+                        comboBox9.DataSource = temp_list;
+                        comboBox9.DisplayMember = "albumName";
+                        comboBox9.ValueMember = "albumID";
+                        dataGridView2.DataSource = albums.Values.ToList();
                         reader.Close();
                         List<Album> stupid_album_list = albums.Values.ToList();
                         stupid_album_list.Insert(
@@ -307,6 +316,9 @@ namespace BeatBaseForms
                 comboBox15.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox15.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox15.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox13.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox13.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox13.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllArtists";
@@ -331,8 +343,9 @@ namespace BeatBaseForms
                             artist.artistName = reader["ArtistName"].ToString();
                             artist.streams = (int)reader["Streams"];
                             artists[artist.artistID] = artist;
-                            dataGridView3.DataSource = artists.Values.ToList();
                         }
+
+                        dataGridView3.DataSource = artists.Values.ToList();
                         reader.Close();
 
                         // Add artists to the combobox
@@ -350,6 +363,9 @@ namespace BeatBaseForms
                             0,
                             new Artist { artistID = -1, artistName = "Please Select an Artist" }
                         );
+                        comboBox13.DataSource = stupid_artist_list;
+                        comboBox13.DisplayMember = "artistName";
+                        comboBox13.ValueMember = "artistID";
                         comboBox6.DataSource = stupid_artist_list;
                         comboBox6.DisplayMember = "artistName";
                         comboBox6.ValueMember = "artistID";
@@ -375,6 +391,9 @@ namespace BeatBaseForms
         {
             try
             {
+                comboBox23.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox23.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox23.DropDownStyle = ComboBoxStyle.DropDown;
                 comboBox19.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox19.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox19.DropDownStyle = ComboBoxStyle.DropDown;
@@ -404,10 +423,20 @@ namespace BeatBaseForms
                             playlist.totalDuration = (int)reader["TotalDuration"];
                             playlist.authorID = (int)reader["AuthorID"];
                             playlists[playlist.playlistID] = playlist;
-                           
+
                         }
                         dataGridView4.DataSource = playlists.Values.ToList();
-                        comboBox19.DataSource = playlists.Values.ToList();
+
+
+                        List<Playlist> stupid_playlist_list = playlists.Values.ToList();
+                        stupid_playlist_list.Insert(
+                            0,
+                            new Playlist { playlistID = -1, playlistName = "Please Select a Playlist" }
+                        );
+                        comboBox23.DataSource = stupid_playlist_list;
+                        comboBox23.DisplayMember = "playlistName";
+                        comboBox23.ValueMember = "playlistID";
+                        comboBox19.DataSource = stupid_playlist_list;
                         comboBox19.DisplayMember = "playlistName";
                         comboBox19.ValueMember = "playlistID";
                         reader.Close();
@@ -492,6 +521,7 @@ namespace BeatBaseForms
             albumList.Size = new Size(500, 300);
             albumList.View = View.List; // Display in list view, you can change to Details for more complex data
             albumsTab.Controls.Add(albumList);
+
         }
 
         private void InitializeArtistsTab()
@@ -1388,9 +1418,9 @@ namespace BeatBaseForms
         }
 
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) 
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-        
+
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -1698,11 +1728,11 @@ namespace BeatBaseForms
                         }
                         else
                         {
-                            MessageBox.Show("Album not found.");
+                            //MessageBox.Show("Album not found.");
                         }
                         reader1.Close(); // Ensure reader is closed
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -1758,7 +1788,8 @@ namespace BeatBaseForms
         }
 
 
-        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e) {
+        private void comboBox16_SelectedIndexChanged(object sender, EventArgs e)
+        {
             if (comboBox16.SelectedValue is int selectedAlbumID)
             {
                 int artistID = (int)comboBox15.SelectedValue;
@@ -1943,53 +1974,53 @@ namespace BeatBaseForms
             }
         }
 
-// private List<Song> LoadSongsWithoutAlbum()
-// {
-//     List<Song> songsWithoutAlbum = new List<Song>();
+        // private List<Song> LoadSongsWithoutAlbum()
+        // {
+        //     List<Song> songsWithoutAlbum = new List<Song>();
 
-//     try
-//     {
-//         // Query string to call the stored procedure
-//         string query = "EXEC GetSongsWithoutAlbum";
+        //     try
+        //     {
+        //         // Query string to call the stored procedure
+        //         string query = "EXEC GetSongsWithoutAlbum";
 
-//         using (SqlCommand cmd = new SqlCommand(query, conn))
-//         {
-//             // Setting the command type to Text
-//             cmd.CommandType = CommandType.Text;
+        //         using (SqlCommand cmd = new SqlCommand(query, conn))
+        //         {
+        //             // Setting the command type to Text
+        //             cmd.CommandType = CommandType.Text;
 
-//             using (SqlDataReader reader = cmd.ExecuteReader())
-//             {
-//                 songsWithoutAlbum.Clear();
+        //             using (SqlDataReader reader = cmd.ExecuteReader())
+        //             {
+        //                 songsWithoutAlbum.Clear();
 
-//                 // Reading data from the stored procedure result set
-//                 while (reader.Read())
-//                 {
-//                     Song song = new Song
-//                     {
-//                         SongID = (int)reader["ID"],
-//                         songName = reader["Name"].ToString(),
-//                         songArtist = reader["ArtistID"].ToString(),
-//                         songGenre = reader["Genre"].ToString(),
-//                         songDuration = reader["Duration"].ToString(),
-//                         songLyrics = reader["Lyrics"].ToString(),
-//                         songReleaseDate = (DateTime)reader["ReleaseDate"],
-//                         songAlbumID = null,
-//                         streams = (int)reader["Streams"]
-//                     };
-//                     songsWithoutAlbum.Add(song);
-//                 }
-//                 reader.Close();
-//             }
-//         }
-//     }
-//     catch (Exception ex)
-//     {
-//         // Displaying an error message in case of an exception
-//         MessageBox.Show("Error: " + ex.Message);
-//     }
+        //                 // Reading data from the stored procedure result set
+        //                 while (reader.Read())
+        //                 {
+        //                     Song song = new Song
+        //                     {
+        //                         SongID = (int)reader["ID"],
+        //                         songName = reader["Name"].ToString(),
+        //                         songArtist = reader["ArtistID"].ToString(),
+        //                         songGenre = reader["Genre"].ToString(),
+        //                         songDuration = reader["Duration"].ToString(),
+        //                         songLyrics = reader["Lyrics"].ToString(),
+        //                         songReleaseDate = (DateTime)reader["ReleaseDate"],
+        //                         songAlbumID = null,
+        //                         streams = (int)reader["Streams"]
+        //                     };
+        //                     songsWithoutAlbum.Add(song);
+        //                 }
+        //                 reader.Close();
+        //             }
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         // Displaying an error message in case of an exception
+        //         MessageBox.Show("Error: " + ex.Message);
+        //     }
 
-//     return songsWithoutAlbum;
-// }
+        //     return songsWithoutAlbum;
+        // }
 
 
 
@@ -2362,7 +2393,7 @@ namespace BeatBaseForms
             //remove 
             comboBox14.DataSource = songsWithoutAlbum_global.Where(song => song.songArtist == artistID.ToString()).ToList();
             // combo box 14 source is the global songs without album list without the first song
-            
+
         }
 
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
@@ -2525,19 +2556,51 @@ namespace BeatBaseForms
 
         private void comboBox19_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox19.SelectedValue is int selectedPlaylistID)
+            if (comboBox19.SelectedValue is int selectedPlaylistID && comboBox19.SelectedIndex != 0)
             {
                 int PlaylistID = (int)comboBox19.SelectedValue;
                 PopulatePlaylistDetails(PlaylistID);
                 loadPlaylistSongs(PlaylistID);
-                List<Song> box18src = comboBox18.DataSource as List<Song>;
+                // List<Song> box18src = comboBox18.DataSource as List<Song>;
                 // we have to remove the songs that are already in the playlist from the combobox
                 // ! TODO diogu 
-                List<Song> songs_playlist = dataGridView8.DataSource as List<Song>;
-                comboBox18.DataSource = box18src;   
+                // List<Song> songs_playlist = dataGridView8.DataSource as List<Song>;
+                // comboBox18.DataSource = stupid_song_list;
+                // comboBox18.DisplayMember = "songName";
+                // comboBox18.ValueMember = "SongID";
+                changeBox18();
+                // List<Song> playlistSongs = dataGridView8.DataSource as List<Song>;
+
+
+                // List<Song> box18src = songs.Values.ToList();
+
+                // foreach (Song song in playlistSongs)
+                // {
+                //     box18src.Remove(song);
+                // }
+                // box18src.Insert(0, new Song { SongID = 0, songName = "Select a song" });
+
+                // comboBox18.DataSource = box18src;
+                // comboBox18.DisplayMember = "songName";
+                // comboBox18.ValueMember = "SongID";
             }
         }
 
+        private void changeBox18()
+        {
+            List<Song> playlistSongs = dataGridView8.DataSource as List<Song>;
+            List<Song> box18src = songs.Values.ToList();
+
+            foreach (Song song in playlistSongs)
+            {
+                box18src.Remove(song);
+            }
+            box18src.Insert(0, new Song { SongID = 0, songName = "Select a song" });
+
+            comboBox18.DataSource = box18src;
+            comboBox18.DisplayMember = "songName";
+            comboBox18.ValueMember = "SongID";
+        }
         private void FillUserMap()
         {
             //use the stored procedure GetAllUsers to fill the user map
@@ -2589,10 +2652,15 @@ namespace BeatBaseForms
 
         private void loadPlaylistSongs(int PlaylistID)
         {
-            // uses udf GetSongsInPlaylist(int playlistID) to get all songs in a playlist
             try
             {
                 // Query string to call the UDF
+                comboBox24.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox24.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox24.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox23.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox23.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox23.DropDownStyle = ComboBoxStyle.DropDown;
                 string query = "SELECT * FROM dbo.GetSongsInPlaylist(@PlaylistID)";
 
                 List<Song> songs_playlist = new List<Song>();
@@ -2618,6 +2686,9 @@ namespace BeatBaseForms
                         }
                         reader.Close();
                         dataGridView8.DataSource = songs_playlist;
+                        comboBox24.DataSource = songs_playlist;
+                        comboBox24.DisplayMember = "songName";
+                        comboBox24.ValueMember = "SongID";
                     }
                 }
             }
@@ -2626,6 +2697,208 @@ namespace BeatBaseForms
                 // Displaying an error message in case of an exception
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (comboBox18.SelectedIndex != 0 && comboBox19.SelectedIndex != 0)
+            {
+                int songID = (int)comboBox18.SelectedValue;
+                int playlistID = (int)comboBox19.SelectedValue;
+                AddSongToPlaylist(songID, playlistID);
+            }
+            else
+            {
+                MessageBox.Show("Please select a song to add to the playlist.");
+            }
+        }
+
+        private void AddSongToPlaylist(int songID, int playlistID)
+        {
+            try
+            {
+                // Construct the SQL INSERT command to add the song to the playlist
+                string insertCommand = "INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES (@PlaylistID, @SongID)";
+
+                using (SqlCommand cmd = new SqlCommand(insertCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+                    cmd.Parameters.AddWithValue("@SongID", songID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Song added to the playlist successfully!");
+                        // Optionally, refresh the list of songs in the playlist
+                        loadPlaylistSongs(playlistID);
+                        changeBox18();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add the song to the playlist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            int songID = (int)comboBox24.SelectedValue;
+            int playlistID = (int)comboBox19.SelectedValue;
+            RemovePlaylistSong(playlistID, songID);
+        }
+
+        private void RemovePlaylistSong(int playlistID, int songID)
+        {
+            //uses the stored procedure to delete a song, the song procedure
+
+            try
+            {
+                // Query string to call the stored procedure
+                string query = "EXEC DeletePlaylistSong @PlaylistID, @SongID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    // Adding the parameter required by the stored procedure
+                    cmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+                    cmd.Parameters.AddWithValue("@SongID", songID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Song removed from the playlist successfully!");
+                        // Optionally, refresh the list of songs in the playlist
+                        loadPlaylistSongs(playlistID);
+                        changeBox18();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to remove the song from the playlist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            // this is for editing a playlist
+            if (comboBox19.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please select a playlist to edit.");
+                return;
+            }
+            try
+            {
+                // Get the new values from the text boxes and comboboxes
+                int playlistID = (int)comboBox19.SelectedValue;
+                string playlistName = textBox19.Text;
+                string playlistGenre = textBox18.Text;
+                int visibility = radioButton5.Checked ? 1 : 0;
+                int authorID = (int)comboBox12.SelectedValue;
+
+                // Construct the SQL UPDATE command
+                string updateCommand =
+                    "UPDATE Playlist SET Name = @Name, AuthorId = @authorID, Genre = @Genre, Visibility = @Visibility WHERE ID = @PlaylistID";
+
+                using (SqlCommand cmd = new SqlCommand(updateCommand, conn))
+                {
+                    // Set the parameters
+                    cmd.Parameters.AddWithValue("@Name", playlistName);
+                    cmd.Parameters.AddWithValue("@Genre", playlistGenre);
+                    cmd.Parameters.AddWithValue("@Visibility", visibility);
+                    cmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+                    cmd.Parameters.AddWithValue("@authorID", authorID);
+
+                    // Execute the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Playlist updated successfully!");
+                        // Optionally, refresh the list of playlists
+                        loadPlaylists();
+
+                        textBox19.Text = string.Empty;
+                        textBox18.Text = string.Empty;
+                        radioButton5.Checked = false;
+                        radioButton6.Checked = false;
+                        comboBox19.SelectedIndex = 0;
+                        comboBox12.SelectedIndex = 0;
+                        dataGridView6.DataSource = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update the playlist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+        }
+
+        private void comboBox9_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (comboBox9.SelectedIndex != 0)
+            {
+                int albumID = (int)comboBox9.SelectedValue;
+                List<Album> temp = new List<Album>();
+                temp.Add(albums[albumID]);
+                dataGridView2.DataSource = temp;
+            } else if (comboBox9.SelectedIndex == 0)
+            {
+                dataGridView2.DataSource = albums.Values.ToList();
+            }
+        }
+
+        private void comboBox13_SelectedIndexChanged_2(object sender, EventArgs e)
+        {
+            if (comboBox13.SelectedIndex != 0)
+            {
+                int artistID = (int)comboBox13.SelectedValue;
+                List<Artist> temp = new List<Artist>();
+                temp.Add(artists[artistID]);
+                dataGridView3.DataSource = temp;
+            } else if (comboBox13.SelectedIndex == 0)
+            {
+                dataGridView3.DataSource = artists.Values.ToList();
+            }
+        }
+
+        private void comboBox23_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox23.SelectedIndex != 0)
+            {
+                int PlaylistID = (int)comboBox23.SelectedValue;
+                List<Playlist> temp = new List<Playlist>();
+                temp.Add(playlists[PlaylistID]);
+                dataGridView4.DataSource = temp;
+            } else if (comboBox23.SelectedIndex == 0)
+            {
+                dataGridView4.DataSource = playlists.Values.ToList();
+            }
+            
+        }
+
+        private void label25_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
