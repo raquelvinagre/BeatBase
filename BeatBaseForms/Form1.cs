@@ -153,22 +153,20 @@ namespace BeatBaseForms
                             song.streams = (int)reader["Streams"];
                             // add to dictionary
                             songs[song.SongID] = song;
-                            dataGridView1.DataSource = songs.Values.ToList();
-
-                            // //add columns to the datagridview
-                            // dataGridView1.ColumnCount = 8;
-                            // dataGridView1.Columns[0].Name = "Name";
-                            // dataGridView1.Columns[1].Name = "Artist";
-                            // dataGridView1.Columns[2].Name = "Genre";
-                            // dataGridView1.Columns[3].Name = "Duration";
-                            // dataGridView1.Columns[4].Name = "Lyrics";
-                            // dataGridView1.Columns[5].Name = "Release Date";
-                            // dataGridView1.Columns[6].Name = "Album ID";
-                            // dataGridView1.Columns[7].Name = "Streams";
-                            // //add rows to the datagridview
-                            // dataGridView1.Rows.Add(song.songName, song.songArtist, song.songGenre, song.songDuration, song.songLyrics, song.songReleaseDate, song.songAlbumID, song.streams);
                         }
 
+
+                            dataGridView1.DataSource = songs.Values.ToList();
+                            dataGridView1.Columns[2].HeaderText = "Artist";
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                var artistID = row.Cells["songArtist"].Value.ToString();
+                                int artistID_int = Int32.Parse(artistID);
+                                if (artists.TryGetValue(artistID_int, out var artistName))
+                                {
+                                    row.Cells["songArtist"].Value = artistName;
+                                }
+                            }
                         reader.Close(); // Ensure reader is closed
 
                         // Add songs to the combobox

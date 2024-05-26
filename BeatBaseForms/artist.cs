@@ -12,7 +12,7 @@
 
 		public override string ToString()
 		{
-			return artistName + " | Streams:  " + streams ;;
+			return artistName;
 		}
 
     }
