@@ -81,13 +81,13 @@ CREATE TABLE ArtistLeaderboard (
   LeaderID INT NOT NULL,
   ID INT NOT NULL,
   AuthorID INT NOT NULL,
-  ArtistName VARCHAR(255) NOT NULL,
+  ArtistName VARCHAR(255) NOT NULL, --apagar o artist name e id ??
   PRIMARY KEY (LeaderID, ID),
   FOREIGN KEY (LeaderID) REFERENCES Leaderboard(LeaderID),
   FOREIGN KEY (AuthorID) REFERENCES Artist(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE GlobalLeaderboard (
+CREATE TABLE GlobalLeaderboard ( --this is the songs leaderboard
   LeaderID INT NOT NULL,
   FOREIGN KEY (LeaderID) REFERENCES Leaderboard(LeaderID)
 );
