@@ -17,7 +17,7 @@ Raquel Vinagre 113736
 - [x]  indexes
 - [x]  cursores - guess not
 - [x]  normalizacao ? misterio - já está normalizado
-- [ ]  atualizar os diagramas
+- [x]  atualizar os diagramas
 - [ ]  relatório
 - [ ]  vídeo
 - [ ]  powerpoint
