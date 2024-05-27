@@ -120,6 +120,9 @@ namespace BeatBaseForms
                 comboBox18.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox18.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox18.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox27.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox27.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox27.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllSongs";
@@ -181,6 +184,9 @@ namespace BeatBaseForms
                         comboBox17.DataSource = stupid_song_list;
                         comboBox17.DisplayMember = "songName";
                         comboBox17.ValueMember = "songName";
+                        comboBox27.DataSource = stupid_song_list;
+                        comboBox27.DisplayMember = "songName";
+                        comboBox27.ValueMember = "SongID";
                         // comboBox14.DataSource = stupid_song_list;
                         // comboBox14.DisplayMember = "songName";
                         // comboBox14.ValueMember = "songName";
@@ -211,6 +217,9 @@ namespace BeatBaseForms
                 comboBox16.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox16.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox16.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox26.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox26.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox26.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllAlbums";
@@ -261,6 +270,9 @@ namespace BeatBaseForms
                         comboBox16.DataSource = stupid_album_list;
                         comboBox16.DisplayMember = "albumName";
                         comboBox16.ValueMember = "albumID";
+                        comboBox26.DataSource = stupid_album_list;
+                        comboBox26.DisplayMember = "albumName";
+                        comboBox26.ValueMember = "albumID";
 
 
                         comboBox21.DataSource = getAlbumsByArtist(
@@ -316,6 +328,9 @@ namespace BeatBaseForms
                 comboBox13.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox13.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox13.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox25.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox25.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox25.DropDownStyle = ComboBoxStyle.DropDown;
 
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllArtists";
@@ -375,6 +390,9 @@ namespace BeatBaseForms
                         comboBox15.DataSource = artists.Values.ToList();
                         comboBox15.DisplayMember = "artistName";
                         comboBox15.ValueMember = "artistID";
+                        comboBox25.DataSource = artists.Values.ToList();
+                        comboBox25.DisplayMember = "artistName";
+                        comboBox25.ValueMember = "artistID";
                     }
                 }
             }
@@ -1077,7 +1095,14 @@ namespace BeatBaseForms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) { }
+        private void button1_Click(object sender, EventArgs e) {
+
+            Song selectedSong = (Song)dataGridView1.CurrentRow.DataBoundItem;
+            int songID = selectedSong.SongID;
+            int playlistID = 1; //liked songs id
+            AddSongToPlaylist(songID, playlistID);
+
+        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
 
@@ -2714,6 +2739,23 @@ namespace BeatBaseForms
         {
             try
             {
+                // Construct the SQL SELECT command to check if the song is already in the playlist
+                string checkCommand = "SELECT COUNT(*) FROM PlaylistSong WHERE PlaylistID = @PlaylistID AND SongID = @SongID";
+
+                using (SqlCommand checkCmd = new SqlCommand(checkCommand, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+                    checkCmd.Parameters.AddWithValue("@SongID", songID);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("The song is already in the playlist.");
+                        return;
+                    }
+                }
+
                 // Construct the SQL INSERT command to add the song to the playlist
                 string insertCommand = "INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES (@PlaylistID, @SongID)";
 
@@ -2726,7 +2768,7 @@ namespace BeatBaseForms
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Song added to the playlist successfully!");
+                        MessageBox.Show("Song added to 'Liked Songs'!");
                         // Optionally, refresh the list of songs in the playlist
                         loadPlaylistSongs(playlistID);
                         changeBox18();
@@ -2741,6 +2783,7 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
         private void button20_Click(object sender, EventArgs e)
@@ -2896,6 +2939,142 @@ namespace BeatBaseForms
         private void label25_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label64_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox25_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click_3(object sender, EventArgs e)
+        {
+            // Get the artist ID from a relevant input (e.g., a combobox)
+            if (comboBox25.SelectedValue == null)
+            {
+                MessageBox.Show("Please select an artist to remove.");
+                return;
+            }
+
+            int artistID = (int)comboBox25.SelectedValue;
+
+            // SQL delete command
+            string deleteCommand = "DELETE FROM Artist WHERE ID = @ArtistID";
+
+            try
+            {
+                // Create a SQL command to delete an artist from the database
+                using (SqlCommand cmd = new SqlCommand(deleteCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ArtistID", artistID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Artist removed from the database.");
+                        // Optionally, refresh the artist list or other UI components
+                        loadArtists();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error removing artist from the database.");
+                    }
+
+                    // Clear the input fields
+                    comboBox25.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            // Ensure the album combobox has a selected value
+            if (comboBox26.SelectedValue == null)
+            {
+                MessageBox.Show("Please select an album to delete.");
+                return;
+            }
+
+            int albumID = (int)comboBox26.SelectedValue;
+
+            // SQL delete command
+            string deleteCommand = "DELETE FROM Album WHERE ID = @AlbumID";
+
+            try
+            {
+                // Create a SQL command to delete an album from the database
+                using (SqlCommand cmd = new SqlCommand(deleteCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@AlbumID", albumID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Album deleted from the database.");
+                        // Optionally, refresh the album list or other UI components
+                        loadAlbums();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error deleting album from the database.");
+                    }
+
+                    // Clear the input fields
+                    comboBox26.SelectedIndex = -1; // Reset combobox selection
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Construct the SQL DELETE command to remove the song
+
+                if (comboBox27.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a song to delete.");
+                    return;
+                }
+
+                int songID = (int)comboBox27.SelectedValue;
+
+                string deleteCommand = "DELETE FROM Song WHERE ID = @SongID";
+
+                using (SqlCommand cmd = new SqlCommand(deleteCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SongID", songID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Song removed successfully!");
+                        // Optionally, refresh the list of songs or other UI components
+                        loadSongs();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to remove the song.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
