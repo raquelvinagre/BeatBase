@@ -182,8 +182,8 @@ namespace BeatBaseForms
                             new Song { SongID = -1, songName = "Select song" }
                         );
                         comboBox17.DataSource = stupid_song_list;
-                        comboBox17.DisplayMember = "songName";
-                        comboBox17.ValueMember = "songName";
+                        // comboBox17.DisplayMember = "songName";
+                        // comboBox17.ValueMember = "songName";
                         comboBox27.DataSource = stupid_song_list;
                         comboBox27.DisplayMember = "songName";
                         comboBox27.ValueMember = "SongID";
@@ -3005,36 +3005,39 @@ namespace BeatBaseForms
 
             int albumID = (int)comboBox26.SelectedValue;
 
-            // SQL delete command
-            string deleteCommand = "DELETE FROM Album WHERE ID = @AlbumID";
+            // uses DeleteAlbumWithSongs procedure to delete an album
 
             try
             {
-                // Create a SQL command to delete an album from the database
-                using (SqlCommand cmd = new SqlCommand(deleteCommand, conn))
+                // Query string to call the stored procedure
+                string query = "EXEC DeleteAlbumWithSongs @AlbumID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    // Setting the command type to Text
+                    cmd.CommandType = CommandType.Text;
+
+                    // Adding the parameter required by the stored procedure
                     cmd.Parameters.AddWithValue("@AlbumID", albumID);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Album deleted from the database.");
-                        // Optionally, refresh the album list or other UI components
+
+                    
+                        MessageBox.Show("Album removed from the database.");
+                        // Optionally, refresh the list of albums
                         loadAlbums();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error deleting album from the database.");
-                    }
 
                     // Clear the input fields
-                    comboBox26.SelectedIndex = -1; // Reset combobox selection
+                    comboBox26.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
             {
+                // Displaying an error message in case of an exception
                 MessageBox.Show("Error: " + ex.Message);
             }
+
+
         }
 
         private void button10_Click(object sender, EventArgs e)

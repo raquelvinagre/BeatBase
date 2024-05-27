@@ -17,7 +17,9 @@
 
 		public override string ToString()
 		{
-			return songName + " | " + songArtist + " | " + songGenre + " | " + songDuration + " | " + songReleaseDate + " | " + streams;
+			if (SongID != -1) { return songName + " [" + SongID + "]"; }
+            else { return songName; }
+			
 		}
 
     }
