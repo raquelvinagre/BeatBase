@@ -2,12 +2,11 @@
 Projeto de Bases de Dados - BeatBase
 
 Diogo Fernandes 114137
-
 Raquel Vinagre 113736
 
 ## IMPORTANT
-- [ ]  adicionar opções para remover musicas e assim
-- [ ]  trigger para a duration da playlist
+- [x]  adicionar opções para remover musicas e assim
+- [x]  trigger para a duration da playlist
 - [ ]  imagem album
 
 # To-do:
@@ -31,6 +30,4 @@ Raquel Vinagre 113736
 - [x]  remover músicas
 - [x]  losing my fucking mind
 - [x]  same
-- [ ]  meter pra adicionar so dps do edit playlist e song
-- [ ]  remove nas páginas principais
-- [ ]  album covers
+- [x]  remove nas páginas principais
