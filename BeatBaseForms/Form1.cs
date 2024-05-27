@@ -23,6 +23,8 @@ namespace BeatBaseForms
         private ImageList tabImageList;
         private List<Song> songsWithoutAlbum_global = new List<Song>();
         private Dictionary<int, String> userMap = new Dictionary<int, String>();
+        private List<String> genres_songs = new List<String>();
+        private List<String> genres_playlist = new List<String>();
 
         public Form1()
         {
@@ -1976,8 +1978,8 @@ namespace BeatBaseForms
         {
             try
             {
-                // Query string to call the stored procedure
-                string query = "EXEC GetSongsWithoutAlbum";
+                // Query string to select from the view
+                string query = "SELECT * FROM SongsWithoutAlbums";
 
                 List<Song> songsWithoutAlbum = new List<Song>();
 
@@ -1990,7 +1992,7 @@ namespace BeatBaseForms
                     {
                         songsWithoutAlbum.Clear();
 
-                        // Reading data from the stored procedure result set
+                        // Reading data from the view result set
                         while (reader.Read())
                         {
                             Song song = new Song
@@ -2005,12 +2007,13 @@ namespace BeatBaseForms
                                 songAlbumID = null,
                                 streams = (int)reader["Streams"]
                             };
-                            // before adding the song to the list, check if the song is of the artist selected in the combobox15
+
+                            // Before adding the song to the list, check if the song is of the artist selected in the combobox15
                             // MessageBox.Show("Song Artist is " + song.songArtist + " and combobox15 value is " + comboBox15.SelectedValue.ToString());
-                            //if (song.songArtist == comboBox15.SelectedValue.ToString())
-                            //{
-                            //    songsWithoutAlbum.Add(song);
-                            //}
+                            // if (song.songArtist == comboBox15.SelectedValue.ToString())
+                            // {
+                            //     songsWithoutAlbum.Add(song);
+                            // }
                             songsWithoutAlbum.Add(song);
                             songsWithoutAlbum_global.Add(song);
                         }
@@ -2027,6 +2030,7 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         // private List<Song> LoadSongsWithoutAlbum()
         // {
@@ -2694,6 +2698,8 @@ namespace BeatBaseForms
                 {
                     // Setting the command type to Text
                     cmd.CommandType = CommandType.Text;
+                    //clear the user map
+                    userMap.Clear();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -2733,6 +2739,8 @@ namespace BeatBaseForms
 
                 // Query string to call the stored procedure
                 string procedure = "GetSongGenres";
+                //clear the genres list
+                genres_songs.Clear();
 
                 using (SqlCommand cmd = new SqlCommand(procedure, conn))
                 {
@@ -2741,18 +2749,18 @@ namespace BeatBaseForms
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<string> genres = new List<string>();
 
                         // Reading data from the stored procedure result set
                         while (reader.Read())
                         {
-                            genres.Add(reader["Genre"].ToString());
+                            genres_songs.Add(reader["Genre"].ToString());
                         }
 
-                        comboBox5.DataSource = genres;
                         reader.Close();
                     }
+
                 }
+                        comboBox5.DataSource = genres_songs;
             }
             catch (Exception ex)
             {
@@ -2774,6 +2782,7 @@ namespace BeatBaseForms
 
                 // Query string to call the stored procedure
                 string procedure = "GetPlaylistGenres";
+                genres_playlist.Clear();
 
                 using (SqlCommand cmd = new SqlCommand(procedure, conn))
                 {
@@ -2782,18 +2791,18 @@ namespace BeatBaseForms
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        List<string> genres = new List<string>();
 
                         // Reading data from the stored procedure result set
                         while (reader.Read())
                         {
-                            genres.Add(reader["Genre"].ToString());
+                            genres_playlist.Add(reader["Genre"].ToString());
                         }
 
-                        comboBox7.DataSource = genres;
                         reader.Close();
                     }
                 }
+
+                        comboBox7.DataSource = genres_playlist;
             }
             catch (Exception ex)
             {
