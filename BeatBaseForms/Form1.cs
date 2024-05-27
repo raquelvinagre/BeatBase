@@ -2015,9 +2015,9 @@ namespace BeatBaseForms
                             songsWithoutAlbum_global.Add(song);
                         }
                         reader.Close();
-                        comboBox14.DataSource = songsWithoutAlbum;
-                        comboBox14.DisplayMember = "songName";
-                        comboBox14.ValueMember = "SongID";
+                        // comboBox14.DataSource = songsWithoutAlbum;
+                        // comboBox14.DisplayMember = "songName";
+                        // comboBox14.ValueMember = "SongID";
                     }
                 }
             }
@@ -2446,6 +2446,8 @@ namespace BeatBaseForms
             int artistID = (int)comboBox15.SelectedValue;
             //remove 
             comboBox14.DataSource = songsWithoutAlbum_global.Where(song => song.songArtist == artistID.ToString()).ToList();
+            comboBox14.DisplayMember = "songName";
+            comboBox14.ValueMember = "SongID";
             // combo box 14 source is the global songs without album list without the first song
 
         }
@@ -2464,7 +2466,26 @@ namespace BeatBaseForms
         {
             if (comboBox14.SelectedValue is int selectedSongID && comboBox16.SelectedValue is int selectedAlbumID)
             {
-                AddSongToAlbum(selectedSongID, selectedAlbumID);
+                // if there's a song in the datagridview that has a different artistID from combobox15, we print hey
+                bool x = true; // there's no songs with different artistID
+                if (dataGridView2.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dataGridView2.Rows)
+                    {
+                        if (row.Cells["songArtist"].Value.ToString() != comboBox15.SelectedValue.ToString())
+                        {
+                            x = false;
+                        }
+                    }
+                }
+                if (x)
+                {
+                    AddSongToAlbum(selectedSongID, selectedAlbumID);
+                }
+                else
+                {
+                    MessageBox.Show("You can't have two different artists within the same album.");
+                }
             }
             else
             {
