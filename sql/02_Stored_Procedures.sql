@@ -5,7 +5,6 @@ DROP PROCEDURE GetAllPlaylists;
 DROP PROCEDURE GetAllSongs;
 DROP PROCEDURE GetAllAlbums;
 DROP PROCEDURE GetSongsByAlbumID;
-DROP PROCEDURE GetSongsWithoutAlbum;
 DROP PROCEDURE GetAllUsers;
 DROP PROCEDURE DeleteAlbumWithSongs;
 
@@ -77,15 +76,6 @@ BEGIN
     WHERE 
         AlbumID = @AlbumID;
 END
-go
-
-CREATE PROCEDURE GetSongsWithoutAlbum
-AS
-BEGIN
-    SELECT ID, Name, ArtistID, Genre, Duration, Lyrics, ReleaseDate, AlbumID, Streams
-    FROM Song
-    WHERE AlbumID IS NULL;
-END;
 go
 
 CREATE PROCEDURE GetAllUsers

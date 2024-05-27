@@ -67,6 +67,7 @@ namespace BeatBaseForms
 
         private void InitializeComponents()
         {
+           
             // Setup mainTabControl
             mainTabControl = new TabControl();
             mainTabControl.Dock = DockStyle.Fill;
@@ -112,6 +113,10 @@ namespace BeatBaseForms
         {
             try
             {
+                comboBox8.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox8.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox8.DropDownStyle = ComboBoxStyle.DropDown;
+
                 comboBox4.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox4.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox4.DropDownStyle = ComboBoxStyle.DropDown;
@@ -1255,6 +1260,25 @@ namespace BeatBaseForms
                         reader.Close();
 
                         dataGridView1.DataSource = songs_filter;
+                        dataGridView1.Columns[0].Visible = false;
+                        dataGridView1.Columns[2].HeaderText = "Artist";
+                        dataGridView1.Columns[1].HeaderText = "Song Name";
+                        dataGridView1.Columns[3].HeaderText = "Genre";
+                        dataGridView1.Columns[4].HeaderText = "Duration";
+                        dataGridView1.Columns[5].HeaderText = "Lyrics";
+                        dataGridView1.Columns[6].HeaderText = "Release Date";
+                        dataGridView1.Columns[8].HeaderText = "Streams";
+                        dataGridView1.Columns[7].Visible = false;
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            var artistID = row.Cells["songArtist"].Value.ToString();
+                            int artistID_int = Int32.Parse(artistID);
+                            if (artists.TryGetValue(artistID_int, out var artistName))
+                            {
+                                row.Cells["songArtist"].Value = artistName;
+                            }
+
+                        }
                     }
                 }
             }
@@ -1341,6 +1365,7 @@ namespace BeatBaseForms
                         }
                         reader.Close();
                         dataGridView4.DataSource = playlists_filter;
+
                     }
                 }
             }
@@ -1394,6 +1419,25 @@ namespace BeatBaseForms
                         reader.Close();
 
                         dataGridView1.DataSource = songs_filter;
+                        dataGridView1.Columns[0].Visible = false;
+                        dataGridView1.Columns[2].HeaderText = "Artist";
+                        dataGridView1.Columns[1].HeaderText = "Song Name";
+                        dataGridView1.Columns[3].HeaderText = "Genre";
+                        dataGridView1.Columns[4].HeaderText = "Duration";
+                        dataGridView1.Columns[5].HeaderText = "Lyrics";
+                        dataGridView1.Columns[6].HeaderText = "Release Date";
+                        dataGridView1.Columns[8].HeaderText = "Streams";
+                        dataGridView1.Columns[7].Visible = false;
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            var artistID_ = row.Cells["songArtist"].Value.ToString();
+                            int artistID_int = Int32.Parse(artistID_);
+                            if (artists.TryGetValue(artistID_int, out var artistName))
+                            {
+                                row.Cells["songArtist"].Value = artistName;
+                            }
+
+                        }
                     }
                 }
             }
@@ -1407,7 +1451,7 @@ namespace BeatBaseForms
         {
             string selectedFilter = comboBox5.SelectedItem.ToString();
 
-            if (!string.IsNullOrEmpty(selectedFilter))
+            if (!string.IsNullOrEmpty(selectedFilter) && comboBox5.SelectedIndex != 0)
             {
                 FilterSongsByGenre(selectedFilter);
             }
@@ -1560,7 +1604,7 @@ namespace BeatBaseForms
         {
             string selectedFilter = comboBox7.SelectedItem.ToString();
 
-            if (!string.IsNullOrEmpty(selectedFilter))
+            if (!string.IsNullOrEmpty(selectedFilter) && comboBox7.SelectedIndex !=0)
             {
                 FilterPlaylistsByGenre(selectedFilter);
             }
@@ -1576,8 +1620,14 @@ namespace BeatBaseForms
 
             if (visibility != "")
             {
-                int visibility_int = Int32.Parse(visibility);
-                FilterPlaylistsByVisibility(Convert.ToBoolean(visibility_int));
+                if (visibility == "Private")
+                {
+                    FilterPlaylistsByVisibility(false);
+                }
+                else
+                {
+                    FilterPlaylistsByVisibility(true);
+                }
             }
             else
             {
@@ -2741,6 +2791,7 @@ namespace BeatBaseForms
                 string procedure = "GetSongGenres";
                 //clear the genres list
                 genres_songs.Clear();
+                genres_songs.Insert(0, "Select Genre");
 
                 using (SqlCommand cmd = new SqlCommand(procedure, conn))
                 {
@@ -2783,6 +2834,8 @@ namespace BeatBaseForms
                 // Query string to call the stored procedure
                 string procedure = "GetPlaylistGenres";
                 genres_playlist.Clear();
+                genres_playlist.Insert(0, "Select Genre");
+
 
                 using (SqlCommand cmd = new SqlCommand(procedure, conn))
                 {
