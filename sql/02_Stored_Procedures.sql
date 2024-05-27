@@ -1,4 +1,6 @@
 DROP PROCEDURE GetAllArtists;
+DROP PROCEDURE GetSongGenres;
+DROP PROCEDURE GetPlaylistGenres;
 DROP PROCEDURE GetAllPlaylists;
 DROP PROCEDURE GetAllSongs;
 DROP PROCEDURE GetAllAlbums;
@@ -13,6 +15,22 @@ AS
 BEGIN
     SELECT ID, ArtistName, Streams
     FROM Artist
+END
+go
+
+CREATE PROCEDURE GetSongGenres
+AS
+BEGIN
+    SELECT DISTINCT Genre
+    FROM Song
+END
+go
+
+CREATE PROCEDURE GetPlaylistGenres
+AS
+BEGIN
+    SELECT DISTINCT Genre
+    FROM Playlist
 END
 go
 

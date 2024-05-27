@@ -38,6 +38,8 @@ namespace BeatBaseForms
             InitializeTabControl();
             LoadSongsWithoutAlbum();
             FillUserMap();
+            FillSongGenre();
+            FillPlaylistGenre();
         }
 
         private SqlConnection getSqlConn()
@@ -437,6 +439,10 @@ namespace BeatBaseForms
                 comboBox19.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox19.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox19.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox28.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox28.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox28.DropDownStyle = ComboBoxStyle.DropDown;
+
                 // Create a SQL command to call the stored procedure
                 string storedProcedure = "GetAllPlaylists";
 
@@ -479,6 +485,9 @@ namespace BeatBaseForms
                         comboBox19.DataSource = stupid_playlist_list;
                         comboBox19.DisplayMember = "playlistName";
                         comboBox19.ValueMember = "playlistID";
+                        comboBox28.DataSource = stupid_playlist_list;
+                        comboBox28.DisplayMember = "playlistName";
+                        comboBox28.ValueMember = "playlistID";
                         reader.Close();
                     }
 
@@ -1051,15 +1060,14 @@ namespace BeatBaseForms
             int totalDuration = 0; // Initialize or calculate this based on your logic
 
             // Checking if we are missing any values from the textboxes
-            if (
-                string.IsNullOrEmpty(playlistName)
-                || string.IsNullOrEmpty(genre)
-                || !int.TryParse(textBox1.Text, out authorID)
-            )
+            if (string.IsNullOrEmpty(playlistName) || string.IsNullOrEmpty(genre) || comboBox29.SelectedValue == null)
             {
-                MessageBox.Show("Please fill in all the fields and ensure Author ID is a number.");
+                MessageBox.Show("Please fill in all the fields and select an author.");
                 return;
             }
+
+            // Get the selected author ID from the combobox
+            authorID = (int)comboBox29.SelectedValue;
 
             // Set visibility based on the selected radio button
             if (radioButton3.Checked)
@@ -1100,8 +1108,7 @@ namespace BeatBaseForms
                     // Clear the textboxes
                     textBox11.Text = "";
                     textBox9.Text = "";
-                    textBox10.Text = "";
-                    textBox1.Text = "";
+                    comboBox29.SelectedIndex = -1; // Reset combobox selection
 
                     // Reload the playlists list
                     loadPlaylists();
@@ -2656,6 +2663,9 @@ namespace BeatBaseForms
                 comboBox12.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox12.AutoCompleteSource = AutoCompleteSource.ListItems;
                 comboBox12.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox29.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox29.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox29.DropDownStyle = ComboBoxStyle.DropDown;
                 // Query string to call the stored procedure
                 string query = "EXEC GetAllUsers";
 
@@ -2676,6 +2686,9 @@ namespace BeatBaseForms
                         comboBox12.DataSource = new BindingSource(userMap, null);
                         comboBox12.DisplayMember = "Value";
                         comboBox12.ValueMember = "Key";
+                        comboBox29.DataSource = new BindingSource(userMap, null);
+                        comboBox29.DisplayMember = "Value";
+                        comboBox29.ValueMember = "Key";
                         reader.Close();
                     }
                 }
@@ -2685,6 +2698,88 @@ namespace BeatBaseForms
                 // Displaying an error message in case of an exception
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void FillSongGenre()
+        {
+            //use the stored procedure GetAllUsers to fill the user map
+            //use the stored procedure GetSongGenres to fill the combobox
+            try
+            {
+                comboBox5.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox5.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox5.DropDownStyle = ComboBoxStyle.DropDown;
+
+                // Query string to call the stored procedure
+                string procedure = "GetSongGenres";
+
+                using (SqlCommand cmd = new SqlCommand(procedure, conn))
+                {
+                    // Setting the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<string> genres = new List<string>();
+
+                        // Reading data from the stored procedure result set
+                        while (reader.Read())
+                        {
+                            genres.Add(reader["Genre"].ToString());
+                        }
+
+                        comboBox5.DataSource = genres;
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+        }
+
+        private void FillPlaylistGenre()
+        {
+            //use the stored procedure GetAllUsers to fill the user map
+            //use the stored procedure GetSongGenres to fill the combobox
+            try
+            {
+                comboBox7.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox7.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox7.DropDownStyle = ComboBoxStyle.DropDown;
+
+                // Query string to call the stored procedure
+                string procedure = "GetPlaylistGenres";
+
+                using (SqlCommand cmd = new SqlCommand(procedure, conn))
+                {
+                    // Setting the command type to StoredProcedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        List<string> genres = new List<string>();
+
+                        // Reading data from the stored procedure result set
+                        while (reader.Read())
+                        {
+                            genres.Add(reader["Genre"].ToString());
+                        }
+
+                        comboBox7.DataSource = genres;
+                        reader.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Displaying an error message in case of an exception
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
         }
 
         private void button8_Click_2(object sender, EventArgs e)
@@ -2793,7 +2888,7 @@ namespace BeatBaseForms
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Song added to 'Liked Songs'!");
+                        MessageBox.Show("Song added to playlist successfully!");
                         // Optionally, refresh the list of songs in the playlist
                         loadPlaylistSongs(playlistID);
                         changeBox18();
@@ -3103,6 +3198,55 @@ namespace BeatBaseForms
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comboBox28.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select a playlist to delete.");
+                    return;
+                }
+
+                int playlistID = (int)comboBox28.SelectedValue;
+
+                // Construct the SQL DELETE command to remove the playlist
+                string deleteCommand = "DELETE FROM Playlist WHERE ID = @PlaylistID";
+
+                using (SqlCommand cmd = new SqlCommand(deleteCommand, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PlaylistID", playlistID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Playlist removed successfully!");
+                        // Optionally, refresh the list of playlists or other UI components
+                        loadPlaylists();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to remove the playlist.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void comboBox12_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox29_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
