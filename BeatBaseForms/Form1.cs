@@ -159,7 +159,16 @@ namespace BeatBaseForms
                         }
 
                             dataGridView1.DataSource = songs.Values.ToList();
+                            //set the first col to be invisible
+                            dataGridView1.Columns[0].Visible = false;
                             dataGridView1.Columns[2].HeaderText = "Artist";
+                            dataGridView1.Columns[1].HeaderText = "Song Name";
+                            dataGridView1.Columns[3].HeaderText = "Genre";
+                            dataGridView1.Columns[4].HeaderText = "Duration";
+                            dataGridView1.Columns[5].HeaderText = "Lyrics";
+                            dataGridView1.Columns[6].HeaderText = "Release Date";
+                            dataGridView1.Columns[8].HeaderText = "Streams";
+                            dataGridView1.Columns[7].Visible = false;
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 var artistID = row.Cells["songArtist"].Value.ToString();
@@ -168,6 +177,7 @@ namespace BeatBaseForms
                                 {
                                     row.Cells["songArtist"].Value = artistName;
                                 }
+
                             }
                         reader.Close(); // Ensure reader is closed
 
@@ -249,6 +259,21 @@ namespace BeatBaseForms
                             albums[album.albumID] = album;
 
                         }
+
+                        //   foreach (DataGridViewRow row in dataGridView1.Rows)
+                        // {
+                        //     var albumID = row.Cells["songAlbumID"].Value;
+                        //     if (albumID != null)
+                        //     {
+                        //         int albumID_int;
+                        //         if (int.TryParse(albumID.ToString(), out albumID_int))
+                        //         {
+                        //             string albumName_ = albums.ContainsKey(albumID_int) ? albums[albumID_int].albumName : ""; // Assuming albums is a dictionary containing album information
+                        //             row.Cells["songAlbumID"].Value = albumName_;
+                        //         }
+                        //     }
+                        // }
+
                         List<Album> temp_list = albums.Values.ToList();
                         temp_list.Insert(
                             0,
