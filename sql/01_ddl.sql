@@ -1,14 +1,16 @@
--- Drop existing tables if they exist
+-- Drop referencing tables
+DROP TABLE IF EXISTS PlaylistSong;
 DROP TABLE IF EXISTS BelongsTo;
-DROP TABLE IF EXISTS GlobalLeaderboard;
 DROP TABLE IF EXISTS ArtistLeaderboard;
-DROP TABLE IF EXISTS Leaderboard;
+DROP TABLE IF EXISTS GlobalLeaderboard;
+
+-- Drop referenced tables
 DROP TABLE IF EXISTS Song;
 DROP TABLE IF EXISTS Album;
 DROP TABLE IF EXISTS Playlist;
 DROP TABLE IF EXISTS Artist;
 DROP TABLE IF EXISTS [User];
-DROP TABLE IF EXISTS PlaylistSong;
+DROP TABLE IF EXISTS Leaderboard;
 
 -- Create tables
 CREATE TABLE Artist (
@@ -39,6 +41,7 @@ CREATE TABLE Album (
   ReleaseDate DATE,
   TotalDuration INT,
   ArtistID INT NOT NULL,
+  CoverImage VARBINARY(MAX),
   FOREIGN KEY (ArtistID) REFERENCES Artist(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -90,4 +93,4 @@ CREATE TABLE ArtistLeaderboard (
 CREATE TABLE GlobalLeaderboard ( --this is the songs leaderboard
   LeaderID INT NOT NULL,
   FOREIGN KEY (LeaderID) REFERENCES Leaderboard(LeaderID)
-);
+);;

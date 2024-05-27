@@ -155,7 +155,6 @@ namespace BeatBaseForms
                             songs[song.SongID] = song;
                         }
 
-
                             dataGridView1.DataSource = songs.Values.ToList();
                             dataGridView1.Columns[2].HeaderText = "Artist";
                             foreach (DataGridViewRow row in dataGridView1.Rows)

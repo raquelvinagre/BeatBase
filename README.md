@@ -5,6 +5,11 @@ Diogo Fernandes 114137
 
 Raquel Vinagre 113736
 
+## IMPORTANT
+- [ ]  adicionar opções para remover musicas e assim
+- [ ]  trigger para a duration da playlist
+- [ ]  imagem album
+
 # To-do:
 - [ ]  (quase)adicionar músicas a playlists
 - [x]  mostrar músicas dos álbuns
