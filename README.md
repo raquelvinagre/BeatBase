@@ -11,7 +11,7 @@ Raquel Vinagre 113736
 - [ ]  imagem album
 
 # To-do:
-- [ ]  (quase)adicionar músicas a playlists
+- [x]  (quase)adicionar músicas a playlists
 - [x]  mostrar músicas dos álbuns
 - [x]  editar músicas, álbuns...
 - [x]  (melhorar)fazer leaderboards
@@ -25,10 +25,12 @@ Raquel Vinagre 113736
 - [x]  atualizar os diagramas
 - [ ]  relatório
 - [ ]  vídeo
-- [ ]  powerpoint
+- [x]  powerpoint
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
 - [x]  remover músicas
 - [x]  losing my fucking mind
 - [x]  same
 - [ ]  meter pra adicionar so dps do edit playlist e song
+- [ ]  remove nas páginas principais
+- [ ]  album covers
