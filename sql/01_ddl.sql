@@ -41,7 +41,7 @@ CREATE TABLE Album (
   ReleaseDate DATE,
   TotalDuration INT DEFAULT 0,
   ArtistID INT NOT NULL,
-  --CoverImage VARBINARY(MAX),
+  CoverImage VARBINARY(MAX),
   FOREIGN KEY (ArtistID) REFERENCES Artist(ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
