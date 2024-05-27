@@ -89,6 +89,7 @@ RETURN (
 GO
 
 DROP FUNCTION IF EXISTS GetSongsInPlaylist;
+go
 CREATE FUNCTION GetSongsInPlaylist (@PlaylistID INT)
 RETURNS TABLE
 AS

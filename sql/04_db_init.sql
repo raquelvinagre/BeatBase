@@ -61,49 +61,50 @@ INSERT INTO [User] (Username) VALUES
 ('user10');
 
 -- Insert into Playlist without specifying ID
-INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) VALUES
-(3600, 'Pop', 1, 'Liked Songs', 1),
-(5400, 'Hip-Hop', 0, 'Workout Playlist', 2),
-(4200, 'Electronic', 1, 'Party Mix', 3),
+INSERT INTO Playlist (Genre, Visibility, Name, AuthorID) VALUES
+('Pop', 1, 'Liked Songs', 1),
+('Hip-Hop', 0, 'Workout Playlist', 2),
+('Electronic', 1, 'Party Mix', 3),
 -- New playlists
-(4800, 'R&B', 1, 'Chill Vibes', 4),
-(3000, 'Rock', 0, 'Rock Anthems', 5),
-(3600, 'Pop', 1, 'Top Hits', 6),
-(4500, 'Hip-Hop', 0, 'Rap Caviar', 7),
-(4200, 'Electronic', 1, 'EDM Hits', 8),
-(3000, 'Country', 0, 'Country Roads', 9),
-(4800, 'Jazz', 1, 'Smooth Jazz', 10);
+('R&B', 1, 'Chill Vibes', 4),
+('Rock', 0, 'Rock Anthems', 5),
+('Pop', 1, 'Top Hits', 6),
+('Hip-Hop', 0, 'Rap Caviar', 7),
+('Electronic', 1, 'EDM Hits', 8),
+('Country', 0, 'Country Roads', 9),
+('Jazz', 1, 'Smooth Jazz', 10);
+
 
 -- Insert into Album without specifying ID
-INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) VALUES
-('After Hours', '2020-03-20', 3600, 1),
-('Scorpion', '2018-06-29', 5400, 2),
-('Folklore', '2020-07-23', 4200, 3),
-('Good Kid, M.A.A.D City', '2012-10-22', 3000, 4),
-('When We All Fall Asleep, Where Do We Go?', '2019-03-29', 2800, 5),
+INSERT INTO Album (Name, ReleaseDate, ArtistID) VALUES
+('After Hours', '2020-03-20',  1),
+('Scorpion', '2018-06-29',  2),
+('Folklore', '2020-07-23',  3),
+('Good Kid, M.A.A.D City', '2012-10-22',  4),
+('When We All Fall Asleep, Where Do We Go?', '2019-03-29',  5),
 -- New albums
-('Lemonade', '2016-04-23', 3500, 12),
-('4:44', '2017-06-30', 3200, 13),
-('Revival', '2017-12-15', 3000, 14),
-('ANTI', '2016-01-28', 3100, 15),
-('25', '2015-11-20', 2900, 16),
-('24K Magic', '2016-11-18', 2800, 17),
-('Joanne', '2016-10-21', 2600, 18),
-('El Dorado', '2017-05-26', 2400, 19),
-('Witness', '2017-06-09', 2200, 20),
-('Illuminate', '2016-09-23', 2000, 21),
-('Camila', '2018-01-12', 1800, 22),
-('Invasion of Privacy', '2018-04-06', 1600, 23),
-('Queen', '2018-08-10', 1400, 24),
-('Colores', '2020-03-19', 1200, 25),
-('11:11', '2019-05-17', 1000, 26),
-('This Is Acting', '2016-01-29', 3600, 27),
-('Mind of Mine', '2016-03-25', 3400, 28),
-('The Thrill of It All', '2017-11-03', 3200, 29),
-('Future Nostalgia', '2020-03-27', 3000, 30),
-('Fine Line', '2019-12-13', 2800, 31),
-('Manic', '2020-01-17', 2600, 32),
-('Free Spirit', '2019-04-05', 2400, 33);
+('Lemonade', '2016-04-23',  12),
+('4:44', '2017-06-30',  13),
+('Revival', '2017-12-15',  14),
+('ANTI', '2016-01-28',  15),
+('25', '2015-11-20',  16),
+('24K Magic', '2016-11-18',  17),
+('Joanne', '2016-10-21',  18),
+('El Dorado', '2017-05-26',  19),
+('Witness', '2017-06-09',  20),
+('Illuminate', '2016-09-23',  21),
+('Camila', '2018-01-12',  22),
+('Invasion of Privacy', '2018-04-06',  23),
+('Queen', '2018-08-10',  24),
+('Colores', '2020-03-19',  25),
+('11:11', '2019-05-17',  26),
+('This Is Acting', '2016-01-29',  27),
+('Mind of Mine', '2016-03-25',  28),
+('The Thrill of It All', '2017-11-03',  29),
+('Future Nostalgia', '2020-03-27',  30),
+('Fine Line', '2019-12-13',  31),
+('Manic', '2020-01-17',  32),
+('Free Spirit', '2019-04-05',  33);
 
 -- Insert into Song without specifying ID
 INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) VALUES

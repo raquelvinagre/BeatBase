@@ -27,7 +27,7 @@ CREATE TABLE [User] (
 
 CREATE TABLE Playlist (
   ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  TotalDuration INT,
+  TotalDuration INT DEFAULT 0,
   Genre VARCHAR(255),
   Visibility BIT,
   Name VARCHAR(255),
@@ -39,7 +39,7 @@ CREATE TABLE Album (
   ID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
   Name VARCHAR(255),
   ReleaseDate DATE,
-  TotalDuration INT,
+  TotalDuration INT DEFAULT 0,
   ArtistID INT NOT NULL,
   --CoverImage VARBINARY(MAX),
   FOREIGN KEY (ArtistID) REFERENCES Artist(ID) ON DELETE CASCADE ON UPDATE CASCADE
