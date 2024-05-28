@@ -823,14 +823,7 @@ namespace BeatBaseForms
 
 
 
-            // we have to make sure that the album id is from the selected artist
-            if (songAlbumID != -1) { 
-            if (albums[songAlbumID].albumArtist != songArtist)
-            {
-                MessageBox.Show("Album ID must be from the selected artist.");
-                return;
-            }
-            }
+          
 
             string insertCommand =
                 "INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) "
