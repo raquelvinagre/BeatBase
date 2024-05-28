@@ -23,7 +23,7 @@ Raquel Vinagre 113736
 - [x]  normalizacao ? misterio - já está normalizado
 - [x]  atualizar os diagramas
 - [ ]  relatório
-- [ ]  vídeo
+- [x]  vídeo
 - [x]  powerpoint
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
