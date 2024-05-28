@@ -808,7 +808,7 @@ namespace BeatBaseForms
 
             if (radioButton2.Checked) //single
             {
-                songAlbumID = null;
+                songAlbumID = -1;
             }
 
             if (radioButton1.Checked) //part of album
@@ -824,10 +824,12 @@ namespace BeatBaseForms
 
 
             // we have to make sure that the album id is from the selected artist
+            if (songAlbumID != -1) { 
             if (albums[songAlbumID].albumArtist != songArtist)
             {
                 MessageBox.Show("Album ID must be from the selected artist.");
                 return;
+            }
             }
 
             string insertCommand =
