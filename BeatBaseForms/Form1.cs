@@ -42,6 +42,7 @@ namespace BeatBaseForms
             FillUserMap();
             FillSongGenre();
             FillPlaylistGenre();
+            LoadStatistics();
         }
 
         private SqlConnection getSqlConn()
@@ -3330,6 +3331,78 @@ namespace BeatBaseForms
         private void comboBox29_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoadStatistics()
+        {
+            try
+            {
+                // Ensure the connection is open
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Queries for statistics
+                string queryTotalSongs = "SELECT TotalSongsCount FROM TotalSongs";
+                string queryTotalAlbums = "SELECT TotalAlbumsCount FROM TotalAlbums";
+                string queryTotalArtists = "SELECT TotalArtistsCount FROM TotalArtists";
+                string queryTotalPlaylists = "SELECT TotalPlaylistsCount FROM TotalPlaylists";
+                string queryAvgSongDuration = "SELECT AvgSongDuration FROM AverageSongDuration";
+                string querySongGenre = "SELECT Genre FROM MostPopularSongGenre";
+                string queryPlaylistGenre = "SELECT Genre FROM MostPopularPlaylistGenre";
+                string queryAvgNumSongsPerArtist = "SELECT AvgNumSongsPerArtist FROM AverageNumSongsPerArtist";
+                string queryAvgNumSongsPerAlbum = "SELECT AvgNumSongsPerAlbum FROM AverageNumSongsPerAlbum";
+
+                using (SqlCommand cmdTotalSongs = new SqlCommand(queryTotalSongs, conn))
+                using (SqlCommand cmdTotalAlbums = new SqlCommand(queryTotalAlbums, conn))
+                using (SqlCommand cmdTotalArtists = new SqlCommand(queryTotalArtists, conn))
+                using (SqlCommand cmdTotalPlaylists = new SqlCommand(queryTotalPlaylists, conn))
+                using (SqlCommand cmdAvgSongDuration = new SqlCommand(queryAvgSongDuration, conn))
+                using (SqlCommand cmdSongGenre = new SqlCommand(querySongGenre, conn))
+                using (SqlCommand cmdPlaylistGenre = new SqlCommand(queryPlaylistGenre, conn))
+                using (SqlCommand cmdAvgNumSongsPerArtist = new SqlCommand(queryAvgNumSongsPerArtist, conn))
+                using (SqlCommand cmdAvgNumSongsPerAlbum = new SqlCommand(queryAvgNumSongsPerAlbum, conn))
+                {
+                    // Get total songs
+                    int totalSongs = (int)cmdTotalSongs.ExecuteScalar();
+                    textBox1.Text = totalSongs.ToString();
+
+                    // Get total albums
+                    int totalAlbums = (int)cmdTotalAlbums.ExecuteScalar();
+                    textBox20.Text = totalAlbums.ToString();
+
+                    // Get total artists
+                    int totalArtists = (int)cmdTotalArtists.ExecuteScalar();
+                    textBox23.Text = totalArtists.ToString();
+
+                    // Get total playlists
+                    int totalPlaylists = (int)cmdTotalPlaylists.ExecuteScalar();
+                    textBox26.Text = totalPlaylists.ToString();
+
+                    // Get average song duration
+                    int avgSongDuration = (int)cmdAvgSongDuration.ExecuteScalar();
+                    textBox14.Text = avgSongDuration.ToString("F2");
+
+                    // Get the most popular song genre
+                    string mostPopularSongGenre = (string)cmdSongGenre.ExecuteScalar();
+                    textBox17.Text = mostPopularSongGenre;
+
+                    // Get the most popular playlist genre
+                    string mostPopularPlaylistGenre = (string)cmdPlaylistGenre.ExecuteScalar();
+                    textBox22.Text = mostPopularPlaylistGenre;
+
+                    int avgSongsPerArtist = (int)cmdAvgNumSongsPerArtist.ExecuteScalar();
+                    textBox24.Text = avgSongsPerArtist.ToString("F2");
+
+                    int avgSongsPerAlbum = (int)cmdAvgNumSongsPerAlbum.ExecuteScalar();
+                    textBox21.Text = avgSongsPerAlbum.ToString("F2");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
