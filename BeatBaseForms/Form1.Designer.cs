@@ -1324,7 +1324,7 @@ namespace BeatBaseForms
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(735, 187);
+            this.button9.Location = new System.Drawing.Point(652, 172);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(152, 51);
             this.button9.TabIndex = 46;
@@ -1334,7 +1334,7 @@ namespace BeatBaseForms
             // comboBox26
             // 
             this.comboBox26.FormattingEnabled = true;
-            this.comboBox26.Location = new System.Drawing.Point(716, 112);
+            this.comboBox26.Location = new System.Drawing.Point(635, 120);
             this.comboBox26.Name = "comboBox26";
             this.comboBox26.Size = new System.Drawing.Size(191, 24);
             this.comboBox26.TabIndex = 43;
@@ -1344,7 +1344,7 @@ namespace BeatBaseForms
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label70.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label70.Location = new System.Drawing.Point(712, 56);
+            this.label70.Location = new System.Drawing.Point(631, 56);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(134, 20);
             this.label70.TabIndex = 42;
