@@ -53,7 +53,6 @@ namespace BeatBaseForms
             this.label29 = new System.Windows.Forms.Label();
             this.comboBox23 = new System.Windows.Forms.ComboBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.label58 = new System.Windows.Forms.Label();
             this.button17 = new System.Windows.Forms.Button();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
@@ -461,7 +460,6 @@ namespace BeatBaseForms
             this.tabPage6.Controls.Add(this.label29);
             this.tabPage6.Controls.Add(this.comboBox23);
             this.tabPage6.Controls.Add(this.dataGridView4);
-            this.tabPage6.Controls.Add(this.label58);
             this.tabPage6.Controls.Add(this.button17);
             this.tabPage6.Controls.Add(this.comboBox8);
             this.tabPage6.Controls.Add(this.label54);
@@ -511,18 +509,9 @@ namespace BeatBaseForms
             this.dataGridView4.TabIndex = 40;
             this.dataGridView4.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellContentClick);
             // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(808, 284);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(129, 32);
-            this.label58.TabIndex = 39;
-            this.label58.Text = "0 - Private | 1 - Public\r\n ";
-            // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(811, 355);
+            this.button17.Location = new System.Drawing.Point(811, 314);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(121, 24);
             this.button17.TabIndex = 38;
@@ -1208,7 +1197,7 @@ namespace BeatBaseForms
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(448, 51);
+            this.label25.Location = new System.Drawing.Point(336, 54);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(50, 16);
             this.label25.TabIndex = 43;
@@ -1218,16 +1207,16 @@ namespace BeatBaseForms
             // comboBox9
             // 
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(504, 51);
+            this.comboBox9.Location = new System.Drawing.Point(395, 51);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(181, 24);
+            this.comboBox9.Size = new System.Drawing.Size(191, 24);
             this.comboBox9.TabIndex = 42;
             this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged_1);
             // 
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(775, 93);
+            this.label68.Location = new System.Drawing.Point(705, 131);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(115, 16);
             this.label68.TabIndex = 41;
@@ -1236,7 +1225,7 @@ namespace BeatBaseForms
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(843, 180);
+            this.button21.Location = new System.Drawing.Point(773, 218);
             this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(61, 24);
@@ -1248,7 +1237,7 @@ namespace BeatBaseForms
             // comboBox20
             // 
             this.comboBox20.FormattingEnabled = true;
-            this.comboBox20.Location = new System.Drawing.Point(779, 138);
+            this.comboBox20.Location = new System.Drawing.Point(709, 176);
             this.comboBox20.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox20.Name = "comboBox20";
             this.comboBox20.Size = new System.Drawing.Size(188, 24);
@@ -1257,7 +1246,7 @@ namespace BeatBaseForms
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(815, 357);
+            this.button16.Location = new System.Drawing.Point(745, 395);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(121, 24);
             this.button16.TabIndex = 38;
@@ -1278,14 +1267,14 @@ namespace BeatBaseForms
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(609, 383);
+            this.dataGridView2.Size = new System.Drawing.Size(510, 383);
             this.dataGridView2.TabIndex = 34;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // comboBox11
             // 
             this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(779, 309);
+            this.comboBox11.Location = new System.Drawing.Point(709, 347);
             this.comboBox11.Name = "comboBox11";
             this.comboBox11.Size = new System.Drawing.Size(188, 24);
             this.comboBox11.TabIndex = 33;
@@ -1294,7 +1283,7 @@ namespace BeatBaseForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(776, 275);
+            this.label3.Location = new System.Drawing.Point(706, 313);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 16);
             this.label3.TabIndex = 27;
@@ -2688,7 +2677,6 @@ namespace BeatBaseForms
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.ComboBox comboBox16;
