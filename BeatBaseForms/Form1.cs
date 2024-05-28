@@ -79,6 +79,7 @@ namespace BeatBaseForms
             artistsTab = new TabPage("Artists");
             playlistsTab = new TabPage("Playlists");
             leaderboardTab = new TabPage("Leaderboard");
+ 
 
             // Add tabs to TabControl
             mainTabControl.Controls.Add(songsTab);
@@ -86,6 +87,7 @@ namespace BeatBaseForms
             mainTabControl.Controls.Add(artistsTab);
             mainTabControl.Controls.Add(playlistsTab);
             mainTabControl.Controls.Add(leaderboardTab);
+
 
             // Add TabControl to the form
             this.Controls.Add(mainTabControl);
@@ -103,11 +105,12 @@ namespace BeatBaseForms
         private void InitializeImageList()
         {
             tabImageList = new ImageList();
-            tabImageList.Images.Add("songs", Properties.Resources.songs); // Replace with your actual resource name
-            tabImageList.Images.Add("albums", Properties.Resources.album); // Replace with your actual resource name
-            tabImageList.Images.Add("artists", Properties.Resources.artist); // Replace with your actual resource name
-            tabImageList.Images.Add("playlists", Properties.Resources.playlist); // Replace with your actual resource name
-            tabImageList.Images.Add("leaderboard", Properties.Resources.leaderboard); // Replace with your actual resource name
+            tabImageList.Images.Add("songs", Properties.Resources.songs); 
+            tabImageList.Images.Add("albums", Properties.Resources.album); 
+            tabImageList.Images.Add("artists", Properties.Resources.artist); 
+            tabImageList.Images.Add("playlists", Properties.Resources.playlist); 
+            tabImageList.Images.Add("leaderboard", Properties.Resources.leaderboard);
+            tabImageList.Images.Add("statistics", Properties.Resources.statistics);
         }
 
         private void loadSongs()
@@ -638,6 +641,7 @@ namespace BeatBaseForms
             artistsTab.ImageIndex = 2; // Index of the icon in the ImageList
             playlistsTab.ImageIndex = 3; // Index of the icon in the ImageList
             leaderboardTab.ImageIndex = 4; // Index of the icon in the ImageList
+            tabPage5.ImageIndex = 5; // Index of the icon in the ImageList
         }
 
         private void buttonCreatePlaylist_Click(object sender, EventArgs e) { }
