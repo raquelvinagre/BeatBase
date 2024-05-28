@@ -2198,8 +2198,8 @@ namespace BeatBaseForms
                         // loadAlbums();
 
                         textBox15.Text = string.Empty;
-                        comboBox16.SelectedIndex = -1;
-                        comboBox15.SelectedIndex = -1;
+                        comboBox16.SelectedIndex = 0;
+                        comboBox15.SelectedIndex = 0;
                         dateTimePicker5.Value = DateTime.Now; // Reset to current date
                         loadAlbums();
                     }
@@ -2211,7 +2211,7 @@ namespace BeatBaseForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Errors: " + ex.Message);
             }
         }
 
