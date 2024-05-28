@@ -181,7 +181,8 @@ namespace BeatBaseForms
                             dataGridView1.Columns[5].HeaderText = "Lyrics";
                             dataGridView1.Columns[6].HeaderText = "Release Date";
                             dataGridView1.Columns[8].HeaderText = "Streams";
-                            dataGridView1.Columns[7].Visible = false;
+                            //
+                            //dataGridView1.Columns[7].Visible = false;
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
                                 var artistID = row.Cells["songArtist"].Value.ToString();
@@ -1268,7 +1269,7 @@ namespace BeatBaseForms
                         dataGridView1.Columns[5].HeaderText = "Lyrics";
                         dataGridView1.Columns[6].HeaderText = "Release Date";
                         dataGridView1.Columns[8].HeaderText = "Streams";
-                        dataGridView1.Columns[7].Visible = false;
+                        //dataGridView1.Columns[7].Visible = false;
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             var artistID = row.Cells["songArtist"].Value.ToString();
@@ -1427,7 +1428,7 @@ namespace BeatBaseForms
                         dataGridView1.Columns[5].HeaderText = "Lyrics";
                         dataGridView1.Columns[6].HeaderText = "Release Date";
                         dataGridView1.Columns[8].HeaderText = "Streams";
-                        dataGridView1.Columns[7].Visible = false;
+                        //dataGridView1.Columns[7].Visible = false;
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             var artistID_ = row.Cells["songArtist"].Value.ToString();

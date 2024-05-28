@@ -11,7 +11,7 @@
 		//public string albumLyrics { get; set; }
 		public System.DateTime albumReleaseDate { get; set; }
 
-		public int streams { get; set; }
+		
 
 
 		public override string ToString()
