@@ -93,10 +93,10 @@ AFTER INSERT
 AS
 BEGIN
   UPDATE Playlist
-  SET TotalDuration = (SELECT SUM(s.Duration)
+  SET TotalDuration = COALESCE((SELECT SUM(s.Duration)
                        FROM PlaylistSong ps
                        JOIN Song s ON ps.SongID = s.ID
-                       WHERE ps.PlaylistID = INSERTED.PlaylistID)
+                       WHERE ps.PlaylistID = INSERTED.PlaylistID),0)
   FROM INSERTED
   WHERE Playlist.ID = INSERTED.PlaylistID;
 END;
@@ -108,10 +108,10 @@ AFTER DELETE
 AS
 BEGIN
   UPDATE Playlist
-  SET TotalDuration = (SELECT SUM(s.Duration)
+  SET TotalDuration = COALESCE((SELECT SUM(s.Duration)
                        FROM PlaylistSong ps
                        JOIN Song s ON ps.SongID = s.ID
-                       WHERE ps.PlaylistID = DELETED.PlaylistID)
+                       WHERE ps.PlaylistID = DELETED.PlaylistID),0)
   FROM DELETED
   WHERE Playlist.ID = DELETED.PlaylistID;
 END;
@@ -123,18 +123,18 @@ AFTER UPDATE
 AS
 BEGIN
   UPDATE Playlist
-  SET TotalDuration = (SELECT SUM(s.Duration)
+  SET TotalDuration = COALESCE((SELECT SUM(s.Duration)
                        FROM PlaylistSong ps
                        JOIN Song s ON ps.SongID = s.ID
-                       WHERE ps.PlaylistID = INSERTED.PlaylistID)
+                       WHERE ps.PlaylistID = INSERTED.PlaylistID),0)
   FROM INSERTED
   WHERE Playlist.ID = INSERTED.PlaylistID;
 
   UPDATE Playlist
-  SET TotalDuration = (SELECT SUM(s.Duration)
+  SET TotalDuration = COALESCE((SELECT SUM(s.Duration)
                        FROM PlaylistSong ps
                        JOIN Song s ON ps.SongID = s.ID
-                       WHERE ps.PlaylistID = DELETED.PlaylistID)
+                       WHERE ps.PlaylistID = DELETED.PlaylistID),0)
   FROM DELETED
   WHERE Playlist.ID = DELETED.PlaylistID;
 END;
