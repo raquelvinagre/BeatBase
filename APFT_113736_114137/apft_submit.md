@@ -38,7 +38,7 @@ Os utilizadores podem ouvir músicas adicionadas pelos artistas. É possível, a
 
 ### Versão final/Final version
 
-![DER Diagram!](../BeatBase/diagrams/DER%20UPDATED.png "AnImage")
+![DER Diagram!](../diagrams/DER.png "DER")
 
 ### APFE 
 
@@ -52,7 +52,7 @@ Agora está especificado que a Global Leaderboard apenas contém músicas.
 
 ### Versão final/Final Version
 
-![ER Diagram!](../BeatBase/diagrams/ER%20UPDATED.png "AnImage")
+![ER Diagram!](../diagrams/ER.png "ER")
 
 ### APFE
 
@@ -62,7 +62,7 @@ As alterações correspondem às anteriores.
 
 ## ​SQL DDL - Data Definition Language
 
-[SQL DDL File](../BeatBase/sql/01_ddl.sql "SQLFileQuestion")
+[SQL DDL File](../sql/01_ddl.sql "SQLFileQuestion")
 
 ## SQL DML - Data Manipulation Language
 
@@ -97,9 +97,6 @@ Os índices criados foram os seguintes:
 
 - Índice na Song table para o ArtistID
 - Índice na Album table para o ArtistID
-- Índice na Playlist table para o AuthorID
-- Índice na Song table para o Genre
-- Índice na Playlist table para o Genre
 
 
 ```sql
@@ -122,15 +119,15 @@ CREATE INDEX idx_Album_ArtistID ON Album (ArtistID);
 
 ## SQL Programming: Stored Procedures, Triggers, UDF
 
-[SQL SPs and Functions File](sql/02_sp_functions.sql "SQLFileQuestion")
+[SQL SPs and Functions File](../sql/02_sp_functions.sql "SQLFileQuestion")
 
-[SQL Triggers File](../BeatBase/sql/03_triggers.sql "SQLFileQuestion")
+[SQL Triggers File](../sql/03_triggers.sql "SQLFileQuestion")
 
 ## Outras notas/Other notes
 
 ### Dados iniciais da base de dados/Database init data
 
-[Indexes File](../BeatBase/sql/02_Indexes.sql "SQLFileQuestion")
+[Indexes File](../sql/02_Indexes.sql "SQLFileQuestion")
 
 
 
