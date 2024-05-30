@@ -22,10 +22,10 @@ Raquel Vinagre 113736
 - [x]  cursores - guess not
 - [x]  normalizacao ? misterio - já está normalizado
 - [x]  atualizar os diagramas
-- [ ]  relatório
+- [x]  relatório
 - [x]  vídeo
 - [x]  powerpoint
-- [ ]  preencher apft submit
-- [ ]  alterar estrutura da pasta para ser igual à do mail
+- [x]  preencher apft submit
+- [x]  alterar estrutura da pasta para ser igual à do mail
 - [x]  remover músicas
 - [x]  remove nas páginas principais

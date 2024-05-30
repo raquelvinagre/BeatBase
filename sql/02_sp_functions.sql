@@ -115,53 +115,6 @@ BEGIN
 END;
 
 go
--- Create stored procedure to find the most popular song genre
-CREATE PROCEDURE dbo.MostPopularSongGenre
-AS
-BEGIN
-    SELECT 
-        TOP 1 Genre, 
-        COUNT(*) AS GenreCount
-    FROM 
-        Song
-    GROUP BY 
-        Genre
-    ORDER BY 
-        GenreCount DESC;
-END;
-GO
-
--- Create stored procedure to find the most popular playlist genre
-CREATE PROCEDURE dbo.MostPopularPlaylistGenre
-AS
-BEGIN
-    SELECT 
-        TOP 1 Genre, 
-        COUNT(*) AS GenreCount
-    FROM 
-        Playlist
-    GROUP BY 
-        Genre
-    ORDER BY 
-        GenreCount DESC;
-END;
-GO
-
--- Create stored procedure to find the most popular artist
-CREATE PROCEDURE dbo.MostPopularArtist
-AS
-BEGIN
-    SELECT 
-        TOP 1 ArtistID,
-        SUM(Streams) AS TotalStreams
-    FROM 
-        Song
-    GROUP BY 
-        ArtistID
-    ORDER BY 
-        TotalStreams DESC;
-END;
-GO
 
 
 DROP FUNCTION IF EXISTS FilterSongsByGenre;
@@ -324,6 +277,7 @@ BEGIN
     RETURN @AvgSongDuration;
 END;
 GO
+
 drop FUNCTION IF EXISTS MostPopularSongGenre;
 go
 CREATE FUNCTION dbo.MostPopularSongGenre()

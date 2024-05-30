@@ -4,35 +4,24 @@
 - Diogo Fernandes, MEC: 114137
 - Raquel Vinagre, MEC: 113736
 
-# Instructions - TO REMOVE
-
-Este template é flexível.
-É sugerido seguir a estrutura, links de ficheiros e imagens, mas adicione ou remova conteúdo sempre que achar necessário.
-
----
-
-This template is flexible.
-It is suggested to follow the structure, file links and images but add more content where necessary.
-
-The files should be organized with the following nomenclature:
-
-- sql\01_ddl.sql: mandatory for DDL
-- sql\02_sp_functions.sql: mandatory for Store Procedure, Functions,... 
-- sql\03_triggers.sql: mandatory for triggers
-- sql\04_db_init.sql: scripts to init the database (i.e. inserts etc.)
-- sql\05_any_other_matter.sql: any other scripts.
-
-Por favor remova esta secção antes de submeter.
-
-Please remove this section before submitting.
-
 ## Introdução / Introduction
  
-Este projeto consiste numa base de dados para uma plataforma de streaming digital de música, de modo a gerir utilizadores, playlists, músicas, artistas e álbuns.
-Os utilizadores podem ouvir músicas adicionadas pelos artistas. É possível, ainda, criar playlists personalizadas, e verificar as leaderboards globais.
+Este projeto consiste numa base de dados para uma plataforma de streaming digital de música, de modo a gerir utilizadores, playlists, músicas, artistas e álbuns. A nossa escolha foi motivada pelo nosso interesse mútuo na área da música e na versatilidade que disponibiliza para um projeto deste tipo. 
 
+Como em qualquer plataforma de streaming de música, os utilizadores podem ouvir músicas adicionadas pelos artistas. É possível, ainda, criar/editar playlists personalizadas, criar/editar álbuns, verificar as leaderboards globais e ainda algumas estatísticas.
+
+A interface foi desenvolvida para o uso administrativo (todas as permissões), de modo a demonstrar todas as features implementadas, quer sejam de artista ou utilizador.
 
 ## ​Análise de Requisitos / Requirements
+
+Adicionar/editar/remover músicas
+Adicionar/editar/remover álbuns
+Criar/editar/remover artistas
+Criar/editar/remover playlists
+Procurar/filtrar info sobre artista/álbum/música/playlists
+Ouvir e favoritar músicas
+Leaderboards
+Estatísticas
 
 ## DER - Diagrama Entidade Relacionamento/Entity Relationship Diagram
 
@@ -58,7 +47,7 @@ Agora está especificado que a Global Leaderboard apenas contém músicas.
 
 Descreva sumariamente as melhorias sobre a primeira entrega.
 
-As alterações correspondem às anteriores.
+As alterações correspondem às anteriores mencionadas.
 
 ## ​SQL DDL - Data Definition Language
 
@@ -69,19 +58,59 @@ As alterações correspondem às anteriores.
 Uma secção por formulário.
 A section for each form.
 
-### Formulario exemplo/Example Form
+### Formulario Song
 
-![Exemplo Screenshot!](screenshots/screenshot_1.jpg "AnImage")
+![Exemplo Screenshot!](song%20form.png "AnImage")
 
 ```sql
 -- Show data on the form
-SELECT * FROM MY_TABLE ....;
+SELECT Name, Genre, ReleaseDate, Duration, ArtistID, Lyrics FROM Song WHERE ID = @SongID;
 
 -- Insert new element
-INSERT INTO MY_TABLE ....;
+INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) VALUES 
+(@ArtistID, @Streams, @Genre, @Duration, @Lyrics, @Name, @ReleaseDate, @AlbumID);
+
 ```
 
-...
+### Formulario Album
+
+![Exemplo Screenshot!](album%20form.png "AnImage")
+
+```sql
+-- Show data on the form
+SELECT Name, ReleaseDate, TotalDuration, ArtistID FROM Album WHERE ID = @AlbumID;
+
+-- Insert new element
+INSERT INTO Album (Name, ReleaseDate, TotalDuration, ArtistID) VALUES 
+(@Name, @ReleaseDate, @TotalDuration, @ArtistID);
+
+```
+
+### Formulario Artist
+
+![Exemplo Screenshot!](artist%20form.png "AnImage")
+
+```sql
+-- Show data on the form
+SELECT ArtistName FROM Artist WHERE ID = @ArtistID;
+
+-- Insert new element
+INSERT INTO Artist (ArtistName) VALUES (@ArtistName);
+```
+
+### Formulario Playlist
+
+![Exemplo Screenshot!](playlist%20form.png "AnImage")
+
+```sql
+-- Show data on the form
+SELECT Name, Genre, Visibility, TotalDuration, AuthorID FROM Playlist WHERE ID = @PlaylistID;
+
+-- Insert new element
+INSERT INTO Playlist (TotalDuration, Genre, Visibility, Name, AuthorID) VALUES 
+(@TotalDuration, @Genre, @Visibility, @Name, @AuthorID);
+
+```
 
 ## Normalização/Normalization
 
@@ -129,7 +158,7 @@ CREATE INDEX idx_Album_ArtistID ON Album (ArtistID);
 
 ### Dados iniciais da base de dados/Database init data
 
-[Indexes File](../sql/02_Indexes.sql "SQLFileQuestion")
+[Indexes File](../sql/05_Indexes.sql "SQLFileQuestion")
 
 
 
