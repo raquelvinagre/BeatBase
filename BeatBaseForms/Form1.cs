@@ -1699,6 +1699,8 @@ namespace BeatBaseForms
 
             Song selectedSong2 = (Song)dataGridView1.CurrentRow.DataBoundItem;
             label21.Text = $"{selectedSong2.songName} is playing";
+            // make label 22 the duration of the song
+            label22.Text = selectedSong2.songDuration;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -2081,57 +2083,6 @@ namespace BeatBaseForms
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
-        // private List<Song> LoadSongsWithoutAlbum()
-        // {
-        //     List<Song> songsWithoutAlbum = new List<Song>();
-
-        //     try
-        //     {
-        //         // Query string to call the stored procedure
-        //         string query = "EXEC GetSongsWithoutAlbum";
-
-        //         using (SqlCommand cmd = new SqlCommand(query, conn))
-        //         {
-        //             // Setting the command type to Text
-        //             cmd.CommandType = CommandType.Text;
-
-        //             using (SqlDataReader reader = cmd.ExecuteReader())
-        //             {
-        //                 songsWithoutAlbum.Clear();
-
-        //                 // Reading data from the stored procedure result set
-        //                 while (reader.Read())
-        //                 {
-        //                     Song song = new Song
-        //                     {
-        //                         SongID = (int)reader["ID"],
-        //                         songName = reader["Name"].ToString(),
-        //                         songArtist = reader["ArtistID"].ToString(),
-        //                         songGenre = reader["Genre"].ToString(),
-        //                         songDuration = reader["Duration"].ToString(),
-        //                         songLyrics = reader["Lyrics"].ToString(),
-        //                         songReleaseDate = (DateTime)reader["ReleaseDate"],
-        //                         songAlbumID = null,
-        //                         streams = (int)reader["Streams"]
-        //                     };
-        //                     songsWithoutAlbum.Add(song);
-        //                 }
-        //                 reader.Close();
-        //             }
-        //         }
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         // Displaying an error message in case of an exception
-        //         MessageBox.Show("Error: " + ex.Message);
-        //     }
-
-        //     return songsWithoutAlbum;
-        // }
-
-
 
         private void button21_Click(object sender, EventArgs e)
         {
@@ -3332,77 +3283,175 @@ namespace BeatBaseForms
         {
 
         }
-
-        private void LoadStatistics()
+private void LoadStatistics()
+{
+    try
+    {
+        // Ensure the connection is open
+        if (conn.State != ConnectionState.Open)
         {
-            try
+            conn.Open();
+        }
+
+        // Queries for statistics using UDFs
+        string queryTotalSongs = "SELECT dbo.TotalSongs()";
+        string queryTotalAlbums = "SELECT dbo.TotalAlbums()";
+        string queryTotalArtists = "SELECT dbo.TotalArtists()";
+        string queryTotalPlaylists = "SELECT dbo.TotalPlaylists()";
+        string queryAvgSongDuration = "SELECT dbo.AverageSongDuration()";
+        string querySongGenre = "SELECT * from dbo.MostPopularSongGenre()";
+        string queryPlaylistGenre = "SELECT * from dbo.MostPopularPlaylistGenre()";
+        string queryAvgNumSongsPerArtist = "SELECT dbo.AverageNumSongsPerArtist()";
+        string queryAvgNumSongsPerAlbum = "SELECT dbo.AverageNumSongsPerAlbum()";
+
+        using (SqlCommand cmdTotalSongs = new SqlCommand(queryTotalSongs, conn))
+        using (SqlCommand cmdTotalAlbums = new SqlCommand(queryTotalAlbums, conn))
+        using (SqlCommand cmdTotalArtists = new SqlCommand(queryTotalArtists, conn))
+        using (SqlCommand cmdTotalPlaylists = new SqlCommand(queryTotalPlaylists, conn))
+        using (SqlCommand cmdAvgSongDuration = new SqlCommand(queryAvgSongDuration, conn))
+        using (SqlCommand cmdSongGenre = new SqlCommand(querySongGenre, conn))
+        using (SqlCommand cmdPlaylistGenre = new SqlCommand(queryPlaylistGenre, conn))
+        using (SqlCommand cmdAvgNumSongsPerArtist = new SqlCommand(queryAvgNumSongsPerArtist, conn))
+        using (SqlCommand cmdAvgNumSongsPerAlbum = new SqlCommand(queryAvgNumSongsPerAlbum, conn))
+        {
+            // Get total songs
+            int totalSongs = (int)cmdTotalSongs.ExecuteScalar();
+            textBox1.Text = totalSongs.ToString();
+
+            // Get total albums
+            int totalAlbums = (int)cmdTotalAlbums.ExecuteScalar();
+            textBox20.Text = totalAlbums.ToString();
+
+            // Get total artists
+            int totalArtists = (int)cmdTotalArtists.ExecuteScalar();
+            textBox23.Text = totalArtists.ToString();
+
+            // Get total playlists
+            int totalPlaylists = (int)cmdTotalPlaylists.ExecuteScalar();
+            textBox26.Text = totalPlaylists.ToString();
+
+            // Get average song duration
+            double avgSongDuration = (double)cmdAvgSongDuration.ExecuteScalar();
+            textBox14.Text = avgSongDuration.ToString("F2");
+
+            // Get the most popular song genre
+            string mostPopularSongGenre = (string)cmdSongGenre.ExecuteScalar();
+            textBox17.Text = mostPopularSongGenre;
+
+            // Get the most popular playlist genre
+            string mostPopularPlaylistGenre = (string)cmdPlaylistGenre.ExecuteScalar();
+            textBox22.Text = mostPopularPlaylistGenre;
+
+            // Get average number of songs per artist
+            double avgSongsPerArtist = (double)cmdAvgNumSongsPerArtist.ExecuteScalar();
+            textBox24.Text = avgSongsPerArtist.ToString("F2");
+
+            // Get average number of songs per album
+            double avgSongsPerAlbum = (double)cmdAvgNumSongsPerAlbum.ExecuteScalar();
+            textBox21.Text = avgSongsPerAlbum.ToString("F2");
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+}
+
+        private void textBox23_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox25_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            loadSongsByName(textBox25.Text);
+        }
+
+
+        private void loadSongsByName(string Name)
+{
+    try
+    {
+        // Adjust the query for calling a stored procedure
+        string query = "SELECT * FROM dbo.SearchSongByName(@songName)";
+
+        using (SqlCommand cmd = new SqlCommand(query, conn))
+        {
+            // Set the command type to Text since it's a plain SQL query
+            cmd.CommandType = CommandType.Text;
+
+            // Add the parameter before executing the reader
+            cmd.Parameters.AddWithValue("@songName", Name);
+
+            List<Song> songs_search = new List<Song>();
+
+            // Execute the SQL command and read the result
+            using (SqlDataReader reader = cmd.ExecuteReader())
             {
-                // Ensure the connection is open
-                if (conn.State != ConnectionState.Open)
+                // Read each song and add it to the listbox
+                while (reader.Read())
                 {
-                    conn.Open();
+                    // Creating a song object
+                    Song song = new Song
+                    {
+                        SongID = (int)reader["ID"],
+                        songName = reader["Name"].ToString(),
+                        songArtist = reader["ArtistID"].ToString(),
+                        songGenre = reader["Genre"].ToString(),
+                        songDuration = reader["Duration"].ToString(),
+                        songLyrics = reader["Lyrics"].ToString(),
+                        songReleaseDate = (DateTime)reader["ReleaseDate"],
+                        songAlbumID = reader["AlbumID"] != DBNull.Value ? (int?)reader["AlbumID"] : null,
+                        streams = (int)reader["Streams"]
+                    };
+                    songs_search.Add(song);
                 }
 
-                // Queries for statistics
-                string queryTotalSongs = "SELECT TotalSongsCount FROM TotalSongs";
-                string queryTotalAlbums = "SELECT TotalAlbumsCount FROM TotalAlbums";
-                string queryTotalArtists = "SELECT TotalArtistsCount FROM TotalArtists";
-                string queryTotalPlaylists = "SELECT TotalPlaylistsCount FROM TotalPlaylists";
-                string queryAvgSongDuration = "SELECT AvgSongDuration FROM AverageSongDuration";
-                string querySongGenre = "SELECT Genre FROM MostPopularSongGenre";
-                string queryPlaylistGenre = "SELECT Genre FROM MostPopularPlaylistGenre";
-                string queryAvgNumSongsPerArtist = "SELECT AvgNumSongsPerArtist FROM AverageNumSongsPerArtist";
-                string queryAvgNumSongsPerAlbum = "SELECT AvgNumSongsPerAlbum FROM AverageNumSongsPerAlbum";
+                // Set data source for DataGridView
+                dataGridView1.DataSource = songs_search;
 
-                using (SqlCommand cmdTotalSongs = new SqlCommand(queryTotalSongs, conn))
-                using (SqlCommand cmdTotalAlbums = new SqlCommand(queryTotalAlbums, conn))
-                using (SqlCommand cmdTotalArtists = new SqlCommand(queryTotalArtists, conn))
-                using (SqlCommand cmdTotalPlaylists = new SqlCommand(queryTotalPlaylists, conn))
-                using (SqlCommand cmdAvgSongDuration = new SqlCommand(queryAvgSongDuration, conn))
-                using (SqlCommand cmdSongGenre = new SqlCommand(querySongGenre, conn))
-                using (SqlCommand cmdPlaylistGenre = new SqlCommand(queryPlaylistGenre, conn))
-                using (SqlCommand cmdAvgNumSongsPerArtist = new SqlCommand(queryAvgNumSongsPerArtist, conn))
-                using (SqlCommand cmdAvgNumSongsPerAlbum = new SqlCommand(queryAvgNumSongsPerAlbum, conn))
+                // Customize DataGridView columns
+                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[1].HeaderText = "Song Name";
+                dataGridView1.Columns[2].HeaderText = "Artist";
+                dataGridView1.Columns[3].HeaderText = "Genre";
+                dataGridView1.Columns[4].HeaderText = "Duration";
+                dataGridView1.Columns[5].HeaderText = "Lyrics";
+                dataGridView1.Columns[6].HeaderText = "Release Date";
+                dataGridView1.Columns[8].HeaderText = "Streams";
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    // Get total songs
-                    int totalSongs = (int)cmdTotalSongs.ExecuteScalar();
-                    textBox1.Text = totalSongs.ToString();
-
-                    // Get total albums
-                    int totalAlbums = (int)cmdTotalAlbums.ExecuteScalar();
-                    textBox20.Text = totalAlbums.ToString();
-
-                    // Get total artists
-                    int totalArtists = (int)cmdTotalArtists.ExecuteScalar();
-                    textBox23.Text = totalArtists.ToString();
-
-                    // Get total playlists
-                    int totalPlaylists = (int)cmdTotalPlaylists.ExecuteScalar();
-                    textBox26.Text = totalPlaylists.ToString();
-
-                    // Get average song duration
-                    int avgSongDuration = (int)cmdAvgSongDuration.ExecuteScalar();
-                    textBox14.Text = avgSongDuration.ToString("F2");
-
-                    // Get the most popular song genre
-                    string mostPopularSongGenre = (string)cmdSongGenre.ExecuteScalar();
-                    textBox17.Text = mostPopularSongGenre;
-
-                    // Get the most popular playlist genre
-                    string mostPopularPlaylistGenre = (string)cmdPlaylistGenre.ExecuteScalar();
-                    textBox22.Text = mostPopularPlaylistGenre;
-
-                    int avgSongsPerArtist = (int)cmdAvgNumSongsPerArtist.ExecuteScalar();
-                    textBox24.Text = avgSongsPerArtist.ToString("F2");
-
-                    int avgSongsPerAlbum = (int)cmdAvgNumSongsPerAlbum.ExecuteScalar();
-                    textBox21.Text = avgSongsPerAlbum.ToString("F2");
+                    if (row.Cells["songArtist"].Value != null)
+                    {
+                        var artistID = row.Cells["songArtist"].Value.ToString();
+                        if (int.TryParse(artistID, out int artistID_int))
+                        {
+                            if (artists.TryGetValue(artistID_int, out var artistName))
+                            {
+                                row.Cells["songArtist"].Value = artistName;
+                            }
+                        }
+                    }
                 }
+                reader.Close(); // Ensure reader is closed
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+}
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            loadSongs();
         }
     }
 }

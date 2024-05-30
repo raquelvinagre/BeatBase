@@ -1,6 +1,6 @@
 DROP FUNCTION IF EXISTS FilterSongsByGenre;
 GO
-CREATE FUNCTION FilterSongsByGenre (@Genre VARCHAR(255))
+CREATE FUNCTION dbo.FilterSongsByGenre (@Genre VARCHAR(255))
 RETURNS TABLE
 AS
 RETURN
@@ -13,7 +13,7 @@ GO
 
 DROP FUNCTION IF EXISTS FilterSongsByArtistID;
 GO
-CREATE FUNCTION FilterSongsByArtistID (@ArtistID INT)
+CREATE FUNCTION dbo.FilterSongsByArtistID (@ArtistID INT)
 RETURNS TABLE
 AS
 RETURN
@@ -26,7 +26,7 @@ GO
 
 DROP FUNCTION IF EXISTS FilterAlbumsByArtistID;
 GO
-CREATE FUNCTION FilterAlbumsByArtistID (@ArtistID INT)
+CREATE FUNCTION dbo.FilterAlbumsByArtistID (@ArtistID INT)
 RETURNS TABLE
 AS
 RETURN
@@ -39,7 +39,7 @@ GO
 
 DROP FUNCTION IF EXISTS FilterPlaylistsByGenre;
 GO
-CREATE FUNCTION FilterPlaylistsByGenre (@Genre VARCHAR(255))
+CREATE FUNCTION dbo.FilterPlaylistsByGenre (@Genre VARCHAR(255))
 RETURNS TABLE
 AS
 RETURN
@@ -52,7 +52,7 @@ GO
 
 DROP FUNCTION IF EXISTS FilterPlaylistsByVisibility;
 GO
-CREATE FUNCTION FilterPlaylistsByVisibility (@Visibility BIT)
+CREATE FUNCTION dbo.FilterPlaylistsByVisibility (@Visibility BIT)
 RETURNS TABLE
 AS
 RETURN
@@ -65,7 +65,7 @@ GO
 
 DROP FUNCTION IF EXISTS GetTopArtists;
 GO
-CREATE FUNCTION GetTopArtists (@TopN INT)
+CREATE FUNCTION dbo.GetTopArtists (@TopN INT)
 RETURNS TABLE
 AS
 RETURN (
@@ -77,7 +77,7 @@ GO
 
 DROP FUNCTION IF EXISTS GetTopSongs;
 GO
-CREATE FUNCTION GetTopSongs (@TopN INT)
+CREATE FUNCTION dbo.GetTopSongs (@TopN INT)
 RETURNS TABLE
 AS
 RETURN (
@@ -89,7 +89,7 @@ GO
 
 DROP FUNCTION IF EXISTS GetSongsInPlaylist;
 go
-CREATE FUNCTION GetSongsInPlaylist (@PlaylistID INT)
+CREATE FUNCTION dbo.GetSongsInPlaylist (@PlaylistID INT)
 RETURNS TABLE
 AS
 RETURN
@@ -98,7 +98,9 @@ RETURN
     FROM PlaylistSong ps
     WHERE ps.PlaylistID = @PlaylistID
 );
+go
 
+DROP FUNCTION IF EXISTS TotalSongs;
 go
 CREATE FUNCTION dbo.TotalSongs()
 RETURNS INT
@@ -110,6 +112,8 @@ BEGIN
 END;
 GO
 
+drop FUNCTION IF EXISTS TotalAlbums;
+go
 CREATE FUNCTION dbo.TotalAlbums()
 RETURNS INT
 AS
@@ -119,7 +123,9 @@ BEGIN
     RETURN @TotalAlbumsCount;
 END;
 GO
+drop FUNCTION IF EXISTS TotalArtists;
 
+go
 CREATE FUNCTION dbo.TotalArtists()
 RETURNS INT
 AS
@@ -129,7 +135,8 @@ BEGIN
     RETURN @TotalArtistsCount;
 END;
 GO
-
+drop FUNCTION IF EXISTS TotalPlaylists;
+go
 CREATE FUNCTION dbo.TotalPlaylists()
 RETURNS INT
 AS
@@ -140,6 +147,8 @@ BEGIN
 END;
 GO
 
+drop FUNCTION IF EXISTS AverageSongDuration;
+go 
 CREATE FUNCTION dbo.AverageSongDuration()
 RETURNS FLOAT
 AS
@@ -149,7 +158,8 @@ BEGIN
     RETURN @AvgSongDuration;
 END;
 GO
-
+drop FUNCTION IF EXISTS MostPopularSongGenre;
+go
 CREATE FUNCTION dbo.MostPopularSongGenre()
 RETURNS TABLE
 AS
@@ -161,6 +171,9 @@ RETURN
     ORDER BY GenreCount DESC
 );
 GO
+
+drop FUNCTION IF EXISTS MostPopularPlaylistGenre;
+go
 
 CREATE FUNCTION dbo.MostPopularPlaylistGenre()
 RETURNS TABLE
@@ -174,6 +187,9 @@ RETURN
 );
 GO
 
+drop FUNCTION IF EXISTS MostPopularArtist;
+go
+
 CREATE FUNCTION dbo.MostPopularArtist()
 RETURNS TABLE
 AS
@@ -185,6 +201,8 @@ RETURN
     ORDER BY TotalStreams DESC
 );
 GO
+drop FUNCTION IF EXISTS AverageNumSongsPerArtist;
+go
 
 CREATE FUNCTION dbo.AverageNumSongsPerArtist()
 RETURNS FLOAT
@@ -196,6 +214,8 @@ BEGIN
     RETURN @AvgNumSongsPerArtist;
 END;
 GO
+drop FUNCTION IF EXISTS AverageNumSongsPerAlbum;
+go
 
 CREATE FUNCTION dbo.AverageNumSongsPerAlbum()
 RETURNS FLOAT
@@ -207,7 +227,8 @@ BEGIN
     RETURN @AvgNumSongsPerAlbum;
 END;
 GO
-
+drop FUNCTION IF EXISTS AverageSongDuration;
+go
 CREATE FUNCTION dbo.AverageSongDuration ()
 RETURNS FLOAT
 AS
@@ -218,6 +239,9 @@ BEGIN
     RETURN @AvgSongDuration;
 END;
 GO
+
+drop FUNCTION IF EXISTS AverageNumSongsPerArtist;
+go
 
 CREATE FUNCTION dbo.AverageNumSongsPerArtist ()
 RETURNS FLOAT
@@ -233,6 +257,9 @@ BEGIN
     RETURN @AvgNumSongsPerArtist;
 END;
 GO
+
+drop FUNCTION IF EXISTS AverageNumSongsPerAlbum;
+go
 
 CREATE FUNCTION dbo.AverageNumSongsPerAlbum ()
 RETURNS FLOAT
@@ -250,6 +277,9 @@ BEGIN
 END;
 GO
 
+drop FUNCTION IF EXISTS TotalSongs;
+go
+
 CREATE FUNCTION dbo.TotalSongs ()
 RETURNS INT
 AS
@@ -260,6 +290,9 @@ BEGIN
     RETURN @TotalSongsCount;
 END;
 GO
+
+drop FUNCTION IF EXISTS TotalAlbums;
+go
 
 CREATE FUNCTION dbo.TotalAlbums ()
 RETURNS INT
@@ -272,6 +305,9 @@ BEGIN
 END;
 GO
 
+drop FUNCTION IF EXISTS TotalArtists;
+go
+
 CREATE FUNCTION dbo.TotalArtists ()
 RETURNS INT
 AS
@@ -282,6 +318,9 @@ BEGIN
     RETURN @TotalArtistsCount;
 END;
 GO
+
+drop FUNCTION IF EXISTS TotalPlaylists;
+go
 
 CREATE FUNCTION dbo.TotalPlaylists ()
 RETURNS INT
@@ -294,3 +333,27 @@ BEGIN
 END;
 GO
 
+drop function if exists SearchSongByName;
+go
+CREATE FUNCTION dbo.SearchSongByName(@songName VARCHAR(255))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT 
+        s.ID ,
+        s.Name ,
+        s.ArtistID ,
+        s.Genre ,
+        s.Duration ,
+        s.Lyrics ,
+        s.ReleaseDate ,
+        s.AlbumID,
+        s.Streams
+    FROM 
+        Song s
+    JOIN 
+        Artist a ON s.ArtistID = a.ID
+    WHERE 
+        s.Name LIKE '%' + @songName + '%'
+);
