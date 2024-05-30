@@ -11,7 +11,6 @@ Linha: 52
 ## IMPORTANT
 - [x]  adicionar opções para remover musicas e assim
 - [x]  trigger para a duration da playlist
-- imagem album - cancelado
 
 # To-do:
 - [x]  (quase)adicionar músicas a playlists
