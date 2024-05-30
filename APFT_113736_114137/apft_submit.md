@@ -123,6 +123,8 @@ CREATE INDEX idx_Album_ArtistID ON Album (ArtistID);
 
 [SQL Triggers File](../sql/03_triggers.sql "SQLFileQuestion")
 
+[SQL Views File](../sql/02_views.sql "SQLFileQuestion")
+
 ## Outras notas/Other notes
 
 ### Dados iniciais da base de dados/Database init data
