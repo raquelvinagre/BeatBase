@@ -4,10 +4,14 @@ Projeto de Bases de Dados - BeatBase
 Diogo Fernandes 114137
 Raquel Vinagre 113736
 
+## Onde mudar o utilizador da BD:
+Ficheiro: Form1.cs (encontra-se na pasta /source/)
+Linha: 52
+
 ## IMPORTANT
 - [x]  adicionar opções para remover musicas e assim
 - [x]  trigger para a duration da playlist
-- [ ]  imagem album - cancelado
+-      imagem album - cancelado
 
 # To-do:
 - [x]  (quase)adicionar músicas a playlists
