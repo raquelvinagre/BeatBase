@@ -7,7 +7,7 @@ Raquel Vinagre 113736
 ## IMPORTANT
 - [x]  adicionar opções para remover musicas e assim
 - [x]  trigger para a duration da playlist
-- [ ]  imagem album
+- [ ]  imagem album - cancelado
 
 # To-do:
 - [x]  (quase)adicionar músicas a playlists
@@ -28,6 +28,4 @@ Raquel Vinagre 113736
 - [ ]  preencher apft submit
 - [ ]  alterar estrutura da pasta para ser igual à do mail
 - [x]  remover músicas
-- [x]  losing my fucking mind
-- [x]  same
 - [x]  remove nas páginas principais
