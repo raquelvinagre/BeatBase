@@ -824,6 +824,7 @@ namespace BeatBaseForms
 
                     // Reload the songs list
                     loadSongs();
+                    LoadStatistics();
                 }
             }
             catch (Exception ex)
@@ -933,6 +934,7 @@ namespace BeatBaseForms
                     {
                         MessageBox.Show("Album added to the database.");
                         loadAlbums();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -1078,6 +1080,7 @@ namespace BeatBaseForms
 
                     // Reload the playlists list
                     loadPlaylists();
+                    LoadStatistics();
                 }
             }
             catch (Exception ex)
@@ -1707,6 +1710,7 @@ namespace BeatBaseForms
                         comboBox3.SelectedIndex = -1;
                         dateTimePicker3.Value = DateTime.Now; // Reset to current date
                         loadSongs();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -2056,6 +2060,7 @@ namespace BeatBaseForms
                         comboBox15.SelectedIndex = 0;
                         dateTimePicker5.Value = DateTime.Now; // Reset to current date
                         loadAlbums();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -2408,6 +2413,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Artist added to the database.");
                         // Optionally, refresh the artist list or other UI components
                         loadArtists();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -2479,6 +2485,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Artist updated successfully.");
                         // Optionally, refresh the artist list or other UI components
                         loadArtists();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -2859,6 +2866,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Playlist updated successfully!");
                         // Optionally, refresh the list of playlists
                         loadPlaylists();
+                        LoadStatistics();
 
                         textBox19.Text = string.Empty;
                         textBox18.Text = string.Empty;
@@ -2958,6 +2966,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Artist removed from the database.");
                         // Optionally, refresh the artist list or other UI components
                         loadArtists();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -3005,6 +3014,7 @@ namespace BeatBaseForms
                     MessageBox.Show("Album removed from the database.");
                     // Optionally, refresh the list of albums
                     loadAlbums();
+                    LoadStatistics();
 
                     // Clear the input fields
                     comboBox26.SelectedIndex = -1;
@@ -3044,6 +3054,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Song removed successfully!");
                         // Optionally, refresh the list of songs or other UI components
                         loadSongs();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -3083,6 +3094,7 @@ namespace BeatBaseForms
                         MessageBox.Show("Playlist removed successfully!");
                         // Optionally, refresh the list of playlists or other UI components
                         loadPlaylists();
+                        LoadStatistics();
                     }
                     else
                     {
@@ -3191,6 +3203,7 @@ namespace BeatBaseForms
         private void button23_Click(object sender, EventArgs e)
         {
             loadSongsByName(textBox25.Text);
+            textBox25.Text = "";
         }
 
         private void loadSongsByName(string Name)

@@ -9,7 +9,6 @@ DELETE FROM Artist;
 DELETE FROM Leaderboard;
 DELETE FROM GlobalLeaderboard;
 
--- Insert into Artist without specifying ID
 INSERT INTO Artist (ArtistName, Streams) VALUES
 ('The Weeknd', 2839132),
 ('Drake', 483922),
@@ -22,7 +21,6 @@ INSERT INTO Artist (ArtistName, Streams) VALUES
 ('Post Malone', 7428223),
 ('Bad Bunny', 3218712),
 ('Raquel Vinagre',3627),
--- New artists
 ('Beyonce', 8539211),
 ('Jay-Z', 7328821),
 ('Eminem', 9538120),
@@ -46,26 +44,22 @@ INSERT INTO Artist (ArtistName, Streams) VALUES
 ('Halsey', 4928101),
 ('Khalid', 5928182);
 
--- Insert into [User] without specifying ID
 INSERT INTO [User] (Username) VALUES
 ('user1'),
 ('user2'),
 ('user3'),
 ('user4'),
 ('user5'),
--- New users
 ('user6'),
 ('user7'),
 ('user8'),
 ('user9'),
 ('user10');
 
--- Insert into Playlist without specifying ID
 INSERT INTO Playlist (Genre, Visibility, Name, AuthorID) VALUES
 ('Pop', 1, 'Liked Songs', 1),
 ('Hip-Hop', 0, 'Workout Playlist', 2),
 ('Electronic', 1, 'Party Mix', 3),
--- New playlists
 ('R&B', 1, 'Chill Vibes', 4),
 ('Rock', 0, 'Rock Anthems', 5),
 ('Pop', 1, 'Top Hits', 6),
@@ -75,14 +69,12 @@ INSERT INTO Playlist (Genre, Visibility, Name, AuthorID) VALUES
 ('Jazz', 1, 'Smooth Jazz', 10);
 
 
--- Insert into Album without specifying ID
 INSERT INTO Album (Name, ReleaseDate, ArtistID) VALUES
 ('After Hours', '2020-03-20',  1),
 ('Scorpion', '2018-06-29',  2),
 ('Folklore', '2020-07-23',  3),
 ('Good Kid, M.A.A.D City', '2012-10-22',  4),
 ('When We All Fall Asleep, Where Do We Go?', '2019-03-29',  5),
--- New albums
 ('Lemonade', '2016-04-23',  12),
 ('4:44', '2017-06-30',  13),
 ('Revival', '2017-12-15',  14),
@@ -106,7 +98,6 @@ INSERT INTO Album (Name, ReleaseDate, ArtistID) VALUES
 ('Manic', '2020-01-17',  32),
 ('Free Spirit', '2019-04-05',  33);
 
--- Insert into Song without specifying ID
 INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate, AlbumID) VALUES
 (1, 500000, 'R&B', 240, '...', 'Blinding Lights', '2020-01-21', 1),
 (1, 300000, 'R&B', 200, '...', 'Heartless', '2019-11-27', 1),
@@ -118,7 +109,6 @@ INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate,
 (5, 450000, 'Pop', 200, '...', 'Bad Guy', '2019-06-05', 5),
 (6, 250000, 'Pop', 220, '...', 'Sorry', '2015-10-22', NULL),
 (7, 550000, 'Pop', 240, '...', 'Thank U, Next', '2019-02-08', NULL),
--- New songs
 (12, 700000, 'R&B', 260, '...', 'Formation', '2016-04-23', 6),
 (12, 600000, 'R&B', 250, '...', 'Hold Up', '2016-04-23', 6),
 (13, 650000, 'Hip-Hop', 300, '...', 'The Story of O.J.', '2017-06-30', 7),
@@ -142,7 +132,6 @@ INSERT INTO Song (ArtistID, Streams, Genre, Duration, Lyrics, Name, ReleaseDate,
 (31, 750000, 'Pop', 280, '...', 'WithoutMe', '2020-01-17', 26),
 (32, 900000, 'R&B', 260, '...', 'Talk', '2019-04-05', 27);
 
--- Insert sample data into PlaylistSong table
 INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES
 (1, 1), 
 (1, 3), 
@@ -153,7 +142,6 @@ INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES
 (3, 7),
 (3, 9),
 (3, 11),
--- New playlist-song associations
 (4, 13),
 (4, 15),
 (4, 17),
@@ -175,7 +163,6 @@ INSERT INTO PlaylistSong (PlaylistID, SongID) VALUES
 (10, 28),
 (10, 30);
 
--- Insert into BelongsTo without changes
 INSERT INTO BelongsTo (LeaderID, SongID) VALUES
 (1, 1),
 (1, 3),
@@ -186,7 +173,6 @@ INSERT INTO BelongsTo (LeaderID, SongID) VALUES
 (3, 8),
 (4, 7),
 (5, 9),
--- New belongs to data
 (1, 10),
 (2, 11),
 (3, 12),
@@ -198,7 +184,6 @@ INSERT INTO BelongsTo (LeaderID, SongID) VALUES
 (4, 18),
 (5, 19);
 
--- Insert into Leaderboard without specifying LeaderID
 INSERT INTO Leaderboard (Size) VALUES
 (10),
 (5),
@@ -206,7 +191,6 @@ INSERT INTO Leaderboard (Size) VALUES
 (3),
 (7);
 
--- Insert into ArtistLeaderboard with generated IDs
 INSERT INTO ArtistLeaderboard (LeaderID, ID, AuthorID, ArtistName) VALUES
 (1, 4, 4, 'Kendrick Lamar'),
 (1, 5, 5, 'Billie Eilish'),
@@ -216,14 +200,12 @@ INSERT INTO ArtistLeaderboard (LeaderID, ID, AuthorID, ArtistName) VALUES
 (3, 2, 7, 'Ariana Grande'),
 (4, 1, 8, 'Ed Sheeran'),
 (5, 1, 9, 'Post Malone'),
--- New artist leaderboard data
 (1, 6, 12, 'Beyonce'),
 (2, 7, 13, 'Jay-Z'),
 (3, 8, 14, 'Eminem'),
 (4, 9, 15, 'Rihanna'),
 (5, 10, 16, 'Adele');
 
--- Insert into GlobalLeaderboard without specifying LeaderID
 INSERT INTO GlobalLeaderboard (LeaderID) VALUES
 (1),
 (2),
