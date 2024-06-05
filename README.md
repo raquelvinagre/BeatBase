@@ -4,7 +4,7 @@ Projeto de Bases de Dados - BeatBase
 Diogo Fernandes 114137
 Raquel Vinagre 113736
 
-##Member effort
+## Member effort
 Diogo - 50%
 Raquel - 50%
 
