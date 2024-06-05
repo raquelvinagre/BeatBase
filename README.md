@@ -4,6 +4,10 @@ Projeto de Bases de Dados - BeatBase
 Diogo Fernandes 114137
 Raquel Vinagre 113736
 
+##Member effort
+Diogo - 50%
+Raquel - 50%
+
 ## Onde mudar o utilizador da BD:
 Ficheiro: Form1.cs (encontra-se na pasta /source/)
 Linha: 52
